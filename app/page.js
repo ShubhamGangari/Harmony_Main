@@ -1,6 +1,4 @@
 import Link from "next/link";
-import SiteHeader from "../components/SiteHeader";
-import Footer from "../components/Footer";
 import GoogleFormLink from "../components/FormLink";
 import { FeaturedProducts, CoursePreview } from "../components/Catalogue";
 import FounderVisual from "../components/FounderVisual";
@@ -8,10 +6,7 @@ import { SITE_CONFIG } from "../lib/config";
 
 export default function HomePage() {
   return (
-    <>
-      <SiteHeader />
-
-      <main>
+    <main>
         <section className="hero" id="home">
           <div className="hero-decoration hero-decoration-one" />
           <div className="hero-decoration hero-decoration-two" />
@@ -185,8 +180,5 @@ export default function HomePage() {
           </div>
         </section>
       </main>
-
-      <Footer />
-    </>
   );
 }
