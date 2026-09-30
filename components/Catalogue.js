@@ -3,20 +3,105 @@
   import { useEffect, useMemo, useState } from "react";
   import Papa from "papaparse";
   import AddToCartButton from "./AddToCartButton";
-  import { normalizeRows, validExternalUrl } from "../lib/csv";
+  import { normalizeRows, validExternalUrl, mergeProductCatalog } from "../lib/csv";
+  import {
+    DEFAULT_PRODUCTS,
+    PRODUCT_CATEGORIES,
+    groupProducts,
+    getBaseProductName,
+    getProductDefaultImage,
+  } from "../lib/products-data";
 
-  function ProductCard({ product }) {
+  function getCategoryLabel(category) {
+    switch (category) {
+      case "Blend":
+        return "WELLNESS BLEND";
+      case "Kit":
+        return "COLLECTION KIT";
+      case "Diffuser":
+        return "DIFFUSER";
+      case "Topical":
+        return "TOPICAL CARE";
+      case "Carrier Oil":
+        return "CARRIER OIL";
+      default:
+        return "ESSENTIAL OIL";
+    }
+  }
+
+  function getCategoryIcon(category) {
+    switch (category) {
+      case "Blend":
+        return "✨";
+      case "Kit":
+        return "📦";
+      case "Diffuser":
+        return "💨";
+      case "Topical":
+      case "Carrier Oil":
+        return "🧴";
+      default:
+        return "🌿";
+    }
+  }
+
+  function ProductCard({ product, searchQuery = "" }) {
+    const variants = product.variants || [product];
+
+    // Determine default variant: prefer query match (5ml or 15ml) if user searched for a size
+    const initialIndex = useMemo(() => {
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase().trim();
+        if (q.includes("5ml")) {
+          const idx = variants.findIndex((v) =>
+            String(v.size || v.name).toLowerCase().includes("5ml")
+          );
+          if (idx !== -1) return idx;
+        } else if (q.includes("15ml")) {
+          const idx = variants.findIndex((v) =>
+            String(v.size || v.name).toLowerCase().includes("15ml")
+          );
+          if (idx !== -1) return idx;
+        }
+      }
+      return product.defaultIndex !== undefined ? product.defaultIndex : 0;
+    }, [product.defaultIndex, searchQuery, variants]);
+
+    const [selectedIdx, setSelectedIdx] = useState(initialIndex);
+
+    useEffect(() => {
+      setSelectedIdx(initialIndex);
+    }, [initialIndex]);
+
     const [failed, setFailed] = useState(false);
-    const name = product.name || "Essential Oil";
+
+    const activeVariant = variants[selectedIdx] || variants[0] || {};
+    const baseTitle = product.baseName || getBaseProductName(activeVariant.name) || activeVariant.name || "Essential Oil";
+    const size = activeVariant.size || "";
     const price =
-      product.price && product.price !== "CLIENT TO PROVIDE"
-        ? product.price
+      activeVariant.price && activeVariant.price !== "CLIENT TO PROVIDE"
+        ? activeVariant.price
         : "Price details available on request";
     const description =
-      product.description && product.description !== "CLIENT TO PROVIDE"
-        ? product.description
+      activeVariant.description && activeVariant.description !== "CLIENT TO PROVIDE"
+        ? activeVariant.description
         : "Product details are being updated.";
-    const image = validExternalUrl(product.image_url);
+
+    // Fall back to any image available in variants or local product photography
+    const defaultLocalImage = getProductDefaultImage(product.baseName || activeVariant.name);
+    const rawImage =
+      activeVariant.image_url ||
+      variants.find((v) => v.image_url)?.image_url ||
+      defaultLocalImage;
+    const image = validExternalUrl(rawImage) || defaultLocalImage;
+    const category = product.category || activeVariant.category || "Single Oil";
+    const categoryLabel = getCategoryLabel(category);
+    const categoryIcon = getCategoryIcon(category);
+
+    const handleSelectVariant = (idx) => {
+      setSelectedIdx(idx);
+      setFailed(false);
+    };
 
     return (
       <article className="product-card">
@@ -24,30 +109,69 @@
           {image && !failed ? (
             <img
               src={image}
-              alt={name}
+              alt={`${baseTitle}${size ? ` ${size}` : ""}`}
               loading="lazy"
               referrerPolicy="no-referrer"
-              onError={() => setFailed(true)}
+              onError={(e) => {
+                if (defaultLocalImage && !e.currentTarget.src.includes(defaultLocalImage)) {
+                  e.currentTarget.src = defaultLocalImage;
+                } else {
+                  setFailed(true);
+                }
+              }}
             />
           ) : (
             <div
               className="product-image-placeholder"
               aria-hidden="true"
             >
-              <span>✦</span>
-              <small>Image unavailable</small>
+              <span className="product-placeholder-icon">{categoryIcon}</span>
+              <small>{size ? `${size}` : "Pure Botanical"}</small>
             </div>
           )}
 
-          <span className="product-label">ESSENTIAL OIL</span>
+          <span className="product-label">{categoryLabel}</span>
+          {size ? (
+            <span className="product-size-badge">{size}</span>
+          ) : null}
         </div>
 
         <div className="product-content">
           <div className="product-copy">
-            <h3>{name}</h3>
+            <h3>{baseTitle}</h3>
+
+            {/* Size / Quantity Pill Selector */}
+            {variants.length > 1 ? (
+              <div className="product-variant-selector">
+                <span className="variant-label">Choose Size:</span>
+                <div
+                  className="variant-pills"
+                  role="radiogroup"
+                  aria-label={`Select bottle size for ${baseTitle}`}
+                >
+                  {variants.map((v, idx) => {
+                    const isSelected = selectedIdx === idx;
+                    const pillLabel = v.size || (v.name.includes("ml") ? v.name.match(/\d+ml/i)?.[0] : v.name);
+                    return (
+                      <button
+                        key={`${v.size || v.name}-${idx}`}
+                        type="button"
+                        role="radio"
+                        aria-checked={isSelected}
+                        className={`variant-pill ${isSelected ? "is-active" : ""}`}
+                        onClick={() => handleSelectVariant(idx)}
+                        title={`Select ${pillLabel}`}
+                      >
+                        {pillLabel}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : null}
 
             <p className={`product-price ${
-              product.price && product.price !== "CLIENT TO PROVIDE"
+              activeVariant.price && activeVariant.price !== "CLIENT TO PROVIDE"
                 ? ""
                 : "is-unavailable"
             }`}>
@@ -60,7 +184,14 @@
           <div className="integration-actions">
             <AddToCartButton
               type="product"
-              item={{ type: "product", name, price: product.price || "", image, description }}
+              item={{
+                type: "product",
+                name: activeVariant.name,
+                price: activeVariant.price || "",
+                image,
+                description: activeVariant.description,
+                size: activeVariant.size,
+              }}
               className="card-link"
             >
               Order Now <span>→</span>
@@ -70,6 +201,7 @@
       </article>
     );
   }
+
 
   function CourseCard({ course, index }) {
     const [failed, setFailed] = useState(false);
@@ -244,9 +376,11 @@
   }
 
   export function FeaturedProducts({ url }) {
-    const { rows, loading, error } = useCsv(url);
+    const { rows, loading } = useCsv(url);
+    const allProducts = useMemo(() => mergeProductCatalog(rows, DEFAULT_PRODUCTS), [rows]);
+    const groupedProducts = useMemo(() => groupProducts(allProducts), [allProducts]);
 
-    if (loading) {
+    if (loading && !groupedProducts.length) {
       return (
         <div className="data-loading" role="status" aria-live="polite">
           Loading products...
@@ -254,27 +388,16 @@
       );
     }
 
-    if (error) {
-      return (
-        <div className="data-error" role="status" aria-live="polite">
-          Products could not be loaded.
-        </div>
-      );
-    }
-
-    if (!rows.length) {
-      return (
-        <div className="data-error" role="status" aria-live="polite">
-          No products are currently available.
-        </div>
-      );
-    }
+    const featured = groupedProducts.filter(
+      (g) => g.featured || g.variants?.some(isFeatured)
+    );
+    const displayItems = featured.length ? featured.slice(0, 3) : groupedProducts.slice(0, 3);
 
     return (
       <div className="product-grid">
-        {rows.slice(0, 3).map((product, index) => (
+        {displayItems.map((product, index) => (
           <ProductCard
-            key={`${product.name}-${index}`}
+            key={`${product.baseName || product.name}-${index}`}
             product={product}
           />
         ))}
@@ -283,41 +406,72 @@
   }
 
   export function ProductCatalogue({ url }) {
-    const { rows, loading, error } = useCsv(url);
+    const { rows, loading } = useCsv(url);
+    const allProducts = useMemo(() => mergeProductCatalog(rows, DEFAULT_PRODUCTS), [rows]);
+    const groupedProducts = useMemo(() => groupProducts(allProducts), [allProducts]);
 
     const [query, setQuery] = useState("");
-    const featured = useMemo(() => rows.filter(isFeatured).slice(0, 3), [rows]);
+    const [activeCategory, setActiveCategory] = useState("All");
+
+    const featured = useMemo(
+      () =>
+        groupedProducts
+          .filter((g) => g.featured || g.variants?.some(isFeatured))
+          .slice(0, 3),
+      [groupedProducts]
+    );
+
+    const categoryCounts = useMemo(() => {
+      const counts = { All: groupedProducts.length };
+      PRODUCT_CATEGORIES.forEach((cat) => {
+        if (cat === "All") return;
+        if (cat === "Single Oils") {
+          counts[cat] = groupedProducts.filter((p) => p.category === "Single Oil").length;
+        } else if (cat === "Blends") {
+          counts[cat] = groupedProducts.filter((p) => p.category === "Blend").length;
+        } else if (cat === "Kits") {
+          counts[cat] = groupedProducts.filter((p) => p.category === "Kit").length;
+        } else if (cat === "Diffusers & Care") {
+          counts[cat] = groupedProducts.filter((p) =>
+            ["Diffuser", "Topical", "Carrier Oil"].includes(p.category)
+          ).length;
+        }
+      });
+      return counts;
+    }, [groupedProducts]);
 
     const filtered = useMemo(() => {
       const term = query.trim().toLowerCase();
 
-      if (!term) return rows;
+      return groupedProducts.filter((group) => {
+        if (activeCategory === "Single Oils" && group.category !== "Single Oil") return false;
+        if (activeCategory === "Blends" && group.category !== "Blend") return false;
+        if (activeCategory === "Kits" && group.category !== "Kit") return false;
+        if (
+          activeCategory === "Diffusers & Care" &&
+          !["Diffuser", "Topical", "Carrier Oil"].includes(group.category)
+        ) {
+          return false;
+        }
 
-      return rows.filter((product) =>
-        [
-          product.name,
-          product.description,
-          product.price,
-        ]
-          .filter(Boolean)
-          .join(" ")
-          .toLowerCase()
-          .includes(term)
-      );
-    }, [rows, query]);
+        if (!term) return true;
 
-    if (loading) {
+        if (group.baseName.toLowerCase().includes(term)) return true;
+
+        return group.variants.some((v) =>
+          [v.name, v.description, v.size, v.category, v.price]
+            .filter(Boolean)
+            .join(" ")
+            .toLowerCase()
+            .includes(term)
+        );
+      });
+    }, [groupedProducts, query, activeCategory]);
+
+    if (loading && !groupedProducts.length) {
       return (
         <div className="data-loading" role="status" aria-live="polite">
           Loading products...
-        </div>
-      );
-    }
-
-    if (error) {
-      return (
-        <div className="data-error" role="status" aria-live="polite">
-          Products could not be loaded.
         </div>
       );
     }
@@ -330,9 +484,36 @@
               <span className="eyebrow">CURATED FOR YOU</span>
               <h2 id="product-recommendations-title">Recommended products</h2>
             </div>
-            <div className="product-grid">{featured.map((product, index) => <ProductCard key={`featured-${product.name}-${index}`} product={product} />)}</div>
+            <div className="product-grid">
+              {featured.map((product, index) => (
+                <ProductCard key={`featured-${product.baseName || product.name}-${index}`} product={product} />
+              ))}
+            </div>
           </section>
         ) : null}
+
+        {/* Category Filter Navigation */}
+        <div className="catalogue-filter-bar" role="tablist" aria-label="Filter products by category">
+          {PRODUCT_CATEGORIES.map((cat) => {
+            const count = categoryCounts[cat] || 0;
+            const isActive = activeCategory === cat;
+
+            return (
+              <button
+                key={cat}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                className={`catalogue-filter-pill ${isActive ? "is-active" : ""}`}
+                onClick={() => setActiveCategory(cat)}
+              >
+                <span>{cat}</span>
+                <span className="filter-pill-count">{count}</span>
+              </button>
+            );
+          })}
+        </div>
+
         <div className="catalogue-toolbar">
           <div
             className="catalogue-count"
@@ -342,6 +523,7 @@
             {filtered.length === 1
               ? "product"
               : "products"}
+            {activeCategory !== "All" ? ` in ${activeCategory}` : ""}
           </div>
 
           <label className="search-box">
@@ -353,7 +535,7 @@
               onChange={(event) =>
                 setQuery(event.target.value)
               }
-              placeholder="Search products..."
+              placeholder="Search by name, size, aroma..."
               aria-label="Search products"
             />
 
@@ -376,8 +558,9 @@
           >
             {filtered.map((product, index) => (
               <ProductCard
-                key={`${product.name}-${index}`}
+                key={`${product.baseName || product.name}-${index}`}
                 product={product}
+                searchQuery={query}
               />
             ))}
           </div>
@@ -385,20 +568,24 @@
           <div className="no-results">
             <strong>No products found.</strong>
 
-            <p>Try a different search term.</p>
+            <p>Try clearing your search query or selecting another category.</p>
 
             <button
               type="button"
               className="clear-search-button"
-              onClick={() => setQuery("")}
+              onClick={() => {
+                setQuery("");
+                setActiveCategory("All");
+              }}
             >
-              Clear search
+              Reset filters
             </button>
           </div>
         )}
       </>
     );
   }
+
 
   export function CoursePreview({ url }) {
     const { rows, loading, error } = useCsv(url);

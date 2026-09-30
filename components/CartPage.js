@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import Papa from "papaparse";
 import { SITE_CONFIG } from "../lib/config";
-import { normalizeRows, validExternalUrl } from "../lib/csv";
+import { normalizeRows, validExternalUrl, mergeProductCatalog } from "../lib/csv";
+import { DEFAULT_PRODUCTS } from "../lib/products-data";
 import { sendWeb3FormsNotification } from "../lib/web3forms";
 import { openRazorpayCheckout } from "../lib/razorpay";
 import { useCart } from "./CartProvider";
@@ -204,11 +205,16 @@ function isAvailable(row) {
 
 export default function CartPage() {
   const { items, ready, itemCount, removeItem, updateQuantity, clearCart } = useCart();
-  const productRows = useCatalogue(SITE_CONFIG.productsCsv);
+  const rawProductRows = useCatalogue(SITE_CONFIG.productsCsv);
+  const productRows = useMemo(
+    () => mergeProductCatalog(rawProductRows, DEFAULT_PRODUCTS),
+    [rawProductRows]
+  );
   const courseRows = useCatalogue(SITE_CONFIG.coursesCsv);
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
   const [paymentReceipt, setPaymentReceipt] = useState(null);
+  const [directOrderDetails, setDirectOrderDetails] = useState(null);
 
   const products = items.filter((item) => item.type === "product");
   const courses = items.filter((item) => item.type === "course");
@@ -382,16 +388,23 @@ export default function CartPage() {
           },
           onDismiss: () => {
             setStatus("idle");
-            setError("Payment was cancelled. You can retry whenever you are ready.");
+            setError("Online payment was cancelled or closed. You can retry, or place your order directly via UPI / WhatsApp below.");
           },
           onError: (payErr) => {
             setStatus("error");
-            setError(payErr?.description || "Payment failed or was declined. Please try again.");
+            setError(
+              payErr?.description ||
+                payErr?.message ||
+                "Online payment could not be completed. You can try again or place your order directly via UPI / WhatsApp below."
+            );
           },
         });
       } catch (err) {
         setStatus("error");
-        setError(err.message || "Could not start payment checkout. Please try again.");
+        setError(
+          err.message ||
+            "Could not start online payment. You can place your order directly via UPI / WhatsApp below."
+        );
       }
       return;
     }
@@ -412,6 +425,81 @@ export default function CartPage() {
     } catch (submitError) {
       setStatus("error");
       setError(submitError.message || "We could not submit your inquiry. Please try again.");
+    }
+  }
+
+  async function handleDirectUpiOrder(e) {
+    if (e && e.preventDefault) e.preventDefault();
+    setError("");
+
+    const form = document.querySelector("form.cart-checkout");
+    if (form && !form.checkValidity()) {
+      return form.reportValidity();
+    }
+
+    const data = form ? new FormData(form) : new FormData();
+    data.append("formType", "cart");
+    data.append(
+      "cart",
+      JSON.stringify(
+        items.map(({ type, name, quantity, tier }) => ({
+          type,
+          name,
+          quantity,
+          tier,
+        }))
+      )
+    );
+
+    const customerName = data.get("name") || "";
+    const customerEmail = data.get("email") || "";
+    const customerPhone = data.get("phone") || "";
+    const customerAddress = data.get("address") || "";
+
+    const orderRef = `HOC-${Date.now().toString().slice(-6)}`;
+    data.append("paymentId", `UPI_DIRECT_${Date.now()}`);
+    data.append("paymentStatus", "PENDING_UPI_CONFIRMATION");
+    data.append("amountPaid", "0");
+
+    setStatus("submitting");
+
+    try {
+      const paymentInfo = {
+        verified: false,
+        paymentStatus: "PENDING_UPI_CONFIRMATION",
+        amount: subtotal,
+        paymentId: `UPI_DIRECT_${Date.now()}`,
+        orderId: orderRef,
+      };
+
+      await Promise.all([
+        fetch("/api/forms", { method: "POST", body: data }),
+        sendWeb3FormsNotification("cart", data, paymentInfo).catch((err) =>
+          console.warn("Web3Forms notification error:", err)
+        ),
+      ]);
+
+      setDirectOrderDetails({
+        orderRef,
+        customerName,
+        customerEmail,
+        customerPhone,
+        customerAddress,
+        amount: subtotal,
+        date: new Date().toLocaleString("en-IN", {
+          timeZone: "Asia/Kolkata",
+          dateStyle: "medium",
+          timeStyle: "short",
+        }),
+        items: [...items],
+      });
+
+      clearCart();
+      setStatus("direct_upi_success");
+    } catch (err) {
+      console.error("Direct order submission failed:", err);
+      setStatus("error");
+      setError(err?.message || "Could not submit your order. Please try again.");
     }
   }
 
@@ -491,17 +579,137 @@ export default function CartPage() {
               </div>
             ) : null}
 
-            <div className="paid-actions">
-              <Link className="btn btn-primary" href="/">
+            <div className="paid-actions" style={{ flexDirection: "column", gap: "12px", alignItems: "center" }}>
+              <div style={{ display: "flex", gap: "16px", justifyContent: "center", width: "100%", flexWrap: "wrap" }}>
+                <Link className="btn btn-primary" href="/">
+                  Return to Home <span>→</span>
+                </Link>
+                <button
+                  type="button"
+                  className="btn btn-outline"
+                  onClick={() => window.print()}
+                >
+                  Print Receipt 🖨
+                </button>
+              </div>
+
+              {paymentReceipt ? (
+                <a
+                  href={`https://wa.me/919076002266?text=${encodeURIComponent(
+                    `Hello Richa! I've completed payment on Harmony of Cells (Payment ID: ${paymentReceipt.paymentId}).\n\n` +
+                      `*Items:*\n` +
+                      paymentReceipt.items
+                        .map((it) => `• ${it.name} ${it.tier ? `(${it.tier})` : ""} × ${it.quantity}`)
+                        .join("\n") +
+                      `\n\n*Amount Paid:* ₹${paymentReceipt.amount.toLocaleString("en-IN")}\n` +
+                      `Looking forward to receiving the confirmation and dispatch details. Thank you!`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-whatsapp-confirm"
+                  style={{ width: "100%", maxWidth: "420px", justifyContent: "center" }}
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="whatsapp-svg-icon" aria-hidden="true">
+                    <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.979-.275-.1-.476-.15-.676.15-.201.3-.777.979-.953 1.18-.175.2-.35.225-.651.075s-1.272-.469-2.423-1.496c-.896-.799-1.501-1.787-1.677-2.088-.176-.301-.019-.464.132-.614.135-.135.301-.35.452-.526.15-.175.2-.3.301-.5.1-.2.05-.376-.025-.526-.075-.15-.676-1.63-.927-2.232-.244-.587-.493-.507-.677-.516-.175-.008-.376-.01-.577-.01-.201 0-.527.075-.803.376s-1.054 1.029-1.054 2.51c0 1.48 1.079 2.909 1.23 3.11.15.2 2.124 3.243 5.145 4.549.719.311 1.28.497 1.718.636.722.229 1.378.197 1.898.12.579-.087 1.78-.727 2.031-1.429.251-.702.251-1.304.176-1.43-.075-.125-.276-.2-.577-.35z"/>
+                    <path d="M12.004 2C6.482 2 2.003 6.48 2.003 12c0 1.99.585 3.845 1.597 5.414L2 22l4.734-1.543A9.957 9.957 0 0 0 12.004 22c5.522 0 10.001-4.48 10.001-10s-4.479-10-10.001-10zm0 18.2c-1.628 0-3.138-.485-4.407-1.319l-.316-.208-2.812.916.932-2.738-.228-.337A8.163 8.163 0 0 1 3.804 12c0-4.522 3.678-8.2 8.2-8.2 4.521 0 8.2 3.678 8.2 8.2 0 4.522-3.679 8.2-8.2 8.2z"/>
+                  </svg>
+                  <span>Chat with Richa on WhatsApp for Fast Dispatch →</span>
+                </a>
+              ) : null}
+            </div>
+          </div>
+        ) : status === "direct_upi_success" && directOrderDetails ? (
+          <div className="cart-success" role="status">
+            <div className="success-icon is-paid" aria-hidden="true">✓</div>
+            <span className="paid-badge" style={{ background: "rgba(37, 211, 102, 0.15)", color: "#1a783e" }}>
+              ORDER RECORDED • PENDING UPI
+            </span>
+            <h2>Order Received Successfully!</h2>
+            <p>
+              Thank you, {directOrderDetails.customerName}! Your order has been registered in our system.
+              To finalize and dispatch your items, please connect with Richa on WhatsApp below to complete payment via UPI (GPay, PhonePe, Paytm, BHIM) or Bank Transfer.
+            </p>
+
+            <div className="direct-upi-success-box">
+              <div className="payment-receipt-box" style={{ margin: "0 0 20px 0" }}>
+                <div className="receipt-row">
+                  <span>Order Reference:</span>
+                  <code>{directOrderDetails.orderRef}</code>
+                </div>
+                <div className="receipt-row">
+                  <span>Total Amount to Pay:</span>
+                  <strong style={{ color: "var(--green-dark)", fontSize: "1.15rem" }}>
+                    ₹{directOrderDetails.amount.toLocaleString("en-IN")}
+                  </strong>
+                </div>
+                <div className="receipt-row">
+                  <span>Customer Phone:</span>
+                  <span>{directOrderDetails.customerPhone}</span>
+                </div>
+                <div className="receipt-divider" />
+                <div className="receipt-items-list">
+                  <span className="receipt-items-label">Order Items:</span>
+                  <ul>
+                    {directOrderDetails.items.map((it, idx) => (
+                      <li key={idx}>
+                        {it.name} {it.tier ? `(${it.tier})` : ""} × {it.quantity}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="upi-instruction-step">
+                <span className="upi-step-num">1</span>
+                <div>
+                  <strong>Tap the WhatsApp button below</strong> to send your order reference directly to Richa.
+                </div>
+              </div>
+              <div className="upi-instruction-step">
+                <span className="upi-step-num">2</span>
+                <div>
+                  Richa will share the direct <strong>UPI QR code</strong> or bank transfer details for instant clearance.
+                </div>
+              </div>
+              <div className="upi-instruction-step">
+                <span className="upi-step-num">3</span>
+                <div>
+                  Your order is prepared and tracking details will be sent immediately upon confirmation.
+                </div>
+              </div>
+            </div>
+
+            <div className="paid-actions" style={{ flexDirection: "column", gap: "12px", alignItems: "center" }}>
+              <a
+                href={`https://wa.me/919076002266?text=${encodeURIComponent(
+                  `Hello Richa! I've placed an order on Harmony of Cells (Order #${directOrderDetails.orderRef}).\n\n` +
+                    `*Items:*\n` +
+                    directOrderDetails.items
+                      .map((it) => `• ${it.name} ${it.tier ? `(${it.tier})` : ""} × ${it.quantity}`)
+                      .join("\n") +
+                    `\n\n*Total Amount:* ₹${directOrderDetails.amount.toLocaleString("en-IN")}\n` +
+                    `*Name:* ${directOrderDetails.customerName}\n` +
+                    `*Phone:* ${directOrderDetails.customerPhone}\n` +
+                    (directOrderDetails.customerAddress
+                      ? `*Delivery Address:* ${directOrderDetails.customerAddress}\n`
+                      : "") +
+                    `\nPlease share your UPI payment QR code so I can complete payment. Thank you!`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-whatsapp-confirm"
+                style={{ width: "100%", maxWidth: "420px", justifyContent: "center" }}
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" className="whatsapp-svg-icon" aria-hidden="true">
+                  <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.979-.275-.1-.476-.15-.676.15-.201.3-.777.979-.953 1.18-.175.2-.35.225-.651.075s-1.272-.469-2.423-1.496c-.896-.799-1.501-1.787-1.677-2.088-.176-.301-.019-.464.132-.614.135-.135.301-.35.452-.526.15-.175.2-.3.301-.5.1-.2.05-.376-.025-.526-.075-.15-.676-1.63-.927-2.232-.244-.587-.493-.507-.677-.516-.175-.008-.376-.01-.577-.01-.201 0-.527.075-.803.376s-1.054 1.029-1.054 2.51c0 1.48 1.079 2.909 1.23 3.11.15.2 2.124 3.243 5.145 4.549.719.311 1.28.497 1.718.636.722.229 1.378.197 1.898.12.579-.087 1.78-.727 2.031-1.429.251-.702.251-1.304.176-1.43-.075-.125-.276-.2-.577-.35z"/>
+                  <path d="M12.004 2C6.482 2 2.003 6.48 2.003 12c0 1.99.585 3.845 1.597 5.414L2 22l4.734-1.543A9.957 9.957 0 0 0 12.004 22c5.522 0 10.001-4.48 10.001-10s-4.479-10-10.001-10zm0 18.2c-1.628 0-3.138-.485-4.407-1.319l-.316-.208-2.812.916.932-2.738-.228-.337A8.163 8.163 0 0 1 3.804 12c0-4.522 3.678-8.2 8.2-8.2 4.521 0 8.2 3.678 8.2 8.2 0 4.522-3.679 8.2-8.2 8.2z"/>
+                </svg>
+                <span>Confirm & Pay via WhatsApp (Richa) →</span>
+              </a>
+
+              <Link className="btn btn-outline" href="/" style={{ width: "100%", maxWidth: "420px", justifyContent: "center" }}>
                 Return to Home <span>→</span>
               </Link>
-              <button
-                type="button"
-                className="btn btn-outline"
-                onClick={() => window.print()}
-              >
-                Print Receipt 🖨
-              </button>
             </div>
           </div>
         ) : status === "sent" ? (
@@ -650,34 +858,62 @@ export default function CartPage() {
                 </label>
 
                 {error ? (
-                  <p className="custom-form-error" role="alert">
-                    {error}
-                  </p>
+                  <div className="payment-fallback-notice">
+                    <p className="custom-form-error" role="alert" style={{ margin: "0 0 8px 0" }}>
+                      {error}
+                    </p>
+                    {subtotal > 0 ? (
+                      <button
+                        type="button"
+                        className="btn btn-outline cart-btn-upi"
+                        onClick={handleDirectUpiOrder}
+                        disabled={status === "submitting"}
+                      >
+                        Place Order & Pay via UPI / WhatsApp 💬
+                      </button>
+                    ) : null}
+                  </div>
                 ) : null}
 
-                <button
-                  type="submit"
-                  className="btn btn-primary cart-submit"
-                  disabled={
-                    status === "submitting" ||
-                    status === "preparing_payment" ||
-                    status === "awaiting_payment" ||
-                    status === "verifying_payment"
-                  }
-                >
-                  {status === "preparing_payment"
-                    ? "Initializing payment..."
-                    : status === "awaiting_payment"
-                    ? "Complete in Razorpay..."
-                    : status === "verifying_payment"
-                    ? "Verifying payment..."
-                    : status === "submitting"
-                    ? "Submitting inquiry..."
-                    : subtotal > 0
-                    ? `Proceed to Pay ₹${subtotal.toLocaleString("en-IN")}`
-                    : "Send inquiry"}
-                  <span aria-hidden="true">→</span>
-                </button>
+                <div className="cart-payment-options">
+                  <button
+                    type="submit"
+                    className="btn btn-primary cart-submit"
+                    disabled={
+                      status === "submitting" ||
+                      status === "preparing_payment" ||
+                      status === "awaiting_payment" ||
+                      status === "verifying_payment"
+                    }
+                  >
+                    {status === "preparing_payment"
+                      ? "Initializing payment..."
+                      : status === "awaiting_payment"
+                      ? "Complete in Razorpay..."
+                      : status === "verifying_payment"
+                      ? "Verifying payment..."
+                      : status === "submitting"
+                      ? "Submitting order..."
+                      : subtotal > 0
+                      ? `Proceed to Pay ₹${subtotal.toLocaleString("en-IN")}`
+                      : "Send inquiry"}
+                    <span aria-hidden="true">→</span>
+                  </button>
+
+                  {subtotal > 0 ? (
+                    <div className="cart-alt-payment">
+                      <span className="cart-alt-divider">or</span>
+                      <button
+                        type="button"
+                        className="btn btn-outline cart-btn-upi"
+                        onClick={handleDirectUpiOrder}
+                        disabled={status === "submitting" || status === "preparing_payment"}
+                      >
+                        Place Order & Pay via UPI / WhatsApp 💬
+                      </button>
+                    </div>
+                  ) : null}
+                </div>
               </form>
             </div>
 

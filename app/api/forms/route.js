@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { SITE_CONFIG } from "../../../lib/config";
-import { validExternalUrl } from "../../../lib/csv";
-import { normalizeRows } from "../../../lib/csv";
+import { validExternalUrl, normalizeRows, mergeProductCatalog } from "../../../lib/csv";
+import { DEFAULT_PRODUCTS } from "../../../lib/products-data";
 import Papa from "papaparse";
 
 const FORM_TYPES = new Set(["course", "product", "cart", "consultation"]);
@@ -21,7 +21,13 @@ const REQUIRED_FIELDS = {
 
 // These values are part of the server-side contract. Update them together
 // with the published catalogue and Google Form choices.
-const PRODUCT_OPTIONS = new Set(["Lavender", "Peppermint", "Lemon"]);
+const PRODUCT_OPTIONS = new Set([
+  "Lavender",
+  "Peppermint",
+  "Lemon",
+  ...DEFAULT_PRODUCTS.map((p) => p.name),
+  ...DEFAULT_PRODUCTS.map((p) => p.name.replace(/\s*\d+\s*(?:ml|l)\b/i, "").trim()),
+]);
 const COURSE_TIERS = new Map([
   ["Preliminary Consultation", "Tier 1"],
   ["Initiating & Primary Training", "Tier 2"],
@@ -91,15 +97,50 @@ async function validateCartCatalogue(items) {
       fetch(SITE_CONFIG.productsCsv, { cache: "no-store" }),
       fetch(SITE_CONFIG.coursesCsv, { cache: "no-store" }),
     ]);
-    if (!productsResponse.ok || !coursesResponse.ok) return false;
-    const [productsText, coursesText] = await Promise.all([productsResponse.text(), coursesResponse.text()]);
-    const products = normalizeRows(Papa.parse(productsText, { header: true, skipEmptyLines: true }).data || []);
-    const courses = normalizeRows(Papa.parse(coursesText, { header: true, skipEmptyLines: true }).data || []);
+
+    let products = DEFAULT_PRODUCTS;
+    if (productsResponse.ok) {
+      const productsText = await productsResponse.text();
+      const rawProducts = normalizeRows(
+        Papa.parse(productsText, { header: true, skipEmptyLines: true }).data || []
+      );
+      products = mergeProductCatalog(rawProducts, DEFAULT_PRODUCTS);
+    }
+
+    let courses = [];
+    if (coursesResponse.ok) {
+      const coursesText = await coursesResponse.text();
+      courses = normalizeRows(
+        Papa.parse(coursesText, { header: true, skipEmptyLines: true }).data || []
+      );
+    }
+
     return items.every((item) => {
-      const row = (item.type === "product" ? products : courses).find((entry) => entry.name === item.name);
-      return row && (item.type !== "course" || !item.tier || row.tier === item.tier);
+      if (item.type === "product") {
+        return products.some((entry) => {
+          const entryClean = String(entry.name).trim().toLowerCase();
+          const itemClean = String(item.name).trim().toLowerCase();
+          return entryClean === itemClean || entryClean.startsWith(itemClean) || itemClean.startsWith(entryClean);
+        });
+      }
+
+      if (item.type === "course") {
+        const row = courses.find((entry) => String(entry.name).trim().toLowerCase() === String(item.name).trim().toLowerCase());
+        return row && (!item.tier || row.tier === item.tier);
+      }
+
+      return false;
     });
-  } catch { return false; }
+  } catch {
+    return items.every((item) => {
+      if (item.type === "product") {
+        return DEFAULT_PRODUCTS.some(
+          (p) => String(p.name).trim().toLowerCase() === String(item.name).trim().toLowerCase()
+        );
+      }
+      return false;
+    });
+  }
 }
 
 async function submitCartItemsToSheets(formData, cart) {
@@ -130,12 +171,13 @@ async function submitCartItemsToSheets(formData, cart) {
       productParams.append(productFormConfig.fields.quantity, qtyStr);
 
       const deliveryInfo = [
-        address,
+        `[ITEM ORDERED: ${item.name} | QTY: ${item.quantity}]`,
+        address ? `Delivery Address:\n${address}` : "",
         paymentId ? `[PAID: ₹${amountPaid} | Razorpay ID: ${paymentId}]` : "",
         customerNotes ? `Notes: ${customerNotes}` : "",
       ]
         .filter(Boolean)
-        .join("\n");
+        .join("\n\n");
 
       productParams.append(productFormConfig.fields.message, deliveryInfo);
 
@@ -163,7 +205,7 @@ async function submitCartItemsToSheets(formData, cart) {
         customerNotes ? `Notes: ${customerNotes}` : "",
       ]
         .filter(Boolean)
-        .join("\n");
+        .join("\n\n");
 
       courseParams.append(courseFormConfig.fields.message, courseInfo || "Enrolled via cart");
 
@@ -179,10 +221,20 @@ async function submitCartItemsToSheets(formData, cart) {
     }
   }
 
-  // Also submit to cart form if enabled
+  // Also submit to cart form with clean human-readable summary
   if (SITE_CONFIG.forms.cart?.submissionEnabled && SITE_CONFIG.forms.cart?.responseUrl) {
     try {
+      const readableCartSummary =
+        cart
+          .map((it) => `• ${it.name} × ${it.quantity}${it.tier ? ` (${it.tier})` : ""}`)
+          .join("\n") +
+        (amountPaid
+          ? `\n\n[PAID: ₹${amountPaid} | Razorpay ID: ${paymentId}]`
+          : "\n\n[Inquiry / Confirmation Pending]");
+
+      formData.set("cart", readableCartSummary);
       const mapped = getMappedFields("cart", formData);
+
       if (mapped.size > 0) {
         promises.push(
           fetch(SITE_CONFIG.forms.cart.responseUrl, {
