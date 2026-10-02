@@ -21,7 +21,17 @@ export async function POST(request) {
       SITE_CONFIG.razorpayKeyId;
     const key_secret = process.env.RAZORPAY_KEY_SECRET;
 
-    const effectiveKeyId = key_id || SITE_CONFIG.razorpayKeyId || "rzp_test_TbVPnOaDITg2vm";
+    const effectiveKeyId = key_id || SITE_CONFIG.razorpayKeyId || "";
+
+    if (!effectiveKeyId) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Razorpay Key ID is not configured. Please add NEXT_PUBLIC_RAZORPAY_KEY_ID to your .env.local",
+        },
+        { status: 500 }
+      );
+    }
 
     let order = null;
     if (key_secret) {
