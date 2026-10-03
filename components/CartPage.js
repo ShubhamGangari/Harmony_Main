@@ -388,14 +388,14 @@ export default function CartPage() {
           },
           onDismiss: () => {
             setStatus("idle");
-            setError("Online payment was cancelled or closed. You can retry, or place your order directly via UPI / WhatsApp below.");
+            setError("Online payment was cancelled or closed. You can retry when you're ready.");
           },
           onError: (payErr) => {
             setStatus("error");
             setError(
               payErr?.description ||
                 payErr?.message ||
-                "Online payment could not be completed. You can try again or place your order directly via UPI / WhatsApp below."
+                "Online payment could not be completed. Please try again."
             );
           },
         });
@@ -403,7 +403,7 @@ export default function CartPage() {
         setStatus("error");
         setError(
           err.message ||
-            "Could not start online payment. You can place your order directly via UPI / WhatsApp below."
+            "Could not start online payment. Please try again."
         );
       }
       return;
@@ -859,19 +859,9 @@ export default function CartPage() {
 
                 {error ? (
                   <div className="payment-fallback-notice">
-                    <p className="custom-form-error" role="alert" style={{ margin: "0 0 8px 0" }}>
+                    <p className="custom-form-error" role="alert" style={{ margin: "0" }}>
                       {error}
                     </p>
-                    {subtotal > 0 ? (
-                      <button
-                        type="button"
-                        className="btn btn-outline cart-btn-upi"
-                        onClick={handleDirectUpiOrder}
-                        disabled={status === "submitting"}
-                      >
-                        Place Order & Pay via UPI / WhatsApp 💬
-                      </button>
-                    ) : null}
                   </div>
                 ) : null}
 
@@ -899,20 +889,6 @@ export default function CartPage() {
                       : "Send inquiry"}
                     <span aria-hidden="true">→</span>
                   </button>
-
-                  {subtotal > 0 ? (
-                    <div className="cart-alt-payment">
-                      <span className="cart-alt-divider">or</span>
-                      <button
-                        type="button"
-                        className="btn btn-outline cart-btn-upi"
-                        onClick={handleDirectUpiOrder}
-                        disabled={status === "submitting" || status === "preparing_payment"}
-                      >
-                        Place Order & Pay via UPI / WhatsApp 💬
-                      </button>
-                    </div>
-                  ) : null}
                 </div>
               </form>
             </div>
