@@ -9,7 +9,6 @@
     PRODUCT_CATEGORIES,
     groupProducts,
     getBaseProductName,
-    getProductDefaultImage,
   } from "../lib/products-data";
 
   function getCategoryLabel(category) {
@@ -87,13 +86,11 @@
         ? activeVariant.description
         : "Product details are being updated.";
 
-    // Fall back to any image available in variants or local product photography
-    const defaultLocalImage = getProductDefaultImage(product.baseName || activeVariant.name);
     const rawImage =
       activeVariant.image_url ||
       variants.find((v) => v.image_url)?.image_url ||
-      defaultLocalImage;
-    const image = validExternalUrl(rawImage) || defaultLocalImage;
+      "";
+    const image = validExternalUrl(rawImage);
     const category = product.category || activeVariant.category || "Single Oil";
     const categoryLabel = getCategoryLabel(category);
     const categoryIcon = getCategoryIcon(category);
@@ -112,13 +109,7 @@
               alt={`${baseTitle}${size ? ` ${size}` : ""}`}
               loading="lazy"
               referrerPolicy="no-referrer"
-              onError={(e) => {
-                if (defaultLocalImage && !e.currentTarget.src.includes(defaultLocalImage)) {
-                  e.currentTarget.src = defaultLocalImage;
-                } else {
-                  setFailed(true);
-                }
-              }}
+              onError={() => setFailed(true)}
             />
           ) : (
             <div
