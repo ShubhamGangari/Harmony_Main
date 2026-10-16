@@ -93,14 +93,14 @@ NEXT_PUBLIC_SITE_URL="https://staging.harmonyofcells.com"
 NEXT_PUBLIC_COMMERCE_MODE="inquiry"
 
 # Web3Forms Notification Key (Email alerts for enquiries)
-NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY="3bba933f-8ea3-4b4d-a6e7-f5543df9edb3"
-WEB3FORMS_ACCESS_KEY="3bba933f-8ea3-4b4d-a6e7-f5543df9edb3"
+# NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY="<YOUR_WEB3FORMS_KEY>"
+# WEB3FORMS_ACCESS_KEY="<YOUR_WEB3FORMS_KEY>"
 NOTIFICATION_EMAIL="darkyfactbusiness@gmail.com"
 
-# Razorpay Keys (Pre-configured test/sandbox credentials; do NOT activate live mode)
-NEXT_PUBLIC_RAZORPAY_KEY_ID="rzp_live_Tj2jUAX3kRy1gx"
-RAZORPAY_KEY_ID="rzp_live_Tj2jUAX3kRy1gx"
-RAZORPAY_KEY_SECRET="G4zjxby21RQrFEbIzCxT4Bk9"
+# Razorpay Keys (Do NOT configure for Staging Demo - Inquiry-only commerce mode active)
+# NEXT_PUBLIC_RAZORPAY_KEY_ID=""
+# RAZORPAY_KEY_ID=""
+# RAZORPAY_KEY_SECRET=""
 ```
 
 ### Staging Build & Test Commands
