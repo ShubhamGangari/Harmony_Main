@@ -4,6 +4,7 @@ import { CartProvider } from "../components/CartProvider";
 import FloatingCartButton from "../components/FloatingCartButton";
 import SiteHeader from "../components/SiteHeader";
 import Footer from "../components/Footer";
+import { SITE_CONFIG } from "../lib/config";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,9 +19,28 @@ const playfair = Playfair_Display({
 });
 
 export const metadata = {
-  title: "Harmony of Cells | Nature. Science. Preventive Wellness.",
+  metadataBase: new URL(SITE_CONFIG.siteUrl || "https://harmonyofcells.com"),
+  title: {
+    default: "Harmony of Cells | Nervous System & Lifestyle Wellness",
+    template: "%s | Harmony of Cells",
+  },
   description:
-    "Evidence-informed essential oil education and preventive wellness through practical, responsible guidance.",
+    "Nervous System Wellness for Everyday Life. Education, lifestyle practices, sensory wellness, and responsible aromatherapy for calmer, healthier daily rhythms.",
+  openGraph: {
+    title: "Harmony of Cells | Nervous System & Lifestyle Wellness",
+    description:
+      "Nervous System Wellness for Everyday Life. Education, lifestyle practices, sensory wellness, and responsible aromatherapy for calmer, healthier daily rhythms.",
+    url: "https://harmonyofcells.com",
+    siteName: "Harmony of Cells",
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Harmony of Cells | Nervous System & Lifestyle Wellness",
+    description:
+      "Nervous System Wellness for Everyday Life. Education, lifestyle practices, sensory wellness, and responsible aromatherapy.",
+  },
   icons: {
     icon: [
       { url: "/assets/harmony-logo.png" },

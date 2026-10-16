@@ -246,7 +246,13 @@ function CustomFormModal({
   triggerRef,
   onClose,
 }) {
-  const copy = FORM_COPY[type];
+  const copy = {
+    ...FORM_COPY[type],
+    ...(itemContext?.eyebrow ? { eyebrow: itemContext.eyebrow } : {}),
+    ...(itemContext?.title ? { title: itemContext.title } : {}),
+    ...(itemContext?.description ? { description: itemContext.description } : {}),
+    ...(itemContext?.submitLabel ? { submitLabel: itemContext.submitLabel } : {}),
+  };
   const fields = getFields(type);
   const titleId = useId();
   const dialogRef = useRef(null);
@@ -315,6 +321,15 @@ function CustomFormModal({
     const preferredTime = String(formData.get("preferredTime") || "").trim();
     setSubmittedInfo({ name, preferredDate, preferredTime });
 
+    if (item && type === "consultation") {
+      formData.set("item", item);
+      const currentMessage = String(formData.get("message") || "").trim();
+      const prefix = `[Service: ${item}]`;
+      if (!currentMessage.includes(prefix)) {
+        formData.set("message", currentMessage ? `${prefix}\n\n${currentMessage}` : prefix);
+      }
+    }
+
     setStatus("submitting");
 
     try {
@@ -359,7 +374,7 @@ function CustomFormModal({
   };
   const timeSlotDisplay = slotMap[submittedInfo?.preferredTime] || submittedInfo?.preferredTime || "";
   const waConfirmText = encodeURIComponent(
-    `Hi Harmony of Cells! I just submitted a consultation request on your website for ${submittedInfo?.preferredDate || "an upcoming date"}${timeSlotDisplay ? ` (${timeSlotDisplay})` : ""}. My name is ${submittedInfo?.name || ""}.`
+    `Hi Harmony of Cells! I just submitted an inquiry on your website${item ? ` for ${item}` : ""}${submittedInfo?.preferredDate ? ` for ${submittedInfo.preferredDate}` : ""}${timeSlotDisplay ? ` (${timeSlotDisplay})` : ""}. My name is ${submittedInfo?.name || ""}.`
   );
   const waConfirmUrl = `https://wa.me/919076002266?text=${waConfirmText}`;
 
@@ -404,16 +419,19 @@ function CustomFormModal({
             <strong>
               {safePaymentUrl
                 ? "Details submitted. Redirecting to payment..."
-                : "Your consultation request has been submitted successfully."}
+                : itemContext?.successTitle ||
+                  (type === "consultation"
+                    ? "Your enquiry has been submitted successfully."
+                    : "Your request has been submitted successfully.")}
             </strong>
 
             <p>
               {safePaymentUrl
                 ? "Your information has been received."
                 : type === "consultation"
-                  ? `Thank you, ${submittedInfo?.name || "there"}. Richa will review your preferred timing${
-                      submittedInfo?.preferredDate ? ` (${submittedInfo.preferredDate}${timeSlotDisplay ? `, ${timeSlotDisplay}` : ""})` : ""
-                    } and contact you to confirm your session.`
+                  ? `Thank you, ${submittedInfo?.name || "there"}. Richa will review your details${
+                      submittedInfo?.preferredDate ? ` and preferred timing (${submittedInfo.preferredDate}${timeSlotDisplay ? `, ${timeSlotDisplay}` : ""})` : ""
+                    } and connect with you shortly.`
                   : "Your information was received, but a payment link is not configured. Please contact us to complete your request."}
             </p>
 
@@ -460,10 +478,23 @@ function CustomFormModal({
               name="formType"
               value={type}
             />
+            {item ? (
+              <input
+                type="hidden"
+                name="item"
+                value={item}
+              />
+            ) : null}
 
-            {type !== "consultation" ? (
+            {item ? (
               <div className="form-context" aria-live="polite">
-                <span>{type === "course" ? "Selected course" : "Selected product"}</span>
+                <span>
+                  {type === "course"
+                    ? "Selected course"
+                    : type === "product"
+                    ? "Selected product"
+                    : "Selected service / pathway"}
+                </span>
                 <b>{item}</b>
                 {type === "course" && itemContext?.tier ? (
                   <strong>{itemContext.tier}</strong>

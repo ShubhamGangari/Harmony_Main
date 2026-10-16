@@ -3,6 +3,8 @@
   import { useEffect, useMemo, useState } from "react";
   import Papa from "papaparse";
   import AddToCartButton from "./AddToCartButton";
+  import GoogleFormLink from "./FormLink";
+  import { SITE_CONFIG } from "../lib/config";
   import { normalizeRows, validExternalUrl, mergeProductCatalog } from "../lib/csv";
   import {
     DEFAULT_PRODUCTS,
@@ -77,14 +79,20 @@
     const activeVariant = variants[selectedIdx] || variants[0] || {};
     const baseTitle = product.baseName || getBaseProductName(activeVariant.name) || activeVariant.name || "Essential Oil";
     const size = activeVariant.size || "";
-    const price =
-      activeVariant.price && activeVariant.price !== "CLIENT TO PROVIDE"
-        ? activeVariant.price
-        : "Price details available on request";
+    const hasValidPrice = Boolean(activeVariant.price && activeVariant.price !== "CLIENT TO PROVIDE");
+    const price = hasValidPrice ? activeVariant.price : "Price on request";
     const description =
       activeVariant.description && activeVariant.description !== "CLIENT TO PROVIDE"
         ? activeVariant.description
-        : "Product details are being updated.";
+        : "Product details are currently undergoing compliance review.";
+
+    const aroma = activeVariant.aroma_profile || product.aroma_profile || "";
+    const whyChoose = activeVariant.why_choose || product.why_choose || "";
+    const rituals = activeVariant.rituals || product.rituals || "";
+    const usage = activeVariant.usage || product.usage || "";
+    const safety = activeVariant.safety || product.safety || "";
+    const brand = activeVariant.brand || product.brand || "dōTERRA";
+    const isAvailable = String(activeVariant.available ?? product.available ?? "true").toLowerCase() !== "false";
 
     const rawImage =
       activeVariant.image_url ||
@@ -100,13 +108,19 @@
       setFailed(false);
     };
 
+    const itemLabel = `${baseTitle}${size ? ` (${size})` : ""}`;
+    const waText = encodeURIComponent(
+      `Hello Harmony of Cells, I would like to enquire about ordering ${itemLabel}. Could you please share availability and ordering guidance?`
+    );
+    const waUrl = `https://wa.me/919076002266?text=${waText}`;
+
     return (
       <article className="product-card">
         <div className="product-image">
           {image && !failed ? (
             <img
               src={image}
-              alt={`${baseTitle}${size ? ` ${size}` : ""}`}
+              alt={itemLabel}
               loading="lazy"
               referrerPolicy="no-referrer"
               onError={() => setFailed(true)}
@@ -122,6 +136,7 @@
           )}
 
           <span className="product-label">{categoryLabel}</span>
+          <span className="product-brand-badge">{brand}</span>
           {size ? (
             <span className="product-size-badge">{size}</span>
           ) : null}
@@ -129,7 +144,15 @@
 
         <div className="product-content">
           <div className="product-copy">
-            <h3>{baseTitle}</h3>
+            <div className="product-header-row">
+              <h3>{baseTitle}</h3>
+            </div>
+
+            {aroma ? (
+              <p className="product-aroma-badge">
+                <span className="aroma-label">Aroma:</span> {aroma}
+              </p>
+            ) : null}
 
             {/* Size / Quantity Pill Selector */}
             {variants.length > 1 ? (
@@ -161,32 +184,99 @@
               </div>
             ) : null}
 
-            <p className={`product-price ${
-              activeVariant.price && activeVariant.price !== "CLIENT TO PROVIDE"
-                ? ""
-                : "is-unavailable"
-            }`}>
-              {price}
-            </p>
+            <div className="product-meta-row">
+              <span className={`product-price ${!hasValidPrice ? "is-unavailable" : ""}`}>
+                {price}
+              </span>
+              <span className={`product-stock-status ${isAvailable ? "is-in-stock" : "is-out-of-stock"}`}>
+                {isAvailable ? "● Available to Order" : "○ Currently Unavailable"}
+              </span>
+            </div>
 
-            <p>{description}</p>
+            <p className="product-description">{description}</p>
+
+            {/* Expandable Specifications, Rituals and Safety Drawer */}
+            {(whyChoose || rituals || usage || safety) ? (
+              <details className="product-details-accordion">
+                <summary className="product-accordion-summary">
+                  <span>Usage, Rituals & Safety</span>
+                  <span className="accordion-chevron" aria-hidden="true">▾</span>
+                </summary>
+                <div className="product-accordion-body">
+                  {whyChoose ? (
+                    <div className="product-spec-block">
+                      <strong>Why People Choose It</strong>
+                      <p>{whyChoose}</p>
+                    </div>
+                  ) : null}
+                  {rituals ? (
+                    <div className="product-spec-block">
+                      <strong>Everyday Rituals</strong>
+                      <p>{rituals}</p>
+                    </div>
+                  ) : null}
+                  {usage ? (
+                    <div className="product-spec-block">
+                      <strong>Recommended Use</strong>
+                      <p>{usage}</p>
+                    </div>
+                  ) : null}
+                  {safety ? (
+                    <div className="product-spec-block product-safety-block">
+                      <strong>Safety Considerations</strong>
+                      <p>{safety}</p>
+                      <a href="/essential-oil-safety" className="product-safety-link">
+                        View Safety & Responsible Use Guide →
+                      </a>
+                    </div>
+                  ) : null}
+                </div>
+              </details>
+            ) : null}
           </div>
 
-          <div className="integration-actions">
-            <AddToCartButton
-              type="product"
-              item={{
-                type: "product",
-                name: activeVariant.name,
-                price: activeVariant.price || "",
-                image,
-                description: activeVariant.description,
-                size: activeVariant.size,
-              }}
-              className="card-link"
-            >
-              Order Now <span>→</span>
-            </AddToCartButton>
+          <div className="product-card-footer">
+            {SITE_CONFIG.commerceMode === "cart" ? (
+              <div className="integration-actions">
+                <AddToCartButton
+                  type="product"
+                  item={{
+                    type: "product",
+                    name: activeVariant.name,
+                    price: activeVariant.price || "",
+                    image,
+                    description: activeVariant.description,
+                    size: activeVariant.size,
+                  }}
+                  className="card-link"
+                >
+                  Order Now <span>→</span>
+                </AddToCartButton>
+              </div>
+            ) : (
+              <div className="product-order-actions">
+                <GoogleFormLink
+                  type="product"
+                  item={itemLabel}
+                  className="btn btn-primary product-enquire-btn"
+                >
+                  Enquire to Order
+                </GoogleFormLink>
+                <a
+                  href={waUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline product-wa-btn"
+                  title="Enquire or order directly on WhatsApp"
+                  aria-label={`Order ${itemLabel} via WhatsApp`}
+                >
+                  <span aria-hidden="true">💬</span> WhatsApp
+                </a>
+              </div>
+            )}
+            <p className="product-card-reassurance">
+              Informed guidance • Direct consultation available
+            </p>
           </div>
         </div>
       </article>
@@ -250,14 +340,25 @@
         </div>
 
         <div className="course-card-footer">
-          <AddToCartButton
-            type="course"
-            item={{ type: "course", name, price: course.price || "", image, description, tier }}
-            itemContext={{ tier }}
-            className="education-link"
-          >
-            Enrol Now <span>→</span>
-          </AddToCartButton>
+          {SITE_CONFIG.commerceMode === "cart" ? (
+            <AddToCartButton
+              type="course"
+              item={{ type: "course", name, price: course.price || "", image, description, tier }}
+              itemContext={{ tier }}
+              className="education-link"
+            >
+              Enrol Now <span>→</span>
+            </AddToCartButton>
+          ) : (
+            <GoogleFormLink
+              type="course"
+              item={name}
+              itemContext={{ tier }}
+              className="education-link course-enquiry-trigger"
+            >
+              Enquire to Enrol <span>→</span>
+            </GoogleFormLink>
+          )}
         </div>
       </article>
     );

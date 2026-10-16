@@ -1,184 +1,421 @@
 import Link from "next/link";
 import GoogleFormLink from "../components/FormLink";
-import { FeaturedProducts, CoursePreview } from "../components/Catalogue";
+import { FeaturedProducts } from "../components/Catalogue";
 import FounderVisual from "../components/FounderVisual";
 import { SITE_CONFIG } from "../lib/config";
+
+const APPROACH_CONCEPTS = [
+  {
+    step: "01",
+    name: "REST",
+    tagline: "Recovery & Calm",
+    description:
+      "Creating supportive conditions for genuine rest, nighttime recovery, and gentle decompression after demanding days.",
+  },
+  {
+    step: "02",
+    name: "REGULATE",
+    tagline: "Pause & Awareness",
+    description:
+      "Building intentional moments of pause, somatic awareness, and calming transitions throughout the workday.",
+  },
+  {
+    step: "03",
+    name: "RESTORE",
+    tagline: "Daily Rhythms",
+    description:
+      "Supporting healthy circadian rhythms and restorative routines through evidence-informed lifestyle practices.",
+  },
+  {
+    step: "04",
+    name: "RESILIENCE",
+    tagline: "Sustainable Capacity",
+    description:
+      "Developing practical habits and adaptive routines for navigating the continuous demands of modern life.",
+  },
+  {
+    step: "05",
+    name: "RITUAL",
+    tagline: "Repeatable Habits",
+    description:
+      "Turning wellness knowledge into small, enjoyable, repeatable self-care practices that fit your everyday schedule.",
+  },
+];
+
+const AUDIENCE_PATHWAYS = [
+  {
+    tag: "FOR INDIVIDUALS",
+    title: "Personal Lifestyle & Daily Rhythms",
+    description:
+      "Stress & relaxation education, sleep-supportive routines, women's wellness, and one-on-one consultations to build calm into your personal life.",
+    cta: "Explore Individual Pathway",
+    href: "/individuals",
+  },
+  {
+    tag: "FOR CORPORATES",
+    title: "Workplace Preventive Wellness",
+    description:
+      "Practical education, stress resilience, nervous-system-friendly practices, and sensory wellness workshops tailored for modern organisations.",
+    cta: "Explore Corporate Wellness",
+    href: "/corporate-wellness",
+  },
+  {
+    tag: "FOR PROFESSIONALS",
+    title: "Wellness Practitioners & Coaches",
+    description:
+      "Expand your professional toolkit with evidence-informed essential-oil education, aromatic rituals, dilution safety, and responsible client boundaries.",
+    cta: "Explore Practitioner Pathway",
+    href: "/professionals",
+  },
+  {
+    tag: "FOR HOSPITALITY",
+    title: "Hospitality & Wellness Centres",
+    description:
+      "Sensory wellness space design, ambient room-by-room aromatic concepts, guest experiences, and staff education for spas, retreats, and studios.",
+    cta: "Explore Hospitality Concepts",
+    href: "/hospitality",
+  },
+];
+
+const WELLNESS_PILLARS = [
+  {
+    title: "Stress & Resilience",
+    icon: "✦",
+    description:
+      "Accessible education and micro-practices to build everyday adaptability and emotional calm.",
+  },
+  {
+    title: "Rest & Sleep",
+    icon: "◌",
+    description:
+      "Calming evening routines, sensory cues, and environmental conditions for deep, restorative sleep.",
+  },
+  {
+    title: "Women's Wellness",
+    icon: "✦",
+    description:
+      "Supportive, evidence-informed lifestyle routines across life transitions and changing rhythms.",
+  },
+  {
+    title: "Sensory Wellness",
+    icon: "◌",
+    description:
+      "Mindful breathing, ambient space design, sound, and botanical aromatic grounding.",
+  },
+  {
+    title: "Healthy Ageing",
+    icon: "✦",
+    description:
+      "Sustainable daily movement, nourishment, recovery, and nature-based longevity habits.",
+  },
+];
 
 export default function HomePage() {
   return (
     <main>
-        <section className="hero" id="home">
-          <div className="hero-decoration hero-decoration-one" />
-          <div className="hero-decoration hero-decoration-two" />
+      {/* 1. HERO SECTION */}
+      <section className="hero" id="home">
+        <div className="hero-decoration hero-decoration-one" />
+        <div className="hero-decoration hero-decoration-two" />
 
-          <div className="container hero-grid">
-            <div className="hero-content">
-              <span className="eyebrow">WELLNESS EDUCATION</span>
-              <h1>
-                Nature, <em>Science,</em> Preventive Wellness.
-              </h1>
-              <p className="hero-description">
-                Discover practical, evidence-informed education on essential oils
-                and preventive wellness for everyday life and professional practice.
-              </p>
+        <div className="container hero-grid">
+          <div className="hero-content">
+            <span className="eyebrow">HARMONY OF CELLS</span>
+            <h1>
+              Nervous System Wellness for <em>Everyday Life.</em>
+            </h1>
+            <p className="hero-supporting-title">
+              Supporting wellbeing through lifestyle, sensory practices and informed self-care.
+            </p>
+            <p className="hero-description">
+              Modern life places continuous demands on the body and mind. Harmony of Cells
+              brings together wellness education, lifestyle practices, aromatherapy and
+              sensory experiences to help people create more supportive daily rhythms for
+              rest, resilience and wellbeing.
+            </p>
 
-              <div className="hero-actions">
-                <Link href="/education" className="btn btn-primary">
-                  Explore Education <span>→</span>
-                </Link>
-                <Link href="/products" className="text-link">
-                  Explore Products <span>→</span>
-                </Link>
-              </div>
-
-              <div className="hero-note">
-                <span className="note-icon">✦</span>
-                <p>Practical guidance for responsible, informed wellness.</p>
-              </div>
+            <div className="hero-actions">
+              <a href="#approach" className="btn btn-primary">
+                Explore Our Approach <span>↓</span>
+              </a>
+              <GoogleFormLink type="consultation" className="btn btn-outline hero-secondary-btn">
+                Start Your Wellness Journey <span>→</span>
+              </GoogleFormLink>
             </div>
 
-            <div className="hero-visual">
-              <div className="hero-image-wrapper">
-                <img
-                  src="/assets/hero-image.jpg"
-                  alt="Essential oils and botanical wellness"
-                  className="hero-image"
-                />
-                <div className="hero-image-card">
-                  <span className="mini-label">HARMONY OF CELLS</span>
-                  <strong>Learn. Apply. Thrive.</strong>
+            <div className="hero-note">
+              <span className="note-icon">✦</span>
+              <p>Learn. Understand. Apply. • Nature-based educational self-care.</p>
+            </div>
+          </div>
+
+          <div className="hero-visual">
+            <div className="hero-image-wrapper">
+              <img
+                src="/assets/hero-image.jpg"
+                alt="Nervous System & Lifestyle Wellness setting"
+                className="hero-image"
+              />
+              <div className="hero-image-card">
+                <span className="mini-label">HARMONY OF CELLS</span>
+                <strong>Calmer, healthier daily rhythms.</strong>
+                <small>Education • Sensory Wellness • Lifestyle</small>
+              </div>
+            </div>
+            <div className="floating-badge">
+              <span>✦</span>
+              <small>
+                EDUCATION<br />FIRST
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div className="container announcement-container">
+          <div className="announcement">
+            <span className="announcement-symbol">✦</span>
+            <span>
+              Nervous System Wellness • Lifestyle Practices • Sensory Self-Care • Nature-Based Education
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. OUR APPROACH SECTION */}
+      <section className="section approach-section" id="approach">
+        <div className="container">
+          <div className="approach-intro">
+            <span className="eyebrow">THE HARMONY OF CELLS APPROACH</span>
+            <h2>
+              Wellness is shaped by the <em>rhythms of everyday life.</em>
+            </h2>
+            <p>
+              Wellness is not one product, one practice or one prescription. It is shaped by
+              how we navigate the realities of modern life. Harmony of Cells focuses on the
+              relationship between nervous-system wellbeing, lifestyle and environment — and on
+              the small, practical practices that make everyday life more supportive.
+            </p>
+          </div>
+
+          <div className="approach-grid" role="list" aria-label="Our 5-pillar wellness approach">
+            {APPROACH_CONCEPTS.map((concept) => (
+              <article key={concept.step} className="approach-card" role="listitem">
+                <div className="approach-card-header">
+                  <span className="approach-step">{concept.step}</span>
+                  <span className="approach-tagline">{concept.tagline}</span>
                 </div>
-              </div>
-              <div className="floating-badge">
-                <span>◌</span>
-                <small>EDUCATION<br />FIRST</small>
-              </div>
-            </div>
+                <h3>{concept.name}</h3>
+                <p>{concept.description}</p>
+              </article>
+            ))}
           </div>
 
-          <div className="container announcement-container">
-            <div className="announcement">
-              <span className="announcement-symbol">✦</span>
-              <span>Essential oil education • Responsible use • Preventive wellness</span>
+          <div className="approach-footer-row">
+            <p className="approach-disclaimer-note">
+              * These are educational lifestyle concepts designed to support healthy daily
+              rhythms, not medical claims to diagnose, treat, or clinically regulate
+              nervous-system disorders.
+            </p>
+            <div className="approach-cta-wrap">
+              <Link href="/approach" className="btn btn-primary">
+                Explore The Approach Page <span>→</span>
+              </Link>
+              <Link href="/education" className="btn btn-outline">
+                Explore Wellness Education <span>→</span>
+              </Link>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="section education-section education-primary" id="education">
-          <div className="container">
-            <div className="education-intro">
-              <span className="eyebrow">ESSENTIAL OIL EDUCATION</span>
-              <h2>Learn at your <em>own level.</em></h2>
+      {/* 3. FOUR AUDIENCE PATHWAYS */}
+      <section className="section pathways-section" id="pathways">
+        <div className="container">
+          <div className="section-heading">
+            <span className="eyebrow">FOUR DELIVERY CHANNELS</span>
+            <h2>
+              Discover your <em>wellness pathway.</em>
+            </h2>
+            <p>
+              Whether you are an individual seeking calmer daily rhythms, an organisation building
+              workplace resilience, a wellness professional expanding your toolkit, or a sensory
+              hospitality space.
+            </p>
+          </div>
+
+          <div className="pathways-grid">
+            {AUDIENCE_PATHWAYS.map((pathway) => (
+              <article key={pathway.tag} className="pathway-card">
+                <div className="pathway-card-top">
+                  <span className="pathway-tag">{pathway.tag}</span>
+                  <h3>{pathway.title}</h3>
+                  <p>{pathway.description}</p>
+                </div>
+                <div className="pathway-card-bottom">
+                  <Link href={pathway.href} className="pathway-action-btn">
+                    {pathway.cta} <span>→</span>
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. WELLNESS FOCUS AREAS */}
+      <section className="section pillars-section" id="pillars">
+        <div className="container">
+          <div className="section-heading">
+            <span className="eyebrow">CORE FOCUS AREAS</span>
+            <h2>
+              Education grounded in <em>practical self-care.</em>
+            </h2>
+            <p>
+              Explore our core educational themes focused on everyday balance, sensory
+              anchoring, and sustainable wellbeing.
+            </p>
+          </div>
+
+          <div className="pillars-grid">
+            {WELLNESS_PILLARS.map((pillar) => (
+              <div key={pillar.title} className="pillar-card">
+                <span className="pillar-icon" aria-hidden="true">
+                  {pillar.icon}
+                </span>
+                <h3>{pillar.title}</h3>
+                <p>{pillar.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ marginTop: "36px", textAlign: "center" }}>
+            <Link href="/wellness" className="btn btn-outline">
+              Explore All Six Wellness Pillars <span>→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. ABOUT THE FOUNDER & CREDIBILITY */}
+      <section className="section founder-section" id="founder">
+        <div className="container founder-grid">
+          <FounderVisual />
+
+          <div className="founder-copy">
+            <p className="eyebrow">ABOUT THE FOUNDER</p>
+            <h2>
+              Bridging corporate leadership with <em>people-centred wellness.</em>
+            </h2>
+            <p>
+              <strong>Richa Ramola</strong> is the Founder of Harmony of Cells and a Wellness
+              Educator with a mission to make nervous-system wellbeing and nature-based self-care
+              practical, responsible, and accessible.
+            </p>
+            <p>
+              With nearly three decades of leadership experience in Human Resources and Business
+              Operations across multinational organisations, Richa brings a rare, people-centred
+              corporate perspective to wellness. Having navigated the relentless demands of high-performance
+              workplaces firsthand, she understands both sides: the realities of corporate stress and the
+              profound need for sustainable rest and recovery practices.
+            </p>
+            <p>
+              Today, she combines her leadership background with comprehensive education in essential
+              oils, aromatherapy, and sensory wellness — bridging <strong>Workplace Preventive Wellness</strong> with
+              individual education, practitioner mentoring, and bespoke hospitality concepts.
+            </p>
+            <blockquote>
+              “Education, purity, and small daily rituals come together to create healthier,
+              more empowered lives and workplaces — one conscious pause at a time.”
+            </blockquote>
+            <div className="founder-actions">
+              <GoogleFormLink type="consultation" className="btn btn-primary">
+                Connect with Richa <span>→</span>
+              </GoogleFormLink>
+              <Link href="/education" className="outline-link">
+                Explore Her Education Programs <span>→</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. ESSENTIAL OILS — SIGNATURE WELLNESS TOOLS */}
+      <section className="section products-section products-secondary" id="products">
+        <div className="container">
+          <div className="section-heading">
+            <span className="eyebrow">SIGNATURE WELLNESS TOOLS</span>
+            <h2>
+              Botanical aromas for <em>everyday rituals.</em>
+            </h2>
+            <p>
+              Essential oils are concentrated botanical extracts. Within our approach, they serve
+              as intentional sensory anchors for mindful breathing, evening wind-down, and calming
+              home environments — supported by responsible dilution and usage education.
+            </p>
+          </div>
+
+          <FeaturedProducts url={SITE_CONFIG.productsCsv} />
+
+          <div className="section-bottom-link">
+            <Link href="/products" className="outline-link">
+              Explore the Botanical Collection <span>→</span>
+            </Link>
+            <small className="product-disclaimer-subtext">
+              Product selections focus on aroma profile, sensory rituals and responsible
+              application rather than medical outcomes.
+            </small>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. CONSULTATION & FINAL CONVERSION */}
+      <section className="section consultation-section" id="consultation">
+        <div className="container">
+          <div className="consultation-wrapper">
+            <div className="consultation-content">
+              <span className="eyebrow">START YOUR WELLNESS JOURNEY</span>
+              <h2>
+                Personal guidance for your <em>wellness rhythms.</em>
+              </h2>
               <p>
-                Structured education designed to help individuals and wellness
-                professionals understand essential oils and apply them responsibly.
+                Sometimes you don't need another list of wellness tips. You need someone to help
+                you make sense of it all and create practical routines aligned with your unique lifestyle,
+                work demands, and personal goals.
               </p>
-              <div className="education-pathway" aria-label="Education pathway: 01, 02, 03">
-                <span>01</span>
-                <i aria-hidden="true">→</i>
-                <span>02</span>
-                <i aria-hidden="true">→</i>
-                <span>03</span>
-                <small>Practitioner pathway</small>
+
+              <div className="consultation-points">
+                <span>✓ Explore nervous-system-friendly daily rhythms</span>
+                <span>✓ Learn responsible essential-oil dilution & application</span>
+                <span>✓ Design calming evening wind-down rituals</span>
+                <span>✓ Inquire about corporate & hospitality workshops</span>
               </div>
-            </div>
 
-            <CoursePreview url={SITE_CONFIG.coursesCsv} />
-
-            <div className="section-bottom-link">
-              <Link href="/education" className="btn btn-primary">
-                Explore essential oil education <span>→</span>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="section products-section products-secondary" id="products">
-          <div className="container">
-            <div className="section-heading">
-              <span className="eyebrow">FEATURED PRODUCTS</span>
-              <h2>Essential oils for <em>everyday wellness.</em></h2>
-              <p>Explore selected essential oils and blends used throughout our wellness education.</p>
-            </div>
-
-            <FeaturedProducts url={SITE_CONFIG.productsCsv} />
-
-            <div className="section-bottom-link">
-              <Link href="/products" className="outline-link">
-                Explore essential oil products <span>→</span>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="section consultation-section" id="consultation">
-          <div className="container">
-            <div className="consultation-wrapper">
-              <div className="consultation-content">
-                <span className="eyebrow">INDIVIDUAL WELLNESS CONSULTATIONS</span>
-                <h2>Personal guidance for your <em>wellness journey.</em></h2>
-                <p>
-                  One-on-one consultations are designed to help you understand
-                  appropriate essential-oil use and create practical routines
-                  aligned with your personal wellness goals.
-                </p>
-
-                <div className="consultation-points">
-                  <span>✓ Choose oils thoughtfully</span>
-                  <span>✓ Create customised routines</span>
-                  <span>✓ Learn responsible usage</span>
-                  <span>✓ Build sustainable habits</span>
-                </div>
-
+              <div className="consultation-cta-group">
                 <GoogleFormLink type="consultation" className="btn btn-primary">
                   Book a Consultation <span>→</span>
                 </GoogleFormLink>
+                <Link href="/consultation" className="btn btn-outline">
+                  About Consultations <span>→</span>
+                </Link>
+                <Link href="/education" className="btn btn-outline">
+                  View Education Pathways <span>→</span>
+                </Link>
               </div>
+            </div>
 
-              <div className="consultation-visual">
-                <img
-                  src="/assets/hero-image.jpg"
-                  alt="Natural botanical wellness setting"
-                />
-                <div className="consultation-quote">
-                  <span>“</span>
-                  <p>Wellness begins with education.</p>
-                </div>
+            <div className="consultation-visual">
+              <img
+                src="/assets/hero-image.jpg"
+                alt="Natural botanical wellness setting for calm and restoration"
+              />
+              <div className="consultation-quote">
+                <span>“</span>
+                <p>Learn. Understand. Apply. • Wellness begins with education.</p>
               </div>
             </div>
           </div>
-        </section>
-
-        <section className="section founder-section" id="founder">
-          <div className="container founder-grid">
-            <FounderVisual />
-
-            <div className="founder-copy">
-              <p className="eyebrow">ABOUT THE FOUNDER</p>
-              <h2>Bridging modern life with <em>nature-based wellness.</em></h2>
-              <p>
-                Richa Ramola is the Founder of Harmony of Cells and a Wellness
-                Educator with a vision to make preventive wellness more accessible
-                through nature, education and scientific awareness.
-              </p>
-              <p>
-                With nearly three decades of leadership experience in Human Resources
-                and Business Operations across multinational organisations, Richa
-                chose to dedicate her work to wellness after experiencing the impact
-                of natural approaches within her own family.
-              </p>
-              <p>
-                Today, she focuses on educating individuals, families and wellness
-                professionals on the informed and responsible use of essential oils
-                through workshops, consultations, wellness programs and practitioner education.
-              </p>
-              <blockquote>
-                “Education, purity and prevention can come together to create healthier,
-                more empowered communities — one drop at a time.”
-              </blockquote>
-            </div>
-          </div>
-        </section>
-      </main>
+        </div>
+      </section>
+    </main>
   );
 }
