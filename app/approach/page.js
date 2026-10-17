@@ -12,6 +12,7 @@ const WELLNESS_PILLARS = [
   {
     id: "rest-and-sleep",
     step: "01",
+    domain: "RECOVERY & DOWNTIME",
     tagline: "Recovery & Nighttime Rest",
     title: "Rest & Sleep",
     description:
@@ -30,6 +31,7 @@ const WELLNESS_PILLARS = [
   {
     id: "stress-and-resilience",
     step: "02",
+    domain: "RECOVERY & DOWNTIME",
     tagline: "Daytime Calm & Adaptability",
     title: "Stress & Resilience",
     description:
@@ -48,6 +50,7 @@ const WELLNESS_PILLARS = [
   {
     id: "womens-wellness",
     step: "03",
+    domain: "LIFE STAGES & PACING",
     tagline: "Lifecycle Rhythms & Care",
     title: "Women's Wellness",
     description:
@@ -66,6 +69,7 @@ const WELLNESS_PILLARS = [
   {
     id: "healthy-ageing",
     step: "04",
+    domain: "LIFE STAGES & PACING",
     tagline: "Longevity & Vitality",
     title: "Healthy Ageing & Lifestyle",
     description:
@@ -84,6 +88,7 @@ const WELLNESS_PILLARS = [
   {
     id: "everyday-wellness",
     step: "05",
+    domain: "ENVIRONMENT & RHYTHMS",
     tagline: "Circadian Cadence & Balance",
     title: "Everyday Wellness",
     description:
@@ -102,6 +107,7 @@ const WELLNESS_PILLARS = [
   {
     id: "sensory-wellness",
     step: "06",
+    domain: "ENVIRONMENT & RHYTHMS",
     tagline: "Aroma, Touch & Environment",
     title: "Sensory Wellness",
     description:
@@ -197,32 +203,62 @@ const METHOD_FOUNDATIONS = [
     icon: "🌿",
     title: "Lifestyle & Daily Rhythms",
     description:
-      "True wellbeing is rooted in the architecture of your day. We look at the interplay between circadian biology, movement, rest intervals, and work boundaries to build sustainable daily cadence.",
+      "True wellbeing is rooted in the architecture of your day: circadian biology, movement, rest intervals, and work boundaries to build sustainable daily cadence.",
   },
   {
     icon: "✦",
     title: "Sensory Wellness",
     description:
-      "Our senses — especially olfaction and touch — have a direct, profound connection to emotional memory and sensory relaxation. Thoughtfully chosen botanicals provide immediate, gentle anchors for calm.",
+      "Our senses — especially olfaction and touch — have a direct connection to sensory relaxation. Thoughtfully chosen botanicals provide immediate, gentle anchors for calm.",
   },
   {
     icon: "🌱",
     title: "Nature-Based Practices",
     description:
-      "Reconnecting with pure botanicals, natural daylight, fresh air, and seasonal rhythms restores balance against artificial environments, digital screens, and indoor confinement.",
+      "Reconnecting with pure botanicals, natural daylight, fresh air, and seasonal rhythms restores balance against artificial environments and indoor confinement.",
   },
   {
     icon: "📖",
     title: "Informed Self-Care",
     description:
-      "We believe in education before recommendation. Understanding why, when, and how to use botanical essences — and when not to use them — empowers safe, responsible, and personal choices.",
+      "We believe in education before recommendation. Understanding why, when, and how to use botanical essences — and when not to use them — empowers safe choices.",
+  },
+];
+
+const EDUCATION_TRANSLATION_TIERS = [
+  {
+    level: "LEVEL 01",
+    tagline: "Foundations & Safety",
+    title: "Botanical Fundamentals",
+    description:
+      "What essential oils are, botanical chemistry, extraction, and rigorous dilution and safety standards.",
+    cta: "Explore Foundations",
+    href: "/education#pathway-framework",
+  },
+  {
+    level: "LEVEL 02",
+    tagline: "Daily Integration",
+    title: "Everyday Rhythms & Wind-Down",
+    description:
+      "Applying the 5R method to evening rest, circadian pacing, and tailored sensory home environments.",
+    cta: "Explore Daily Integration",
+    href: "/education#pathway-framework",
+  },
+  {
+    level: "LEVEL 03",
+    tagline: "Professional Practice",
+    title: "Practitioner Scope & Ethics",
+    description:
+      "Integrating safe aromatic protocols and ethical boundaries into yoga, spa, and coaching practices.",
+    cta: "Explore Professional Tier",
+    href: "/professionals",
   },
 ];
 
 export default function ApproachPage() {
   return (
     <main className="approach-page">
-      {/* 1. HERO SECTION */}
+      {/* 1. EDITORIAL HERO WITH ANCHOR NAV */}
       <section className="hero service-hero" id="top">
         <div className="hero-decoration hero-decoration-one" />
         <div className="hero-decoration hero-decoration-two" />
@@ -244,7 +280,7 @@ export default function ApproachPage() {
             </p>
 
             <div className="hero-actions">
-              <a href="#method" className="btn btn-primary">
+              <a href="#five-r" className="btn btn-primary">
                 Explore the 5R Method <span>↓</span>
               </a>
               <GoogleFormLink
@@ -284,13 +320,16 @@ export default function ApproachPage() {
           </div>
         </div>
 
-        <div className="container announcement-container">
-          <div className="announcement">
-            <span className="announcement-symbol">✦</span>
-            <span>
-              Rest • Regulate • Restore • Resilience • Ritual — Grounded practices for modern life
-            </span>
-          </div>
+        {/* Section Navigation Strip */}
+        <div className="container approach-nav-container">
+          <nav className="approach-quick-nav" aria-label="Our Approach page navigation">
+            <span className="quick-nav-label">JUMP TO:</span>
+            <a href="#philosophy" className="quick-nav-pill">Our Philosophy</a>
+            <a href="#five-r" className="quick-nav-pill">The 5R Framework</a>
+            <a href="#wellness-pillars" className="quick-nav-pill">Everyday Wellness Areas</a>
+            <a href="#education-bridge" className="quick-nav-pill">Education Pathway</a>
+            <a href="#pathways" className="quick-nav-pill">Delivery Channels</a>
+          </nav>
         </div>
       </section>
 
@@ -326,16 +365,37 @@ export default function ApproachPage() {
               truly supportive.&rdquo;
             </blockquote>
           </div>
+
+          {/* Grouped 4 Method Foundations (2x2 Grid) */}
+          <div className="foundations-grid mt-12">
+            {METHOD_FOUNDATIONS.map((pillar, idx) => (
+              <div key={idx} className="foundation-card">
+                <span className="foundation-icon" aria-hidden="true">
+                  {pillar.icon}
+                </span>
+                <h3>{pillar.title}</h3>
+                <p>{pillar.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="signature-quote-banner mt-8">
+            <p className="signature-quote-text">
+              &ldquo;We don&apos;t believe in simply telling you what to use. We believe in helping
+              you understand <strong>WHY, WHEN, HOW — AND WHEN NOT TO USE IT.</strong>&rdquo;
+            </p>
+            <span className="signature-principle">Signature Principle: Learn. Understand. Apply.</span>
+          </div>
         </div>
       </section>
 
-      {/* 3. THE 5R METHOD SECTION */}
-      <section className="section approach-method-section" id="method">
+      {/* 3. THE 5R CONCEPTS (EDITORIAL SEQUENCE) */}
+      <section className="section bg-cream-soft approach-method-section" id="five-r">
         <div className="container">
           <div className="section-heading text-center">
             <span className="eyebrow">THE FIVE CORE CONCEPTS</span>
             <h2>
-              The Harmony of Cells <em>Method.</em>
+              The Five 5R <em>Concepts.</em>
             </h2>
             <p className="section-lead">
               Five interconnected principles designed to support calmer, healthier daily rhythms
@@ -373,7 +433,7 @@ export default function ApproachPage() {
           </div>
 
           {/* Educational Disclaimer Banner */}
-          <div className="method-disclaimer-box" role="note">
+          <div className="method-disclaimer-box mt-8" role="note">
             <div className="disclaimer-icon-wrap">
               <span className="disclaimer-badge">EDUCATIONAL SCOPE</span>
             </div>
@@ -391,43 +451,8 @@ export default function ApproachPage() {
         </div>
       </section>
 
-      {/* 4. FOUNDATIONAL PILLARS (Lifestyle, Sensory, Nature, Informed Self-Care) */}
-      <section className="section approach-foundations-section" id="foundations">
-        <div className="container">
-          <div className="section-heading">
-            <span className="eyebrow">THE INTERCONNECTED WHOLE</span>
-            <h2>
-              Lifestyle, sensory wellness & <em>informed self-care.</em>
-            </h2>
-            <p className="section-lead">
-              How our nature-based practices work together to support everyday wellbeing.
-            </p>
-          </div>
-
-          <div className="foundations-grid">
-            {METHOD_FOUNDATIONS.map((pillar, idx) => (
-              <div key={idx} className="foundation-card">
-                <span className="foundation-icon" aria-hidden="true">
-                  {pillar.icon}
-                </span>
-                <h3>{pillar.title}</h3>
-                <p>{pillar.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="signature-quote-banner">
-            <p className="signature-quote-text">
-              &ldquo;We don&apos;t believe in simply telling you what to use. We believe in helping
-              you understand <strong>WHY, WHEN, HOW — AND WHEN NOT TO USE IT.</strong>&rdquo;
-            </p>
-            <span className="signature-principle">Signature Principle: Learn. Understand. Apply.</span>
-          </div>
-        </div>
-      </section>
-
-      {/* 5. SIX PILLARS OF EVERYDAY WELLNESS (CONSOLIDATED FROM /WELLNESS) */}
-      <section className="section bg-cream-soft" id="wellness-pillars">
+      {/* 4. SIX PILLARS OF EVERYDAY WELLNESS (GROUPED EDITORIAL PRESENTATION) */}
+      <section className="section" id="wellness-pillars">
         <div className="container">
           <div className="section-heading text-center">
             <span className="eyebrow">EVERYDAY LIFE DOMAINS</span>
@@ -435,7 +460,7 @@ export default function ApproachPage() {
               Six Pillars of <em>Everyday Wellness.</em>
             </h2>
             <p className="section-lead">
-              Evidence-informed education, nature-based practices, and practical routines for modern life.
+              Evidence-informed education, nature-based practices, and practical routines consolidated across modern life.
             </p>
           </div>
 
@@ -443,7 +468,10 @@ export default function ApproachPage() {
             {WELLNESS_PILLARS.map((pillar) => (
               <article key={pillar.id} id={pillar.id} className="pillar-detail-card">
                 <div className="pillar-card-header">
-                  <span className="pillar-num">{pillar.step}</span>
+                  <div className="pillar-header-top">
+                    <span className="pillar-num">{pillar.step}</span>
+                    <span className="pillar-domain-tag">{pillar.domain}</span>
+                  </div>
                   <span className="pillar-tagline">{pillar.tagline}</span>
                   <h3>{pillar.title}</h3>
                 </div>
@@ -468,7 +496,7 @@ export default function ApproachPage() {
             ))}
           </div>
 
-          <div className="philosophy-callout-box">
+          <div className="philosophy-callout-box mt-10">
             <div className="callout-badge">OUR WELLNESS PHILOSOPHY</div>
             <h3>Sustainable Wellbeing Over Extreme Interventions</h3>
             <p>
@@ -476,6 +504,44 @@ export default function ApproachPage() {
               It is built on small, repeatable daily habits, sensory nourishment, nervous-system awareness,
               and education that empowers you to make informed decisions for yourself and your family.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. TRANSLATION TO PRACTICAL EDUCATION */}
+      <section className="section bg-cream-soft" id="education-bridge">
+        <div className="container">
+          <div className="section-heading text-center max-w-3xl mx-auto">
+            <span className="eyebrow">PRACTICAL APPLICATION</span>
+            <h2>
+              From Philosophy to Practice: <em>Our Education Framework.</em>
+            </h2>
+            <p className="section-lead">
+              The Harmony of Cells approach is not theoretical. It translates directly into structured,
+              three-tier education designed for personal self-care and professional excellence.
+            </p>
+          </div>
+
+          <div className="education-bridge-grid">
+            {EDUCATION_TRANSLATION_TIERS.map((tier, idx) => (
+              <div key={idx} className="education-bridge-card">
+                <div className="bridge-card-header">
+                  <span className="bridge-badge">{tier.level}</span>
+                  <span className="bridge-tagline">{tier.tagline}</span>
+                  <h3>{tier.title}</h3>
+                </div>
+                <p>{tier.description}</p>
+                <Link href={tier.href} className="bridge-link">
+                  {tier.cta} <span>→</span>
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <Link href="/education" className="btn btn-primary">
+              Explore Full Education Curriculum <span>→</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -510,7 +576,7 @@ export default function ApproachPage() {
         </div>
       </section>
 
-      {/* 6. CALL TO ACTION SECTION */}
+      {/* 7. RELEVANT CALL TO ACTION */}
       <section className="section service-cta-section" id="cta">
         <div className="container">
           <div className="service-cta-card">
@@ -525,9 +591,13 @@ export default function ApproachPage() {
               </p>
 
               <div className="service-cta-buttons">
-                <Link href="/consultation" className="btn btn-primary">
+                <GoogleFormLink
+                  type="consultation"
+                  item="Approach Consultation"
+                  className="btn btn-primary"
+                >
                   Personal Consultation <span>→</span>
-                </Link>
+                </GoogleFormLink>
                 <Link href="/education" className="btn btn-outline">
                   Explore Education Pathways <span>→</span>
                 </Link>

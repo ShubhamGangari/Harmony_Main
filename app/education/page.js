@@ -135,12 +135,14 @@ export default function EducationPage() {
       <section className="section education-pathways-framework" id="pathway-framework">
         <div className="container">
           <div className="section-heading text-center">
-            <span className="eyebrow">CURRICULUM ARCHITECTURE</span>
+            <span className="eyebrow">CURRICULUM BLUEPRINT • THREE LEVELS</span>
             <h2>
-              Three Progressive <em>Education Levels.</em>
+              The Three-Tier <em>Education Framework.</em>
             </h2>
             <p className="section-lead">
-              Our educational framework is structured into three progressive pathways. Note that these pathways represent our overarching learning blueprint; active course offerings and schedules are detailed below.
+              Our educational framework is structured into three progressive pathways. This represents our
+              master curriculum blueprint across personal self-care and professional practice.
+              To enroll in currently scheduled workshop dates, please refer to the <strong>Active Course Catalogue</strong> below.
             </p>
           </div>
 
@@ -174,7 +176,7 @@ export default function EducationPage() {
                   <div className="tier-footer-row">
                     <span className="tier-status-pill">{tier.status}</span>
                     <a href="#active-courses" className="tier-jump-link">
-                      View Courses <span>↓</span>
+                      View Active Enrolment <span>↓</span>
                     </a>
                   </div>
                 </div>
@@ -182,7 +184,7 @@ export default function EducationPage() {
             ))}
           </div>
 
-          {/* Signature Brand Principle Box */}
+          {/* Master Principle Banner */}
           <div className="signature-quote-banner education-signature-banner">
             <p className="signature-quote-text">
               &ldquo;We don&apos;t believe in simply telling you what to use. We believe in helping you
@@ -210,16 +212,16 @@ export default function EducationPage() {
         </div>
       </section>
 
-      {/* 3. ACTIVE COURSE CATALOGUE (Preserving existing catalogue & enrolment) */}
-      <section className="section catalogue-section education-catalogue" id="active-courses">
+      {/* 3. ACTIVE COURSE CATALOGUE (Clearly Separated Cohorts & Enrolment) */}
+      <section className="section bg-cream-soft catalogue-section education-catalogue" id="active-courses">
         <div className="container">
           <div className="section-heading text-center">
-            <span className="eyebrow">ENROLMENT & ACTIVE OFFERINGS</span>
+            <span className="eyebrow">ENROLMENT & SCHEDULED WORKSHOPS</span>
             <h2>
-              Current Course <em>Catalogue.</em>
+              Currently Scheduled <em>Courses & Cohorts.</em>
             </h2>
             <p className="section-lead">
-              Select an available course below to view syllabus details and begin your enrolment pathway.
+              Browse currently open workshop cohorts below. Click &ldquo;Enquire to Enrol&rdquo; or reach out on WhatsApp to confirm dates, curriculum syllabus, and seat availability.
             </p>
           </div>
 

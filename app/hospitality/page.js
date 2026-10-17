@@ -145,34 +145,44 @@ export default function HospitalityPage() {
           },
         ],
       }}
-      audiences={{
-        id: "audiences",
-        eyebrow: "VENUES WE SERVE",
+      howItWorks={{
+        id: "how-it-works",
+        eyebrow: "VENUE INTEGRATION PROCESS",
         title: (
           <>
-            Tailored sensory concepts for <em>every space.</em>
+            How our hospitality sensory <em>partnerships unfold.</em>
           </>
         ),
         description:
-          "Elevating luxury wellness environments across India and international destinations.",
-        items: [
+          "Turnkey botanical architecture from architectural spatial audit to staff operational mastery.",
+        steps: [
           {
-            tag: "LUXURY DAY & RESORT SPAS",
-            title: "Spas & Thermal Sanctuaries",
+            num: "01",
+            title: "Spatial & Ventilation Audit",
             description:
-              "Create an instant sigh of relief the moment guests enter your reception, setting the stage for deeper, more transformative body treatments.",
+              "We assess guest circulation, natural and HVAC airflow, room volume, and acoustic texture across each distinct zone of your venue.",
+            highlight: "Spatial Analysis",
           },
           {
-            tag: "MOVEMENT STUDIOS",
-            title: "Yoga & Reformer Pilates Spaces",
+            num: "02",
+            title: "Bespoke Aromatic Profile Design",
             description:
-              "Maintain pristine, uplifting air quality that supports conscious breathing, mindful movement, and athletic endurance without chemical fumes.",
+              "We formulate custom botanical aroma menus: welcoming citrus for reception, invigorating herbs for movement studios, and grounding resins for spa suites.",
+            highlight: "Zone Calibration",
           },
           {
-            tag: "RETREAT CENTRES & LODGES",
-            title: "Boutique Wellness Hotels & Retreats",
+            num: "03",
+            title: "Non-Synthetic Diffusion Implementation",
             description:
-              "Differentiate your brand with signature botanical aromas that guests associate forever with their stay, inspiring repeat bookings and retail sales.",
+              "We deploy discreet, commercial-grade ultrasonic cold diffusion that distributes pure essential oils evenly without synthetic aerosol propellants.",
+            highlight: "Clean Atmosphere",
+          },
+          {
+            num: "04",
+            title: "Staff Education & Ritual Training",
+            description:
+              "Your front-of-house, spa, and housekeeping teams receive hands-on training and SOPs to operate diffusers safely and answer guest questions with confidence.",
+            highlight: "Operational SOPs",
           },
         ],
       }}

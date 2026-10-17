@@ -142,7 +142,7 @@ export default function EssentialOilSafetyPage() {
   return (
     <main className="safety-page">
       {/* Hero Section */}
-      <section className="safety-hero">
+      <section className="safety-hero" id="top">
         <div className="container safety-hero-content">
           <span className="eyebrow">COMPLIANCE & RESPONSIBLE PRACTICE</span>
           <h1>Essential Oil Safety & <em>Responsible Use.</em></h1>
@@ -158,11 +158,20 @@ export default function EssentialOilSafetyPage() {
               <strong>Education Before Application:</strong> Understand why, when, and how to use botanical oils safely in everyday life—and when not to use them.
             </div>
           </div>
+
+          {/* Quick Jump Navigation Strip */}
+          <nav className="approach-quick-nav mt-8" aria-label="Safety page navigation">
+            <span className="quick-nav-label">JUMP TO:</span>
+            <a href="#tenets" className="quick-nav-pill">5 Core Tenets</a>
+            <a href="#dimensions" className="quick-nav-pill">12 Safety Dimensions</a>
+            <a href="#exposure" className="quick-nav-pill">Accidental Exposure Notes</a>
+            <a href="#disclaimer" className="quick-nav-pill">Legal Disclaimer</a>
+          </nav>
         </div>
       </section>
 
       {/* 5 Core Safety Tenets Grid */}
-      <section className="section bg-cream-soft">
+      <section className="section bg-cream-soft" id="tenets">
         <div className="container">
           <div className="section-header text-center">
             <span className="eyebrow">CORE PRINCIPLES</span>
@@ -214,12 +223,12 @@ export default function EssentialOilSafetyPage() {
       </section>
 
       {/* Detailed 12 Pillars Section */}
-      <section className="section">
+      <section className="section" id="dimensions">
         <div className="container">
-          <div className="section-header">
+          <div className="section-header text-center">
             <span className="eyebrow">DETAILED GUIDANCE</span>
             <h2>Twelve Dimensions of Responsible Use</h2>
-            <p className="section-subhead">
+            <p className="section-subhead max-w-2xl mx-auto">
               Explore thorough safety standards designed to help you, your family, and your clients
               navigate nature-based wellness with confidence.
             </p>
@@ -227,7 +236,7 @@ export default function EssentialOilSafetyPage() {
 
           <div className="safety-pillars-grid">
             {SAFETY_PILLARS.map((pillar, idx) => (
-              <article key={pillar.title} className="safety-pillar-card">
+              <article key={pillar.title} id={`dimension-${idx + 1}`} className="safety-pillar-card">
                 <div className="safety-pillar-header">
                   <span className="safety-pillar-icon" aria-hidden="true">{pillar.icon}</span>
                   <div>
@@ -247,7 +256,7 @@ export default function EssentialOilSafetyPage() {
       </section>
 
       {/* Accidental Exposure & Support Section */}
-      <section className="section bg-cream-soft">
+      <section className="section bg-cream-soft" id="exposure">
         <div className="container">
           <div className="safety-emergency-card">
             <div className="safety-emergency-header">
@@ -282,7 +291,7 @@ export default function EssentialOilSafetyPage() {
       </section>
 
       {/* Prominent Educational Legal Disclaimer */}
-      <section className="section">
+      <section className="section" id="disclaimer">
         <div className="container">
           <div className="safety-disclaimer-box" role="region" aria-label="Educational Disclaimer">
             <div className="disclaimer-header">

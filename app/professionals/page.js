@@ -145,40 +145,44 @@ export default function ProfessionalsPage() {
           },
         ],
       }}
-      audiences={{
-        id: "audiences",
-        eyebrow: "PRACTITIONER DISCIPLINES",
+      howItWorks={{
+        id: "how-it-works",
+        eyebrow: "PRACTITIONER CURRICULUM JOURNEY",
         title: (
           <>
-            Who benefits from our <em>professional curriculum.</em>
+            How the professional <em>learning pathway works.</em>
           </>
         ),
         description:
-          "Enriching existing professional certifications across the mind-body and wellness ecosystem.",
-        items: [
+          "Rigorous, non-medical training designed to integrate safely into classes, clinics, and private client sessions.",
+        steps: [
           {
-            tag: "MOVEMENT INSTRUCTORS",
-            title: "Yoga & Pilates Teachers",
+            num: "01",
+            title: "Modality Assessment & Scope Alignment",
             description:
-              "Deepen pranayama and savasana with calming botanical aromas, creating multi-sensory studio atmospheres students cherish.",
+              "We evaluate your current practice (yoga, coaching, bodywork) to identify appropriate sensory touchpoints within ethical non-medical boundaries.",
+            highlight: "Scope Rigour",
           },
           {
-            tag: "COACHES & THERAPISTS",
-            title: "Wellness & Life Coaches",
+            num: "02",
+            title: "Botanical Chemistry & Dilution Standards",
             description:
-              "Equip clients with sensory grounding anchors they can use between sessions to interrupt cognitive rumination and restore presence.",
+              "Master essential oil constituent profiles, phototoxicity charts, carrier oil ratios, and strict skin patch testing protocols.",
+            highlight: "Safety Mastery",
           },
           {
-            tag: "SPA & BODYWORK PRACTITIONERS",
-            title: "Spa Specialists & Massage Therapists",
+            num: "03",
+            title: "Sensory Anchoring & Session Architecture",
             description:
-              "Elevate treatment menus with responsible dilution principles and bespoke essential-oil blends that support deep relaxation.",
+              "Learn practical techniques to blend breath, ambient scent diffusion, and grounding rituals that enhance client presence.",
+            highlight: "Client Experience",
           },
           {
-            tag: "RETREAT FACILITATORS",
-            title: "Wellness Retreat Leaders",
+            num: "04",
+            title: "Informed Consent & Client Communication",
             description:
-              "Design memorable, multi-sensory retreat experiences and workshops that leave attendees grounded, inspired, and deeply replenished.",
+              "Receive intake questionnaires, contraindication checklists, and communication guidelines that protect your professional reputation.",
+            highlight: "Professional Ethics",
           },
         ],
       }}

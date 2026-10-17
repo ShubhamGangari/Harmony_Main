@@ -7,6 +7,7 @@ export default function ServicePageTemplate({
   hero,
   intro,
   offerings,
+  howItWorks,
   audiences,
   founderCredibility,
   disclaimer,
@@ -178,8 +179,31 @@ export default function ServicePageTemplate({
         </section>
       )}
 
-      {/* 4. TARGET AUDIENCES / WHO THIS IS FOR */}
-      {audiences && (
+      {/* 4. HOW THE EXPERIENCE WORKS / THE ENGAGEMENT SEQUENCE */}
+      {howItWorks ? (
+        <section className="section service-process-section" id={howItWorks.id || "process"}>
+          <div className="container">
+            <div className="section-heading text-center">
+              {howItWorks.eyebrow && <span className="eyebrow">{howItWorks.eyebrow}</span>}
+              <h2>{howItWorks.title}</h2>
+              {howItWorks.description && <p className="section-lead">{howItWorks.description}</p>}
+            </div>
+
+            <div className="service-process-grid">
+              {howItWorks.steps?.map((step, idx) => (
+                <div key={idx} className="service-process-card">
+                  <div className="process-card-step">{step.num || `0${idx + 1}`}</div>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                  {step.highlight && (
+                    <span className="process-highlight-pill">{step.highlight}</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : audiences ? (
         <section className="section service-audiences-section" id={audiences.id || "audiences"}>
           <div className="container">
             <div className="section-heading text-center">
@@ -199,7 +223,7 @@ export default function ServicePageTemplate({
             </div>
           </div>
         </section>
-      )}
+      ) : null}
 
       {/* 5. FOUNDER CREDIBILITY SECTION */}
       {founderCredibility && (

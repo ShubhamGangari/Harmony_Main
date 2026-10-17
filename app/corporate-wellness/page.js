@@ -146,34 +146,44 @@ export default function CorporateWellnessPage() {
           },
         ],
       }}
-      audiences={{
-        id: "audiences",
-        eyebrow: "ORGANISATIONAL BENEFICIARIES",
+      howItWorks={{
+        id: "how-it-works",
+        eyebrow: "WORKPLACE IMPLEMENTATION",
         title: (
           <>
-            Value delivered across your <em>organisation.</em>
+            How our corporate wellness <em>programs operate.</em>
           </>
         ),
         description:
-          "Targeted outcomes for executive leadership, people operations, and employee resource groups.",
-        items: [
+          "From initial organisational discovery to actionable, memorable team workshops with lasting impact.",
+        steps: [
           {
-            tag: "HR & PEOPLE LEADERS",
-            title: "People & Culture Teams",
+            num: "01",
+            title: "Leadership Discovery & Culture Audit",
             description:
-              "Implement wellness initiatives employees genuinely value, driving measurable improvements in retention, morale, and everyday workplace engagement.",
+              "We meet with HR and business leaders to understand team pressure points, working modes (hybrid, remote, in-office), and key wellness objectives.",
+            highlight: "Strategic Alignment",
           },
           {
-            tag: "FOUNDERS & CXOS",
-            title: "Executive Leadership",
+            num: "02",
+            title: "Curriculum Customization",
             description:
-              "Build a high-performance culture that lasts by modeling sustainable work-rest balance and equipping leaders with stress-resilience tools.",
+              "We tailor workshop content to your workforce: stress awareness, executive recovery, circadian sleep routines, or sensory workspace setup.",
+            highlight: "Bespoke Design",
           },
           {
-            tag: "WELLNESS COMMITTEES",
-            title: "Employee Resource Groups",
+            num: "03",
+            title: "Experiential Workshop Delivery",
             description:
-              "Host memorable, interactive wellness workshops that give team members practical self-care knowledge they can immediately take home.",
+              "Interactive sessions combining grounded science, sensory aromatic touchpoints, and practical desk micro-pauses that require zero jargon.",
+            highlight: "High Engagement",
+          },
+          {
+            num: "04",
+            title: "Post-Session Integration Toolkit",
+            description:
+              "Participants receive practical summary guides, desk reference cards, and optional follow-up resources to cement sustainable daily habits.",
+            highlight: "Measurable Value",
           },
         ],
       }}

@@ -171,8 +171,8 @@ export default function ResourcesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {/* Hero Section */}
-      <section className="resources-hero">
+      {/* Hero Section with Group Quick-Jump Navigation */}
+      <section className="resources-hero" id="top">
         <div className="container resources-hero-content">
           <span className="eyebrow">KNOWLEDGE • RITUAL • PRACTICE</span>
           <h1>Wellness Resources & <em>Practical Guides.</em></h1>
@@ -181,13 +181,29 @@ export default function ResourcesPage() {
             collection of practical routines, safety frameworks, scientific evidence analysis,
             and answers to common questions to help you make informed choices for everyday life.
           </p>
+
+          <nav className="approach-quick-nav mt-8" aria-label="Resources groups navigation">
+            <span className="quick-nav-label">DISCOVER:</span>
+            <a href="#learn-explore" className="quick-nav-pill">Group A: Learn & Explore</a>
+            <a href="#evidence" className="quick-nav-pill">Group B: Evidence & Knowledge</a>
+            <a href="#faq" className="quick-nav-pill">Group C: Frequently Asked Questions</a>
+          </nav>
         </div>
       </section>
 
-      {/* Featured Lead Magnet Banner */}
-      <section className="section bg-cream-soft">
+      {/* GROUP A: LEARN & EXPLORE */}
+      <section className="section bg-cream-soft resources-group-section" id="learn-explore">
         <div className="container">
-          <div className="featured-guide-card">
+          <div className="section-header text-center">
+            <span className="eyebrow">GROUP A • LEARN & EXPLORE</span>
+            <h2>Practical Education, Guides & Topics</h2>
+            <p className="section-subhead max-w-2xl mx-auto">
+              Start with our signature 7-day routine, dive into specific wellness domains, or explore dedicated educational hubs.
+            </p>
+          </div>
+
+          {/* 1. Featured Lead Magnet Banner */}
+          <div className="featured-guide-card mb-12">
             <div className="featured-guide-content">
               <span className="featured-badge">FEATURED PRACTICAL GUIDE</span>
               <h2>The 7-Day Supportive Wellness Routine</h2>
@@ -227,28 +243,16 @@ export default function ResourcesPage() {
               </ul>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Core Educational Hub Trio */}
-      <section className="section">
-        <div className="container">
-          <div className="section-header text-center">
-            <span className="eyebrow">ESSENTIAL FOUNDATIONS</span>
-            <h2>Foundational Frameworks & Transparency</h2>
-            <p className="section-subhead">
-              Key resources to help you understand our evidence philosophy, safety standards, and answers to common questions.
-            </p>
-          </div>
-
-          <div className="resources-foundations-grid">
+          {/* 2. Core Learning Hubs Trio */}
+          <div className="resources-foundations-grid mb-14">
             <article className="foundation-box-card">
               <span className="foundation-box-icon" aria-hidden="true">🛡️</span>
               <span className="foundation-box-tag">SAFETY & RESPONSIBILITY</span>
-              <h3>Essential Oil Safety Guide</h3>
+              <h3>Essential Oil Safety Standards</h3>
               <p>
                 Twelve comprehensive dimensions of safe botanical use, including dilution guidance,
-                phototoxicity, pregnancy precautions, pet safety, and when to seek healthcare advice.
+                phototoxicity, pregnancy precautions, pet safety, and healthcare consultation guidelines.
               </p>
               <Link href="/essential-oil-safety" className="card-link">
                 Read Safety Standards <span>→</span>
@@ -256,39 +260,35 @@ export default function ResourcesPage() {
             </article>
 
             <article className="foundation-box-card">
-              <span className="foundation-box-icon" aria-hidden="true">🔬</span>
-              <span className="foundation-box-tag">EVIDENCE PHILOSOPHY</span>
-              <h3>Research & Evidence Overview</h3>
+              <span className="foundation-box-icon" aria-hidden="true">🌿</span>
+              <span className="foundation-box-tag">METHODOLOGY & PILLARS</span>
+              <h3>The 5R Approach to Wellness</h3>
               <p>
-                An honest, transparent view of what science confirms, what preliminary research suggests,
-                and what remains unproven in aromatherapy and lifestyle wellness.
+                Explore our core philosophy: Rest, Regulate, Restore, Resilience, and Ritual,
+                plus the Six Pillars of Everyday Wellness for modern living.
               </p>
-              <a href="#evidence" className="card-link">
-                Explore Evidence Analysis <span>↓</span>
-              </a>
+              <Link href="/approach" className="card-link">
+                Explore The Method <span>→</span>
+              </Link>
             </article>
 
             <article className="foundation-box-card">
-              <span className="foundation-box-icon" aria-hidden="true">💡</span>
-              <span className="foundation-box-tag">FREQUENT QUESTIONS</span>
-              <h3>Frequently Asked Questions</h3>
+              <span className="foundation-box-icon" aria-hidden="true">🎓</span>
+              <span className="foundation-box-tag">STRUCTURED EDUCATION</span>
+              <h3>3-Tier Learning Pathways</h3>
               <p>
-                Straightforward answers about our services, education programs, consultation boundaries,
-                and how to enquire about certified botanical products.
+                From foundational botanical basics to daily self-care and professional curriculum
+                for coaches, yoga teachers, and wellness practitioners.
               </p>
-              <a href="#faq" className="card-link">
-                Browse Full FAQ <span>↓</span>
-              </a>
+              <Link href="/education" className="card-link">
+                View Curriculum <span>→</span>
+              </Link>
             </article>
           </div>
-        </div>
-      </section>
 
-      {/* 8 Content Pillars Resource Grid */}
-      <section className="section bg-cream-soft">
-        <div className="container">
+          {/* 3. Educational Topics / Content Pillars */}
           <div className="section-header">
-            <span className="eyebrow">EXPLORE BY TOPIC</span>
+            <span className="eyebrow">EXPLORE BY DOMAIN</span>
             <h2>Browse Educational Wellness Topics</h2>
             <p className="section-subhead">
               Access focused educational pathways across the core pillars of nervous system and lifestyle wellness.
@@ -313,11 +313,11 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* EVIDENCE & SCIENTIFIC INTEGRITY SECTION (MERGED FROM /RESEARCH-EVIDENCE) */}
-      <section className="section" id="evidence">
+      {/* GROUP B: EVIDENCE & RESPONSIBLE KNOWLEDGE */}
+      <section className="section resources-group-section" id="evidence">
         <div className="container">
           <div className="section-header text-center">
-            <span className="eyebrow">TRANSPARENCY & SCIENTIFIC INTEGRITY</span>
+            <span className="eyebrow">GROUP B • EVIDENCE & RESPONSIBLE KNOWLEDGE</span>
             <h2>Our Evidence-Informed Wellness Philosophy</h2>
             <p className="section-subhead max-w-3xl mx-auto">
               We believe people make better wellness choices when they are given honest, accurate information.
@@ -430,14 +430,14 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* FREQUENTLY ASKED QUESTIONS SECTION (MERGED FROM /FAQ) */}
-      <section className="section bg-cream-soft" id="faq">
+      {/* GROUP C: FREQUENTLY ASKED QUESTIONS */}
+      <section className="section bg-cream-soft resources-group-section" id="faq">
         <div className="container max-w-4xl">
           <div className="section-header text-center">
-            <span className="eyebrow">HELP & CLARITY</span>
-            <h2>Frequently Asked Questions</h2>
+            <span className="eyebrow">GROUP C • FREQUENTLY ASKED QUESTIONS</span>
+            <h2>Straightforward Answers & Clarity</h2>
             <p className="section-subhead">
-              Clear, honest answers about our wellness philosophy, delivery channels, education programs, safety standards, and product enquiries.
+              Clear answers about our wellness philosophy, delivery channels, education programs, safety standards, and product enquiries.
             </p>
           </div>
 

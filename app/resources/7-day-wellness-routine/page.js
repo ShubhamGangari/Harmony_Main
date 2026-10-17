@@ -197,11 +197,27 @@ export default function SevenDayWellnessRoutinePage() {
       </section>
 
       {/* 7 Days Sequence */}
-      <section className="section routine-content-section">
+      <section className="section routine-content-section" id="routine-sequence">
         <div className="container">
+          {/* Day Jump Navigation Bar */}
+          <div className="day-nav-wrapper mb-10">
+            <nav className="approach-quick-nav day-quick-nav" aria-label="7-day routine quick jump">
+              <span className="quick-nav-label">JUMP TO DAY:</span>
+              {DAYS_DATA.map((d, idx) => (
+                <a
+                  key={d.dayNumber}
+                  href={`#day-${String(idx + 1).padStart(2, "0")}`}
+                  className="quick-nav-pill"
+                >
+                  {d.dayNumber}: {d.title.split("&")[0].trim()}
+                </a>
+              ))}
+            </nav>
+          </div>
+
           <div className="routine-days-container">
-            {DAYS_DATA.map((day) => (
-              <article key={day.dayNumber} className="routine-day-card" id={`day-${day.dayNumber.toLowerCase().replace(' ', '-')}`}>
+            {DAYS_DATA.map((day, idx) => (
+              <article key={day.dayNumber} className="routine-day-card" id={`day-${String(idx + 1).padStart(2, "0")}`}>
                 <div className="day-card-header">
                   <div className="day-badge-wrap">
                     <span className="day-number-badge">{day.dayNumber}</span>
@@ -240,6 +256,27 @@ export default function SevenDayWellnessRoutinePage() {
                       <p>{day.sensoryTool}</p>
                     </div>
                   </div>
+
+                  {/* Day-to-Day Flow Footer */}
+                  <div className="day-card-nav-row">
+                    {idx > 0 ? (
+                      <a href={`#day-${String(idx).padStart(2, "0")}`} className="day-nav-link prev">
+                        ← {DAYS_DATA[idx - 1].dayNumber}
+                      </a>
+                    ) : <span />}
+                    <a href="#guide-print" className="day-nav-link top">
+                      Top of Guide ↑
+                    </a>
+                    {idx < DAYS_DATA.length - 1 ? (
+                      <a href={`#day-${String(idx + 2).padStart(2, "0")}`} className="day-nav-link next">
+                        Next: {DAYS_DATA[idx + 1].dayNumber} →
+                      </a>
+                    ) : (
+                      <a href="#lead-capture" className="day-nav-link next">
+                        Complete Guide ✓
+                      </a>
+                    )}
+                  </div>
                 </div>
               </article>
             ))}
@@ -248,7 +285,7 @@ export default function SevenDayWellnessRoutinePage() {
       </section>
 
       {/* Transparent, Optional Email Updates Section (No Forced Gate) */}
-      <section className="section bg-cream-soft lead-capture-section">
+      <section className="section bg-cream-soft lead-capture-section" id="lead-capture">
         <div className="container max-w-3xl">
           <div className="lead-capture-card">
             <div className="lead-capture-header text-center">

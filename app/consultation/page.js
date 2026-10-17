@@ -163,61 +163,19 @@ export default function ConsultationPage() {
         </div>
       </section>
 
-      {/* 2. WHO CONSULTATIONS ARE FOR */}
-      <section className="section consultation-audiences-section" id="who-it-is-for">
+      {/* 2. EDUCATIONAL SCOPE & BOUNDARIES (Placed upfront for compliance and trust) */}
+      <section className="section bg-cream-soft consultation-scope-section" id="scope">
         <div className="container">
           <div className="section-heading text-center">
-            <span className="eyebrow">PERSONALIZED FOR YOU</span>
+            <span className="eyebrow">CONSULTATION PURPOSE & BOUNDARIES</span>
             <h2>
-              Who consultations are <em>for.</em>
+              Understanding the <em>educational scope.</em>
             </h2>
-            <p className="section-lead">
-              Our educational consultations meet you wherever you are on your wellness journey.
+            <p className="section-lead max-w-2xl mx-auto">
+              Our consultations are thoughtful, educational conversations designed to support informed self-care and daily rhythms.
             </p>
           </div>
 
-          <div className="audiences-trio-grid">
-            {WHO_THIS_IS_FOR.map((item, idx) => (
-              <div key={idx} className="audience-box-card">
-                <span className="audience-tag">{item.tag}</span>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. TOPICS WE MAY EXPLORE */}
-      <section className="section consultation-topics-section" id="details">
-        <div className="container">
-          <div className="section-heading text-center">
-            <span className="eyebrow">WHAT WE EXPLORE</span>
-            <h2>
-              Topics that may be <em>discussed.</em>
-            </h2>
-            <p className="section-lead">
-              Every consultation is tailored to your unique lifestyle, preferences, and personal questions.
-            </p>
-          </div>
-
-          <div className="topics-grid">
-            {TOPICS_EXPLORED.map((topic, idx) => (
-              <div key={idx} className="topic-card">
-                <span className="topic-icon" aria-hidden="true">
-                  {topic.icon}
-                </span>
-                <h3>{topic.title}</h3>
-                <p>{topic.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. WHAT THE CONSULTATION INCLUDES vs DOES NOT PROVIDE */}
-      <section className="section consultation-scope-section" id="scope">
-        <div className="container">
           <div className="scope-comparison-grid">
             {/* What it includes */}
             <div className="scope-card scope-includes-card">
@@ -253,7 +211,7 @@ export default function ConsultationPage() {
           </div>
 
           {/* Educational Governance Callout */}
-          <div className="method-disclaimer-box" role="note">
+          <div className="method-disclaimer-box mt-8" role="note">
             <div className="disclaimer-icon-wrap">
               <span className="disclaimer-badge">HEALTHCARE SCOPE NOTICE</span>
             </div>
@@ -267,6 +225,58 @@ export default function ConsultationPage() {
                 qualified medical practitioner before using essential oils.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. KEY DETAILS & TOPICS EXPLORED */}
+      <section className="section consultation-topics-section" id="details">
+        <div className="container">
+          <div className="section-heading text-center">
+            <span className="eyebrow">WHAT WE EXPLORE</span>
+            <h2>
+              Topics that may be <em>discussed.</em>
+            </h2>
+            <p className="section-lead">
+              Every consultation is tailored to your unique lifestyle, preferences, and personal questions.
+            </p>
+          </div>
+
+          <div className="topics-grid">
+            {TOPICS_EXPLORED.map((topic, idx) => (
+              <div key={idx} className="topic-card">
+                <span className="topic-icon" aria-hidden="true">
+                  {topic.icon}
+                </span>
+                <h3>{topic.title}</h3>
+                <p>{topic.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. WHO CONSULTATIONS ARE FOR */}
+      <section className="section bg-cream-soft consultation-audiences-section" id="who-it-is-for">
+        <div className="container">
+          <div className="section-heading text-center">
+            <span className="eyebrow">PERSONALIZED FOR YOU</span>
+            <h2>
+              Who consultations are <em>for.</em>
+            </h2>
+            <p className="section-lead">
+              Our educational consultations meet you wherever you are on your wellness journey.
+            </p>
+          </div>
+
+          <div className="audiences-trio-grid">
+            {WHO_THIS_IS_FOR.map((item, idx) => (
+              <div key={idx} className="audience-box-card">
+                <span className="audience-tag">{item.tag}</span>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -145,34 +145,44 @@ export default function IndividualsPage() {
           },
         ],
       }}
-      audiences={{
-        id: "audiences",
-        eyebrow: "WHO THIS IS FOR",
+      howItWorks={{
+        id: "how-it-works",
+        eyebrow: "THE ENGAGEMENT JOURNEY",
         title: (
           <>
-            Tailored for your <em>stage of life.</em>
+            How your personal <em>wellness journey unfolds.</em>
           </>
         ),
         description:
-          "Whether you are navigating career pressures, family responsibilities, or simply seeking more intentional living.",
-        items: [
+          "A structured, compassionate process designed to understand your lifestyle and build rituals that last.",
+        steps: [
           {
-            tag: "BUSY PROFESSIONALS",
-            title: "High-Demand Working Adults",
+            num: "01",
+            title: "Discovery & Lifestyle Cadence",
             description:
-              "Learn practical decompression habits to transition from workday intensity into deep, uninterrupted evening rest without burnout.",
+              "We explore your daily rhythms, work commitments, stress patterns, and sleep habits to identify where tension compounds.",
+            highlight: "Personalised Intake",
           },
           {
-            tag: "PARENTS & CAREGIVERS",
-            title: "Nurturing Caregivers",
+            num: "02",
+            title: "Botanical Education & Safety",
             description:
-              "Create restorative 5-minute micro-rituals for personal replenishment while caring for loved ones, bringing calm to the entire household.",
+              "Learn why specific botanical aromas support relaxation, alongside conservative carrier oil dilution and safe application principles.",
+            highlight: "Education First",
           },
           {
-            tag: "WELLNESS BEGINNERS",
-            title: "Curious Explorers",
+            num: "03",
+            title: "Customized Routine Design",
             description:
-              "Learn the authentic science of botanical extracts, safe dilution ratios, and natural self-care without commercial hype or confusing jargon.",
+              "Together we craft 5- to 15-minute repeatable morning intentions and evening wind-down practices that seamlessly fit your day.",
+            highlight: "Sustainable Rituals",
+          },
+          {
+            num: "04",
+            title: "Ongoing Rhythm Refinement",
+            description:
+              "Fine-tune your sensory cues and self-care boundaries as work cycles and seasonal demands naturally evolve.",
+            highlight: "Continuous Calm",
           },
         ],
       }}

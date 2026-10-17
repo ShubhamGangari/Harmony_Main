@@ -9216,3 +9216,429 @@ html {
   min-height: 50vh;
 }
 
+/* ==========================================================================
+   PHASE 2 — EDITORIAL LAYOUTS, SHARED PATTERNS & UX CONSISTENCY
+   ========================================================================== */
+
+/* 1. Homepage: "Wellness Begins with Understanding" 4-Card Grid */
+.home-understanding-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.understanding-card {
+  background: var(--surface-card, #ffffff);
+  border: 1px solid var(--border-subtle, rgba(78, 107, 67, 0.14));
+  border-radius: var(--radius-md, 18px);
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: var(--shadow-sm, 0 4px 14px rgba(35, 48, 30, 0.04));
+}
+
+.understanding-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--sage, #7a9470);
+  box-shadow: var(--shadow-md, 0 10px 28px rgba(35, 48, 30, 0.07));
+}
+
+.understanding-icon {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.understanding-card h3 {
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  color: var(--green-dark, #3b5232);
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.understanding-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-body, #3c463b);
+  margin: 0;
+}
+
+/* 2. Homepage: Gateway 3-Way Entry Points */
+.home-gateway-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.gateway-card {
+  background: var(--surface-card, #ffffff);
+  border: 1px solid var(--border-subtle, rgba(78, 107, 67, 0.14));
+  border-radius: var(--radius-lg, 24px);
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm, 0 4px 14px rgba(35, 48, 30, 0.04));
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.gateway-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--sage, #7a9470);
+  box-shadow: var(--shadow-md, 0 10px 28px rgba(35, 48, 30, 0.07));
+}
+
+.gateway-card-header {
+  margin-bottom: 1rem;
+}
+
+.gateway-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-pill, 999px);
+  margin-bottom: 0.75rem;
+}
+
+.entry-badge-edu {
+  background: rgba(78, 107, 67, 0.1);
+  color: var(--green-dark, #3b5232);
+}
+
+.entry-badge-oils {
+  background: rgba(122, 148, 112, 0.15);
+  color: var(--green-deep, #182516);
+}
+
+.entry-badge-consult {
+  background: rgba(212, 151, 59, 0.12);
+  color: #8c5b12;
+}
+
+.gateway-card h3 {
+  font-size: 1.35rem;
+  color: var(--charcoal, #222222);
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.gateway-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-body, #3c463b);
+  margin-bottom: 1.5rem;
+}
+
+.gateway-points {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.gateway-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--text-body, #3c463b);
+}
+
+.gateway-bullet {
+  color: var(--green, #4e6b43);
+  font-weight: bold;
+}
+
+.gateway-card-footer {
+  margin-top: auto;
+}
+
+.gateway-cta-btn {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+/* 3. Universal Section Quick Jump Navigation */
+.approach-nav-container,
+.day-nav-wrapper {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.approach-quick-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--surface-card, #ffffff);
+  border: 1px solid var(--border-subtle, rgba(78, 107, 67, 0.14));
+  border-radius: var(--radius-pill, 999px);
+  box-shadow: var(--shadow-sm, 0 4px 14px rgba(35, 48, 30, 0.04));
+  width: fit-content;
+  max-width: 100%;
+}
+
+.quick-nav-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--muted, #5e685c);
+  margin-right: 0.25rem;
+}
+
+.quick-nav-pill {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--green-dark, #3b5232);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill, 999px);
+  background: var(--cream-soft, #f4f3ec);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.quick-nav-pill:hover,
+.quick-nav-pill:focus-visible {
+  background: var(--green, #4e6b43);
+  color: var(--white, #ffffff);
+}
+
+/* 4. Audience Pages: How the Experience Works 4-Step Process */
+.service-process-section {
+  background: var(--surface-card, #ffffff);
+}
+
+.service-process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+  margin-top: 2.5rem;
+}
+
+.service-process-card {
+  background: var(--cream-soft, #f4f3ec);
+  border: 1px solid var(--border-subtle, rgba(78, 107, 67, 0.14));
+  border-radius: var(--radius-md, 18px);
+  padding: 2rem 1.75rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.service-process-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md, 0 10px 28px rgba(35, 48, 30, 0.07));
+}
+
+.process-card-step {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--green, #4e6b43);
+  margin-bottom: 0.75rem;
+  display: inline-block;
+  background: var(--surface-card, #ffffff);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle, rgba(78, 107, 67, 0.14));
+}
+
+.service-process-card h3 {
+  font-size: 1.15rem;
+  color: var(--charcoal, #222222);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.service-process-card p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-body, #3c463b);
+  margin: 0 0 1.25rem 0;
+  flex-grow: 1;
+}
+
+.process-highlight-pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--green-dark, #3b5232);
+  background: rgba(78, 107, 67, 0.12);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill, 999px);
+  width: fit-content;
+  margin-top: auto;
+}
+
+/* 5. Education Bridge on /approach */
+.education-bridge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  margin-top: 2.5rem;
+}
+
+.education-bridge-card {
+  background: var(--surface-card, #ffffff);
+  border: 1px solid var(--border-subtle, rgba(78, 107, 67, 0.14));
+  border-radius: var(--radius-md, 18px);
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.bridge-card-header {
+  margin-bottom: 1rem;
+}
+
+.bridge-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--green, #4e6b43);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.bridge-tagline {
+  font-size: 0.8rem;
+  color: var(--muted, #5e685c);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.education-bridge-card h3 {
+  font-size: 1.2rem;
+  margin: 0.5rem 0 0 0;
+  color: var(--charcoal, #222222);
+}
+
+.education-bridge-card p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-body, #3c463b);
+  margin: 0.75rem 0 1.5rem 0;
+  flex-grow: 1;
+}
+
+.bridge-link {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--green, #4e6b43);
+  text-decoration: none;
+}
+
+.bridge-link:hover {
+  text-decoration: underline;
+}
+
+/* 6. Day Navigation on 7-Day Routine */
+.day-card-nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle, rgba(78, 107, 67, 0.14));
+  font-size: 0.88rem;
+}
+
+.day-nav-link {
+  font-weight: 600;
+  color: var(--green-dark, #3b5232);
+  text-decoration: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm, 12px);
+  background: var(--cream-soft, #f4f3ec);
+  transition: all 0.2s ease;
+}
+
+.day-nav-link:hover {
+  background: var(--green, #4e6b43);
+  color: var(--white, #ffffff);
+}
+
+.day-nav-link.top {
+  color: var(--muted, #5e685c);
+  background: transparent;
+}
+
+.day-nav-link.top:hover {
+  background: var(--cream-soft, #f4f3ec);
+  color: var(--green-dark, #3b5232);
+}
+
+/* 7. Responsive Media Queries for 375px, 430px, 768px, 1024px, 1440px */
+@media (max-width: 1024px) {
+  .home-understanding-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .home-gateway-grid,
+  .education-bridge-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .service-process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .home-understanding-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-gateway-grid,
+  .education-bridge-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .approach-quick-nav {
+    border-radius: var(--radius-md, 18px);
+    width: 100%;
+  }
+
+  .day-card-nav-row {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: stretch;
+    text-align: center;
+  }
+}
+
+@media (max-width: 430px) {
+  .understanding-card,
+  .gateway-card,
+  .service-process-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .quick-nav-pill {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.65rem;
+  }
+}
+
