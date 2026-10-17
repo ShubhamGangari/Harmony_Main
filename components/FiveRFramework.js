@@ -13,7 +13,7 @@ const CONCEPTS = [
     description:
       "Creating supportive conditions for genuine rest, nighttime recovery, and gentle decompression after demanding days. Rest is not passive downtime—it is the biological foundation that allows the nervous system to recalibrate and repair.",
     ritual: "Circadian evening wind-down, dim amber light transitions, and calming botanical diffusion before sleep.",
-    pillarLink: "/wellness#rest-and-sleep",
+    pillarLink: "/approach#rest-and-sleep",
     pillarLabel: "Rest & Sleep Pillar",
   },
   {
@@ -25,7 +25,7 @@ const CONCEPTS = [
     description:
       "Building intentional moments of pause, somatic awareness, and calming transitions throughout the workday. Regulate interrupts continuous low-grade stress before it compounds into chronic physical exhaustion.",
     ritual: "2-minute conscious breath breaks between meetings, seated grounding check-ins, and wrist pulse-point aroma cues.",
-    pillarLink: "/wellness#stress-and-resilience",
+    pillarLink: "/approach#stress-and-resilience",
     pillarLabel: "Stress & Resilience Pillar",
   },
   {
@@ -37,7 +37,7 @@ const CONCEPTS = [
     description:
       "Supporting healthy circadian rhythms and restorative routines through evidence-informed lifestyle practices. Aligning daily habits with biological pacing rebuilds sustainable daytime vitality.",
     ritual: "Early morning daylight exposure, rhythmic work-recovery pacing, and intentional hydration breaks.",
-    pillarLink: "/wellness#daily-rhythms",
+    pillarLink: "/approach#everyday-wellness",
     pillarLabel: "Daily Rhythms Pillar",
   },
   {
@@ -49,8 +49,8 @@ const CONCEPTS = [
     description:
       "Developing practical habits and adaptive routines for navigating the continuous demands of modern life. Resilience is the flexibility to respond to stressors without losing inner equilibrium.",
     ritual: "Establishing sustainable workday boundaries, recognizing early stress thresholds, and preserving family renewal time.",
-    pillarLink: "/wellness#workplace-wellness",
-    pillarLabel: "Workplace Wellness Pillar",
+    pillarLink: "/corporate-wellness",
+    pillarLabel: "Workplace Wellness",
   },
   {
     step: "05",
@@ -61,7 +61,7 @@ const CONCEPTS = [
     description:
       "Turning wellness knowledge into small, enjoyable, repeatable self-care practices that fit your everyday schedule. Transforming knowledge into simple sensory anchors makes lasting self-care effortless.",
     ritual: "Sensory aromatic anchors, mindful morning tea intentions, and evening transition rituals that signal safety to the body.",
-    pillarLink: "/wellness#sensory-wellness",
+    pillarLink: "/approach#sensory-wellness",
     pillarLabel: "Sensory Wellness Pillar",
   },
 ];

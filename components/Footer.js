@@ -96,9 +96,9 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Delivery Channels */}
+          {/* Column 2: Who We Help (Delivery Channels) */}
           <div className="footer-col">
-            <span className="footer-col-title">Delivery Channels</span>
+            <span className="footer-col-title">Who We Help</span>
             <ul className="footer-channels-list">
               {DELIVERY_CHANNELS.map((channel) => (
                 <li key={channel.id} className="footer-channel-item">
@@ -111,33 +111,31 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Platform Navigation */}
+          {/* Column 3: Platform & Resources */}
           <div className="footer-col">
-            <span className="footer-col-title">Platform & Education</span>
+            <span className="footer-col-title">Platform &amp; Resources</span>
             <nav className="footer-links-nav" aria-label="Footer Platform Navigation">
               <Link href="/">Home</Link>
-              <Link href="/approach">The Approach</Link>
-              <Link href="/wellness">Wellness Pillars</Link>
-              <Link href="/resources">Resources Hub</Link>
-              <Link href="/resources/7-day-wellness-routine">7-Day Wellness Routine</Link>
-              <Link href="/research-evidence">Research & Evidence</Link>
-              <Link href="/faq">Frequently Asked Questions</Link>
-              <Link href="/products">Essential Oils & Shop</Link>
-              <Link href="/essential-oil-safety">Safety & Responsible Use</Link>
+              <Link href="/approach">Our Approach</Link>
               <Link href="/education">Education Pathways</Link>
+              <Link href="/products">Essential Oils</Link>
+              <Link href="/essential-oil-safety">Safety &amp; Responsible Use</Link>
+              <Link href="/resources">Resources Hub</Link>
+              <Link href="/resources/7-day-wellness-routine">7-Day Supportive Wellness Routine</Link>
+              <Link href="/resources#evidence">Evidence &amp; Scientific Context</Link>
+              <Link href="/resources#faq">Frequently Asked Questions</Link>
               <Link href="/consultation">Personal Consultation</Link>
-              <Link href="/cart">Your Selections & Cart</Link>
             </nav>
           </div>
 
           {/* Column 4: Contact & Inquiries */}
           <div className="footer-col">
-            <span className="footer-col-title">Connect & Inquire</span>
+            <span className="footer-col-title">Connect &amp; Inquire</span>
             <div className="footer-contact-details">
               <p className="footer-contact-person">
                 <strong>Richa Ramola</strong>
-                <span>Founder & Wellness Educator</span>
-                <small>Nearly Three Decades in Leadership & People Development</small>
+                <span>Founder &amp; Wellness Educator</span>
+                <small>Nearly Three Decades in Leadership &amp; People Development</small>
               </p>
               <div className="footer-contact-links">
                 <a href="mailto:connect@harmonyofcells.com" className="footer-contact-link">
@@ -163,7 +161,7 @@ export default function Footer() {
         <div className="footer-disclaimer-box" role="note" aria-label="Educational wellness disclaimer">
           <div className="footer-disclaimer-header">
             <span className="footer-disclaimer-badge">DISCLAIMER (DRAFT FOR REVIEW)</span>
-            <span className="footer-disclaimer-sub">Educational Scope & Responsible Self-Care</span>
+            <span className="footer-disclaimer-sub">Educational Scope &amp; Responsible Self-Care</span>
           </div>
           <p className="footer-disclaimer-text">
             Harmony of Cells provides wellness education and lifestyle guidance intended to support informed self-care and calmer daily rhythms. Our educational content, workshops and consultations are not intended to diagnose, treat, cure or prevent any disease, medical condition or nervous system disorder, nor are they a substitute for professional medical advice, diagnosis or treatment. Essential oils are concentrated botanical extracts and should always be used responsibly following appropriate dilution, safe application and product instructions. If you are pregnant, nursing, taking medication or managing a medical condition, please consult an appropriately qualified healthcare professional before use.{" "}
@@ -188,7 +186,7 @@ export default function Footer() {
             <Link href="/shipping-returns" className="footer-legal-link">Shipping &amp; Inquiries</Link>
           </div>
           <p className="footer-credits">
-            Nervous System & Lifestyle Wellness • Learn. Understand. Apply.
+            Nervous System &amp; Lifestyle Wellness • Learn. Understand. Apply.
           </p>
         </div>
       </div>

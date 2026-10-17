@@ -18,7 +18,7 @@ export default function SiteHeader() {
   };
 
   const isActive = (path) => pathname === path;
-  const isPathwaysActive = [
+  const isWhoWeHelpActive = [
     "/individuals",
     "/corporate-wellness",
     "/professionals",
@@ -68,18 +68,16 @@ export default function SiteHeader() {
           </div>
         </Link>
 
+        {/* Simplified Primary Navigation */}
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <Link href="/" className={`nav-link ${isActive("/") ? "active" : ""}`}>
-            Home
-          </Link>
-          <Link href="/approach" className={`nav-link ${isActive("/approach") ? "active" : ""}`}>
-            The Approach
-          </Link>
-          <Link href="/wellness" className={`nav-link ${isActive("/wellness") ? "active" : ""}`}>
-            Wellness
+          <Link
+            href="/approach"
+            className={`nav-link ${isActive("/approach") ? "active" : ""}`}
+          >
+            Our Approach
           </Link>
 
-          {/* Grouped Pathways Dropdown */}
+          {/* Grouped Who We Help Dropdown */}
           <div
             className="nav-dropdown-wrapper"
             onMouseEnter={() => setDropdownOpen(true)}
@@ -88,12 +86,12 @@ export default function SiteHeader() {
           >
             <button
               type="button"
-              className={`nav-link nav-dropdown-btn ${isPathwaysActive ? "active" : ""}`}
+              className={`nav-link nav-dropdown-btn ${isWhoWeHelpActive ? "active" : ""}`}
               aria-expanded={dropdownOpen}
               aria-haspopup="true"
               onClick={() => setDropdownOpen((value) => !value)}
             >
-              Pathways <span className="dropdown-caret" aria-hidden="true">▾</span>
+              Who We Help <span className="dropdown-caret" aria-hidden="true">▾</span>
             </button>
 
             {dropdownOpen && (
@@ -104,9 +102,9 @@ export default function SiteHeader() {
                   role="menuitem"
                   onClick={close}
                 >
-                  <span className="nav-dropdown-tag">FOR INDIVIDUALS</span>
-                  <strong>Personal Lifestyle & Rhythms</strong>
-                  <small>Stress, sleep routines & 1-on-1 consultations</small>
+                  <span className="nav-dropdown-tag">INDIVIDUALS &amp; FAMILIES</span>
+                  <strong>Personal Lifestyle &amp; Rhythms</strong>
+                  <small>Daily stress, sleep routines &amp; 1-on-1 consultations</small>
                 </Link>
                 <Link
                   href="/corporate-wellness"
@@ -114,9 +112,9 @@ export default function SiteHeader() {
                   role="menuitem"
                   onClick={close}
                 >
-                  <span className="nav-dropdown-tag">FOR CORPORATES</span>
+                  <span className="nav-dropdown-tag">CORPORATE WELLNESS</span>
                   <strong>Workplace Preventive Wellness</strong>
-                  <small>Resilience workshops & executive wellbeing</small>
+                  <small>Executive resilience &amp; team sensory wellbeing</small>
                 </Link>
                 <Link
                   href="/professionals"
@@ -124,9 +122,9 @@ export default function SiteHeader() {
                   role="menuitem"
                   onClick={close}
                 >
-                  <span className="nav-dropdown-tag">FOR PROFESSIONALS</span>
-                  <strong>Wellness Practitioners & Coaches</strong>
-                  <small>Aromatherapy education & responsible application</small>
+                  <span className="nav-dropdown-tag">WELLNESS PROFESSIONALS</span>
+                  <strong>Practitioners, Teachers &amp; Coaches</strong>
+                  <small>Botanical education &amp; responsible application</small>
                 </Link>
                 <Link
                   href="/hospitality"
@@ -134,28 +132,34 @@ export default function SiteHeader() {
                   role="menuitem"
                   onClick={close}
                 >
-                  <span className="nav-dropdown-tag">FOR HOSPITALITY</span>
-                  <strong>Hospitality & Wellness Centres</strong>
-                  <small>Sensory space design & aromatic concepts</small>
+                  <span className="nav-dropdown-tag">HOSPITALITY &amp; SPAS</span>
+                  <strong>Spas, Resorts &amp; Wellness Centres</strong>
+                  <small>Sensory space design &amp; aromatic concepts</small>
                 </Link>
               </div>
             )}
           </div>
 
-          <Link href="/education" className={`nav-link ${isActive("/education") ? "active" : ""}`}>
+          <Link
+            href="/education"
+            className={`nav-link ${isActive("/education") ? "active" : ""}`}
+          >
             Education
           </Link>
-          <Link href="/products" className={`nav-link ${isActive("/products") ? "active" : ""}`}>
+          <Link
+            href="/products"
+            className={`nav-link ${isActive("/products") ? "active" : ""}`}
+          >
             Essential Oils
           </Link>
-          <Link href="/resources" className={`nav-link ${isActive("/resources") || pathname.startsWith("/resources") ? "active" : ""}`}>
+          <Link
+            href="/resources"
+            className={`nav-link ${isActive("/resources") || pathname.startsWith("/resources") ? "active" : ""}`}
+          >
             Resources
           </Link>
-          <Link href="/consultation" className={`nav-link ${isActive("/consultation") ? "active" : ""}`}>
-            Consultation
-          </Link>
           <GoogleFormLink type="consultation" className="nav-cta">
-            Book a Consultation <span>→</span>
+            Book Consultation <span>→</span>
           </GoogleFormLink>
         </nav>
 
@@ -173,6 +177,7 @@ export default function SiteHeader() {
         </button>
       </div>
 
+      {/* Simplified Mobile Navigation */}
       <nav
         id="mobile-navigation"
         className={`mobile-menu ${open ? "open" : ""}`}
@@ -182,21 +187,18 @@ export default function SiteHeader() {
           Home
         </Link>
         <Link href="/approach" className={isActive("/approach") ? "active" : ""} onClick={close}>
-          The Approach
-        </Link>
-        <Link href="/wellness" className={isActive("/wellness") ? "active" : ""} onClick={close}>
-          Wellness Pillars
+          Our Approach
         </Link>
 
         <div className="mobile-group-block">
-          <span className="mobile-group-label">Service Delivery Pathways</span>
+          <span className="mobile-group-label">Who We Help</span>
           <Link
             href="/individuals"
             className={`mobile-sub-link ${isActive("/individuals") ? "active" : ""}`}
             onClick={close}
           >
             <span className="mobile-pathway-badge">INDIVIDUALS</span>
-            <span className="mobile-pathway-title">Personal Lifestyle & Rhythms</span>
+            <span className="mobile-pathway-title">Individuals &amp; Families</span>
           </Link>
           <Link
             href="/corporate-wellness"
@@ -204,7 +206,7 @@ export default function SiteHeader() {
             onClick={close}
           >
             <span className="mobile-pathway-badge">CORPORATES</span>
-            <span className="mobile-pathway-title">Workplace Preventive Wellness</span>
+            <span className="mobile-pathway-title">Corporate Wellness</span>
           </Link>
           <Link
             href="/professionals"
@@ -212,7 +214,7 @@ export default function SiteHeader() {
             onClick={close}
           >
             <span className="mobile-pathway-badge">PROFESSIONALS</span>
-            <span className="mobile-pathway-title">Wellness Practitioners & Coaches</span>
+            <span className="mobile-pathway-title">Wellness Professionals</span>
           </Link>
           <Link
             href="/hospitality"
@@ -220,37 +222,25 @@ export default function SiteHeader() {
             onClick={close}
           >
             <span className="mobile-pathway-badge">HOSPITALITY</span>
-            <span className="mobile-pathway-title">Hospitality & Wellness Centres</span>
+            <span className="mobile-pathway-title">Hospitality &amp; Spas</span>
           </Link>
         </div>
 
         <Link href="/education" className={isActive("/education") ? "active" : ""} onClick={close}>
-          Education Pathways
+          Education
         </Link>
         <Link href="/products" className={isActive("/products") ? "active" : ""} onClick={close}>
-          Essential Oils & Shop
+          Essential Oils
         </Link>
         <Link href="/resources" className={isActive("/resources") || pathname.startsWith("/resources") ? "active" : ""} onClick={close}>
-          Resources Hub & 7-Day Guide
-        </Link>
-        <Link href="/research-evidence" className={isActive("/research-evidence") ? "active" : ""} onClick={close}>
-          Research & Evidence
-        </Link>
-        <Link href="/faq" className={isActive("/faq") ? "active" : ""} onClick={close}>
-          Frequently Asked Questions
-        </Link>
-        <Link href="/essential-oil-safety" className={isActive("/essential-oil-safety") ? "active" : ""} onClick={close}>
-          Safety & Responsible Use
-        </Link>
-        <Link href="/consultation" className={isActive("/consultation") ? "active" : ""} onClick={close}>
-          Personal Consultation
+          Resources &amp; 7-Day Guide
         </Link>
         <GoogleFormLink
           type="consultation"
           className="mobile-menu-cta"
           onOpen={close}
         >
-          Book a Consultation →
+          Book Consultation →
         </GoogleFormLink>
         <div className="mobile-menu-descriptor" aria-hidden="true">
           <span>{BRAND_POSITIONING.descriptor}</span>

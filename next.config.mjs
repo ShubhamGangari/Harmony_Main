@@ -25,6 +25,25 @@ const nextConfig = {
     }
     return [];
   },
+  async redirects() {
+    return [
+      {
+        source: "/wellness",
+        destination: "/approach",
+        permanent: true,
+      },
+      {
+        source: "/research-evidence",
+        destination: "/resources",
+        permanent: true,
+      },
+      {
+        source: "/faq",
+        destination: "/resources",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

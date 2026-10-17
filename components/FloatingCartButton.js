@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { SITE_CONFIG } from "../lib/config";
 import { useCart } from "./CartProvider";
 
 export default function FloatingCartButton() {
@@ -28,8 +29,8 @@ export default function FloatingCartButton() {
     prevCount.current = itemCount;
   }, [itemCount]);
 
-  // Don't render on the cart page, during SSR/hydration, or when cart is empty
-  if (!ready || pathname === "/cart" || itemCount === 0) {
+  // Don't render while inquiry-only commerce mode is active, on the cart page, during SSR/hydration, or when cart is empty
+  if (SITE_CONFIG.commerceMode === "inquiry" || !ready || pathname === "/cart" || itemCount === 0) {
     return null;
   }
 

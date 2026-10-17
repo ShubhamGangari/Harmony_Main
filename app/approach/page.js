@@ -3,10 +3,121 @@ import GoogleFormLink from "../../components/FormLink";
 import { DELIVERY_CHANNELS } from "../../lib/navigation";
 
 export const metadata = {
-  title: "The Approach — Nervous System Wellness for Everyday Life | Harmony of Cells",
+  title: "The Approach — Nervous System & Lifestyle Wellness | Harmony of Cells",
   description:
-    "Explore the Harmony of Cells 5R method: Rest, Regulate, Restore, Resilience, and Ritual. Supporting wellbeing through lifestyle, sensory practices, and informed self-care.",
+    "Explore the Harmony of Cells 5R method (Rest, Regulate, Restore, Resilience, Ritual) and our Six Pillars of Everyday Wellness for calmer, healthier living.",
 };
+
+const WELLNESS_PILLARS = [
+  {
+    id: "rest-and-sleep",
+    step: "01",
+    tagline: "Recovery & Nighttime Rest",
+    title: "Rest & Sleep",
+    description:
+      "Creating supportive conditions for evening decompression, calm nervous-system states, and deep nighttime recovery.",
+    details: [
+      "Understanding the circadian transition from daytime alertness to nighttime restoration",
+      "Designing a calming 30-minute evening wind-down ritual",
+      "Aromatic and sensory space preparation to signal psychological closure to the day",
+      "Digital detachment practices that reduce evening sensory stimulation",
+    ],
+    pathway: {
+      text: "Explore Individual Sleep Routines",
+      href: "/individuals",
+    },
+  },
+  {
+    id: "stress-and-resilience",
+    step: "02",
+    tagline: "Daytime Calm & Adaptability",
+    title: "Stress & Resilience",
+    description:
+      "Accessible somatic pauses, stress awareness, and practical daily habits to prevent tension from compounding over demanding schedules.",
+    details: [
+      "Recognizing early sensory and physiological indicators of tension",
+      "2-minute workday reset protocols and conscious breathing micro-breaks",
+      "Establishing healthy psychological boundaries during high-demand cycles",
+      "Building emotional adaptability and steady energy without burnout",
+    ],
+    pathway: {
+      text: "Explore Resilience Education",
+      href: "/education",
+    },
+  },
+  {
+    id: "womens-wellness",
+    step: "03",
+    tagline: "Lifecycle Rhythms & Care",
+    title: "Women's Wellness",
+    description:
+      "Supportive, evidence-informed lifestyle routines and restorative self-care practices tailored to changing life stages and demands.",
+    details: [
+      "Honoring changing biological rhythms with compassionate self-care routines",
+      "Nourishing sensory grounding practices for busy professional women and caregivers",
+      "Evening wind-down rituals to replenish mental and physical stamina",
+      "Grounded, non-medical lifestyle practices that foster daily balance and comfort",
+    ],
+    pathway: {
+      text: "Learn About Women's Self-Care",
+      href: "/individuals",
+    },
+  },
+  {
+    id: "healthy-ageing",
+    step: "04",
+    tagline: "Longevity & Vitality",
+    title: "Healthy Ageing & Lifestyle",
+    description:
+      "Preserving everyday vitality, physical comfort, and mental clarity across the lifespan through nature-based habits and restorative rhythms.",
+    details: [
+      "Sustainable everyday movement habits and joint-supportive self-care",
+      "Nature immersion and natural daylight exposure for sensory vitality",
+      "Prioritizing intentional recovery intervals as an investment in longevity",
+      "Cultivating cognitive curiosity and mindful daily engagement",
+    ],
+    pathway: {
+      text: "Explore Consultation Guidance",
+      href: "/consultation",
+    },
+  },
+  {
+    id: "everyday-wellness",
+    step: "05",
+    tagline: "Circadian Cadence & Balance",
+    title: "Everyday Wellness",
+    description:
+      "Structuring daily life with intentional cadence: morning light, mindful work-home transitions, hydration, and regular restorative pauses.",
+    details: [
+      "Circadian light alignment to support natural waking and sleep cycles",
+      "Creating intentional transition rituals between work commitments and personal life",
+      "Small, repeatable micro-habits that fit seamlessly into busy modern schedules",
+      "Practical hydration and nourishment rhythms that sustain daytime focus",
+    ],
+    pathway: {
+      text: "View Everyday Routines",
+      href: "/individuals",
+    },
+  },
+  {
+    id: "sensory-wellness",
+    step: "06",
+    tagline: "Aroma, Touch & Environment",
+    title: "Sensory Wellness",
+    description:
+      "Using the power of olfaction, gentle botanical touch, and ambient space design to gently anchor the nervous system in calmness and presence.",
+    details: [
+      "Understanding olfactory pathways and how botanical aromas evoke sensory calm",
+      "Responsible essential-oil dilution principles and safe application methods",
+      "Creating sensory-friendly home and work environments free from synthetic overload",
+      "Combining botanical essences with mindful breathing and contemplative moments",
+    ],
+    pathway: {
+      text: "Explore Pure Botanicals",
+      href: "/products",
+    },
+  },
+];
 
 const FIVE_R_CONCEPTS = [
   {
@@ -315,7 +426,61 @@ export default function ApproachPage() {
         </div>
       </section>
 
-      {/* 5. FOUR DELIVERY CHANNELS */}
+      {/* 5. SIX PILLARS OF EVERYDAY WELLNESS (CONSOLIDATED FROM /WELLNESS) */}
+      <section className="section bg-cream-soft" id="wellness-pillars">
+        <div className="container">
+          <div className="section-heading text-center">
+            <span className="eyebrow">EVERYDAY LIFE DOMAINS</span>
+            <h2>
+              Six Pillars of <em>Everyday Wellness.</em>
+            </h2>
+            <p className="section-lead">
+              Evidence-informed education, nature-based practices, and practical routines for modern life.
+            </p>
+          </div>
+
+          <div className="wellness-pillars-grid">
+            {WELLNESS_PILLARS.map((pillar) => (
+              <article key={pillar.id} id={pillar.id} className="pillar-detail-card">
+                <div className="pillar-card-header">
+                  <span className="pillar-num">{pillar.step}</span>
+                  <span className="pillar-tagline">{pillar.tagline}</span>
+                  <h3>{pillar.title}</h3>
+                </div>
+
+                <p className="pillar-desc">{pillar.description}</p>
+
+                <ul className="pillar-points">
+                  {pillar.details.map((point, idx) => (
+                    <li key={idx}>
+                      <span className="bullet-dot" aria-hidden="true">•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="pillar-footer">
+                  <Link href={pillar.pathway.href} className="pillar-pathway-link">
+                    {pillar.pathway.text} <span>→</span>
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="philosophy-callout-box">
+            <div className="callout-badge">OUR WELLNESS PHILOSOPHY</div>
+            <h3>Sustainable Wellbeing Over Extreme Interventions</h3>
+            <p>
+              We believe genuine wellness is not about drastic overhauls or unverified claims.
+              It is built on small, repeatable daily habits, sensory nourishment, nervous-system awareness,
+              and education that empowers you to make informed decisions for yourself and your family.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. FOUR DELIVERY CHANNELS */}
       <section className="section approach-channels-section" id="pathways">
         <div className="container">
           <div className="section-heading text-center">

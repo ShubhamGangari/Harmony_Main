@@ -305,7 +305,7 @@ export default function HomePage() {
           </div>
 
           <div className="pillars-cta-row">
-            <Link href="/wellness" className="btn btn-outline">
+            <Link href="/approach#wellness-pillars" className="btn btn-outline">
               Explore All Six Wellness Pillars <span>→</span>
             </Link>
           </div>
