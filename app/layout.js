@@ -56,8 +56,13 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
         <CartProvider>
+          <a href="#main-content" className="skip-link">
+            Skip to main content
+          </a>
           <SiteHeader />
-          {children}
+          <div id="main-content">
+            {children}
+          </div>
           <Footer />
           <FloatingCartButton />
         </CartProvider>
