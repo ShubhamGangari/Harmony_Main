@@ -9,69 +9,116 @@ const APPROACH_CONCEPTS = [
     step: "01",
     name: "REST",
     tagline: "Recovery & Calm",
+    glyph: "✦",
+    focus: "Nighttime recovery & deep decompression",
     description:
       "Creating supportive conditions for genuine rest, nighttime recovery, and gentle decompression after demanding days.",
+    ritual: "Circadian evening wind-down & light transitions",
   },
   {
     step: "02",
     name: "REGULATE",
     tagline: "Pause & Awareness",
+    glyph: "◌",
+    focus: "Conscious pauses & somatic calm",
     description:
       "Building intentional moments of pause, somatic awareness, and calming transitions throughout the workday.",
+    ritual: "2-minute breath breaks & workday resets",
   },
   {
     step: "03",
     name: "RESTORE",
     tagline: "Daily Rhythms",
+    glyph: "◈",
+    focus: "Circadian alignment & restorative cadence",
     description:
       "Supporting healthy circadian rhythms and restorative routines through evidence-informed lifestyle practices.",
+    ritual: "Morning daylight exposure & hydration rhythms",
   },
   {
     step: "04",
     name: "RESILIENCE",
     tagline: "Sustainable Capacity",
+    glyph: "◇",
+    focus: "Everyday adaptability & emotional calm",
     description:
       "Developing practical habits and adaptive routines for navigating the continuous demands of modern life.",
+    ritual: "Stress boundary protection & renewal intervals",
   },
   {
     step: "05",
     name: "RITUAL",
     tagline: "Repeatable Habits",
+    glyph: "✺",
+    focus: "Small, enjoyable self-care micro-habits",
     description:
       "Turning wellness knowledge into small, enjoyable, repeatable self-care practices that fit your everyday schedule.",
+    ritual: "Sensory aromatic cues & conscious pauses",
   },
 ];
 
 const AUDIENCE_PATHWAYS = [
   {
+    id: "individuals",
     tag: "FOR INDIVIDUALS",
+    badgeAccent: "tag-individuals",
     title: "Personal Lifestyle & Daily Rhythms",
+    subtitle: "Personal Nervous System & Lifestyle Wellness",
     description:
       "Stress & relaxation education, sleep-supportive routines, women's wellness, and one-on-one consultations to build calm into your personal life.",
+    features: [
+      "1-on-1 Lifestyle Wellness Consultations",
+      "Restorative Sleep & Evening Wind-Down",
+      "Personalized Sensory Botanical Rituals",
+    ],
     cta: "Explore Individual Pathway",
     href: "/individuals",
   },
   {
+    id: "corporates",
     tag: "FOR CORPORATES",
+    badgeAccent: "tag-corporates",
     title: "Workplace Preventive Wellness",
+    subtitle: "Resilience & Sensory Balance for Teams",
     description:
       "Practical education, stress resilience, nervous-system-friendly practices, and sensory wellness workshops tailored for modern organisations.",
+    features: [
+      "Workplace Preventive Wellness Workshops",
+      "Executive Resilience & Stress Boundaries",
+      "Sensory Calming Space Consultations",
+    ],
     cta: "Explore Corporate Wellness",
     href: "/corporate-wellness",
   },
   {
+    id: "professionals",
     tag: "FOR PROFESSIONALS",
+    badgeAccent: "tag-professionals",
     title: "Wellness Practitioners & Coaches",
+    subtitle: "Evidence-Informed Botanical Curriculum",
     description:
       "Expand your professional toolkit with evidence-informed essential-oil education, aromatic rituals, dilution safety, and responsible client boundaries.",
+    features: [
+      "Conservative Dilution & Safety Standards",
+      "Somatic Sensory Anchoring Protocols",
+      "Responsible Client Scope of Practice",
+    ],
     cta: "Explore Practitioner Pathway",
     href: "/professionals",
   },
   {
+    id: "hospitality",
     tag: "FOR HOSPITALITY",
+    badgeAccent: "tag-hospitality",
     title: "Hospitality & Wellness Centres",
+    subtitle: "Ambient Scent Architecture & Guest Journeys",
     description:
       "Sensory wellness space design, ambient room-by-room aromatic concepts, guest experiences, and staff education for spas, retreats, and studios.",
+    features: [
+      "Room-by-Room Ambient Scent Design",
+      "Bespoke Spa & Retreat Sensory Menus",
+      "On-Site Staff Aromatherapy Training",
+    ],
     cta: "Explore Hospitality Concepts",
     href: "/hospitality",
   },
@@ -79,34 +126,46 @@ const AUDIENCE_PATHWAYS = [
 
 const WELLNESS_PILLARS = [
   {
-    title: "Stress & Resilience",
-    icon: "✦",
-    description:
-      "Accessible education and micro-practices to build everyday adaptability and emotional calm.",
-  },
-  {
     title: "Rest & Sleep",
-    icon: "◌",
+    glyph: "◌",
+    category: "RECOVERY",
     description:
       "Calming evening routines, sensory cues, and environmental conditions for deep, restorative sleep.",
   },
   {
-    title: "Women's Wellness",
-    icon: "✦",
+    title: "Daily Rhythms & Pacing",
+    glyph: "◈",
+    category: "LIFESTYLE",
     description:
-      "Supportive, evidence-informed lifestyle routines across life transitions and changing rhythms.",
+      "Circadian-aligned daytime habits, hydration breaks, and restorative pacing throughout demanding work schedules.",
+  },
+  {
+    title: "Stress & Resilience",
+    glyph: "✦",
+    category: "ADAPTABILITY",
+    description:
+      "Accessible education and somatic micro-practices to build everyday adaptability and emotional calm.",
   },
   {
     title: "Sensory Wellness",
-    icon: "◌",
+    glyph: "✺",
+    category: "AROMATICS",
     description:
-      "Mindful breathing, ambient space design, sound, and botanical aromatic grounding.",
+      "Mindful breathing, ambient space design, natural soundscapes, and botanical aromatic grounding.",
+  },
+  {
+    title: "Women's Wellness",
+    glyph: "◇",
+    category: "RHYTHMS",
+    description:
+      "Supportive, evidence-informed lifestyle routines across life transitions, hormonal shifts, and changing rhythms.",
   },
   {
     title: "Healthy Ageing",
-    icon: "✦",
+    glyph: "✦",
+    category: "LONGEVITY",
     description:
-      "Sustainable daily movement, nourishment, recovery, and nature-based longevity habits.",
+      "Sustainable daily movement, nourishment, nervous-system recovery, and nature-based longevity habits.",
   },
 ];
 
@@ -115,9 +174,6 @@ export default function HomePage() {
     <main>
       {/* 1. HERO SECTION */}
       <section className="hero" id="home">
-        <div className="hero-decoration hero-decoration-one" />
-        <div className="hero-decoration hero-decoration-two" />
-
         <div className="container hero-grid">
           <div className="hero-content">
             <span className="eyebrow">HARMONY OF CELLS</span>
@@ -153,7 +209,7 @@ export default function HomePage() {
             <div className="hero-image-wrapper">
               <img
                 src="/assets/hero-image.jpg"
-                alt="Nervous System & Lifestyle Wellness setting"
+                alt="Nervous System & Lifestyle Wellness setting with calming botanicals"
                 className="hero-image"
               />
               <div className="hero-image-card">
@@ -181,11 +237,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. OUR APPROACH SECTION */}
+      {/* 2. OUR APPROACH SECTION — THE 5R METHODOLOGY */}
       <section className="section approach-section" id="approach">
         <div className="container">
           <div className="approach-intro">
-            <span className="eyebrow">THE HARMONY OF CELLS APPROACH</span>
+            <span className="eyebrow">THE HARMONY OF CELLS METHOD</span>
             <h2>
               Wellness is shaped by the <em>rhythms of everyday life.</em>
             </h2>
@@ -197,15 +253,29 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="approach-grid" role="list" aria-label="Our 5-pillar wellness approach">
+          {/* Sequential Step Sequence Rail */}
+          <div className="approach-flow-header" aria-hidden="true">
+            <span className="approach-flow-label">A 5-STAGE EDITORIAL SEQUENCE</span>
+            <div className="approach-flow-line" />
+          </div>
+
+          <div className="approach-grid" role="list" aria-label="Our 5-stage wellness methodology">
             {APPROACH_CONCEPTS.map((concept) => (
               <article key={concept.step} className="approach-card" role="listitem">
                 <div className="approach-card-header">
-                  <span className="approach-step">{concept.step}</span>
+                  <div className="approach-step-pill">
+                    <span className="approach-step-num">{concept.step}</span>
+                    <span className="approach-step-glyph" aria-hidden="true">{concept.glyph}</span>
+                  </div>
                   <span className="approach-tagline">{concept.tagline}</span>
                 </div>
                 <h3>{concept.name}</h3>
-                <p>{concept.description}</p>
+                <p className="approach-card-focus">{concept.focus}</p>
+                <p className="approach-card-desc">{concept.description}</p>
+                <div className="approach-card-ritual">
+                  <span className="ritual-label">PRACTICE CUE</span>
+                  <small>{concept.ritual}</small>
+                </div>
               </article>
             ))}
           </div>
@@ -245,14 +315,26 @@ export default function HomePage() {
 
           <div className="pathways-grid">
             {AUDIENCE_PATHWAYS.map((pathway) => (
-              <article key={pathway.tag} className="pathway-card">
+              <article key={pathway.id} className={`pathway-card pathway-card-${pathway.id}`}>
                 <div className="pathway-card-top">
-                  <span className="pathway-tag">{pathway.tag}</span>
+                  <div className="pathway-badge-row">
+                    <span className={`pathway-tag ${pathway.badgeAccent}`}>{pathway.tag}</span>
+                  </div>
                   <h3>{pathway.title}</h3>
-                  <p>{pathway.description}</p>
+                  <p className="pathway-subtitle">{pathway.subtitle}</p>
+                  <p className="pathway-desc">{pathway.description}</p>
+
+                  <ul className="pathway-feature-list" aria-label={`Key features of ${pathway.title}`}>
+                    {pathway.features.map((feature) => (
+                      <li key={feature}>
+                        <span className="pathway-feature-bullet" aria-hidden="true">✦</span>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 <div className="pathway-card-bottom">
-                  <Link href={pathway.href} className="pathway-action-btn">
+                  <Link href={pathway.href} className="btn btn-outline pathway-cta-btn">
                     {pathway.cta} <span>→</span>
                   </Link>
                 </div>
@@ -279,16 +361,19 @@ export default function HomePage() {
           <div className="pillars-grid">
             {WELLNESS_PILLARS.map((pillar) => (
               <div key={pillar.title} className="pillar-card">
-                <span className="pillar-icon" aria-hidden="true">
-                  {pillar.icon}
-                </span>
+                <div className="pillar-card-header">
+                  <span className="pillar-icon" aria-hidden="true">
+                    {pillar.glyph}
+                  </span>
+                  <span className="pillar-category">{pillar.category}</span>
+                </div>
                 <h3>{pillar.title}</h3>
                 <p>{pillar.description}</p>
               </div>
             ))}
           </div>
 
-          <div style={{ marginTop: "36px", textAlign: "center" }}>
+          <div className="pillars-cta-row">
             <Link href="/wellness" className="btn btn-outline">
               Explore All Six Wellness Pillars <span>→</span>
             </Link>
@@ -323,9 +408,12 @@ export default function HomePage() {
               oils, aromatherapy, and sensory wellness — bridging <strong>Workplace Preventive Wellness</strong> with
               individual education, practitioner mentoring, and bespoke hospitality concepts.
             </p>
-            <blockquote>
-              “Education, purity, and small daily rituals come together to create healthier,
-              more empowered lives and workplaces — one conscious pause at a time.”
+            <blockquote className="founder-quote">
+              <span className="founder-quote-glyph" aria-hidden="true">“</span>
+              <p>
+                Education, purity, and small daily rituals come together to create healthier,
+                more empowered lives and workplaces — one conscious pause at a time.
+              </p>
             </blockquote>
             <div className="founder-actions">
               <GoogleFormLink type="consultation" className="btn btn-primary">
@@ -384,10 +472,22 @@ export default function HomePage() {
               </p>
 
               <div className="consultation-points">
-                <span>✓ Explore nervous-system-friendly daily rhythms</span>
-                <span>✓ Learn responsible essential-oil dilution & application</span>
-                <span>✓ Design calming evening wind-down rituals</span>
-                <span>✓ Inquire about corporate & hospitality workshops</span>
+                <div className="consultation-point-item">
+                  <span className="consultation-point-check" aria-hidden="true">✓</span>
+                  <span>Explore nervous-system-friendly daily rhythms</span>
+                </div>
+                <div className="consultation-point-item">
+                  <span className="consultation-point-check" aria-hidden="true">✓</span>
+                  <span>Learn responsible essential-oil dilution & application</span>
+                </div>
+                <div className="consultation-point-item">
+                  <span className="consultation-point-check" aria-hidden="true">✓</span>
+                  <span>Design calming evening wind-down rituals</span>
+                </div>
+                <div className="consultation-point-item">
+                  <span className="consultation-point-check" aria-hidden="true">✓</span>
+                  <span>Inquire about corporate & hospitality workshops</span>
+                </div>
               </div>
 
               <div className="consultation-cta-group">
@@ -404,10 +504,13 @@ export default function HomePage() {
             </div>
 
             <div className="consultation-visual">
-              <img
-                src="/assets/hero-image.jpg"
-                alt="Natural botanical wellness setting for calm and restoration"
-              />
+              <div className="consultation-image-frame">
+                <img
+                  src="/assets/hero-image.jpg"
+                  alt="Natural botanical wellness setting for calm and restoration"
+                  className="consultation-image"
+                />
+              </div>
               <div className="consultation-quote">
                 <span>“</span>
                 <p>Learn. Understand. Apply. • Wellness begins with education.</p>

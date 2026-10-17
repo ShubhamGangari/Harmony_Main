@@ -25,6 +25,12 @@ export default function SiteHeader() {
     "/hospitality",
   ].includes(pathname);
 
+  const handleDropdownBlur = (event) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) {
+      setDropdownOpen(false);
+    }
+  };
+
   useEffect(() => {
     if (!open && !dropdownOpen) return undefined;
 
@@ -78,6 +84,7 @@ export default function SiteHeader() {
             className="nav-dropdown-wrapper"
             onMouseEnter={() => setDropdownOpen(true)}
             onMouseLeave={() => setDropdownOpen(false)}
+            onBlur={handleDropdownBlur}
           >
             <button
               type="button"
@@ -182,34 +189,38 @@ export default function SiteHeader() {
         </Link>
 
         <div className="mobile-group-block">
-          <span className="mobile-group-label">Service Pathways</span>
+          <span className="mobile-group-label">Service Delivery Pathways</span>
           <Link
             href="/individuals"
             className={`mobile-sub-link ${isActive("/individuals") ? "active" : ""}`}
             onClick={close}
           >
-            • For Individuals (Personal Wellness)
+            <span className="mobile-pathway-badge">INDIVIDUALS</span>
+            <span className="mobile-pathway-title">Personal Lifestyle & Rhythms</span>
           </Link>
           <Link
             href="/corporate-wellness"
             className={`mobile-sub-link ${isActive("/corporate-wellness") ? "active" : ""}`}
             onClick={close}
           >
-            • Corporate Wellness (Workplace)
+            <span className="mobile-pathway-badge">CORPORATES</span>
+            <span className="mobile-pathway-title">Workplace Preventive Wellness</span>
           </Link>
           <Link
             href="/professionals"
             className={`mobile-sub-link ${isActive("/professionals") ? "active" : ""}`}
             onClick={close}
           >
-            • Wellness Professionals (Practitioners)
+            <span className="mobile-pathway-badge">PROFESSIONALS</span>
+            <span className="mobile-pathway-title">Wellness Practitioners & Coaches</span>
           </Link>
           <Link
             href="/hospitality"
             className={`mobile-sub-link ${isActive("/hospitality") ? "active" : ""}`}
             onClick={close}
           >
-            • Hospitality & Wellness Centres
+            <span className="mobile-pathway-badge">HOSPITALITY</span>
+            <span className="mobile-pathway-title">Hospitality & Wellness Centres</span>
           </Link>
         </div>
 

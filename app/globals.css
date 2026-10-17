@@ -278,7 +278,8 @@ p {
 .nav-link:focus-visible,
 .nav-link.active { color: #ffffff; }
 
-.nav-link.active::after {
+.nav-link.active::after,
+.nav-dropdown-btn.active::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -328,8 +329,10 @@ p {
   transform: translateX(-50%);
   width: 320px;
   max-width: calc(100vw - 32px);
-  background: #192717;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(22, 35, 20, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(163, 201, 151, 0.22);
   border-radius: 18px;
   padding: 10px;
   box-shadow: 0 20px 50px rgba(10, 20, 10, 0.45);
@@ -397,11 +400,11 @@ p {
 .mobile-group-block {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: 8px 0 10px;
-  margin: 4px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 6px;
+  padding: 10px 0 12px;
+  margin: 6px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .mobile-group-label {
@@ -410,21 +413,42 @@ p {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #a3c997;
-  padding: 4px 0 6px;
+  padding: 4px 0 4px;
 }
 
 .mobile-sub-link {
-  font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.8) !important;
-  padding: 6px 0 6px 10px !important;
-  transition: color 0.15s ease, transform 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px !important;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  text-decoration: none;
+  transition: background 0.18s ease, transform 0.18s ease;
 }
 
 .mobile-sub-link:hover,
 .mobile-sub-link.active {
-  color: #ffffff !important;
-  font-weight: 700;
+  background: rgba(78, 107, 67, 0.3) !important;
   transform: translateX(3px);
+}
+
+.mobile-pathway-badge {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #a3c997;
+  background: rgba(163, 201, 151, 0.15);
+  border: 1px solid rgba(163, 201, 151, 0.25);
+  padding: 3px 8px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.mobile-pathway-title {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
 }
 
 /* Footer Channel Links */
@@ -1863,94 +1887,200 @@ button.card-link, button.education-link {
 
 .consultation-section {
   background: var(--white);
-  border-top: 1px solid rgba(78, 107, 67, 0.1);
+  border-top: 1px solid rgba(78, 107, 67, 0.12);
+  padding: clamp(72px, 7vw, 105px) 0;
 }
 
 .consultation-wrapper {
   display: grid;
-  grid-template-columns: 1fr .9fr;
-  gap: 65px;
+  grid-template-columns: 1.05fr .95fr;
+  gap: clamp(40px, 5vw, 70px);
   align-items: center;
 }
 
 .consultation-points {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px 20px;
-  margin: 28px 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 20px;
+  margin: 30px 0;
 }
 
-.consultation-points span { color: #505850; font-size: .9rem; }
+.consultation-point-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.94rem;
+  color: #485446;
+  line-height: 1.45;
+}
 
-.consultation-visual { position: relative; }
+.consultation-point-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(78, 107, 67, 0.12);
+  color: var(--green-dark);
+  font-size: 0.82rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
 
-.consultation-visual > img {
+.consultation-visual {
+  position: relative;
+  width: min(100%, 460px);
+  margin: 0 auto;
+}
+
+.consultation-image-frame {
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(78, 107, 67, 0.14);
+  box-shadow: var(--shadow-lg);
+  background: #ffffff;
+}
+
+.consultation-image {
   width: 100%;
   aspect-ratio: 4 / 4.6;
   object-fit: cover;
-  border-radius: 28px;
+  display: block;
 }
 
 .consultation-quote {
   position: absolute;
-  right: -20px;
-  bottom: 28px;
+  right: clamp(-10px, 0px, 12px);
+  bottom: 24px;
   max-width: 260px;
-  padding: 22px;
-  background: var(--cream);
-  border-radius: 18px;
-  box-shadow: var(--shadow);
+  padding: 20px 22px;
+  background: rgba(253, 252, 248, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-md);
 }
 
 .consultation-quote span {
   color: var(--green);
   font-family: Georgia, serif;
-  font-size: 3rem;
-  line-height: .5;
+  font-size: 2.8rem;
+  line-height: .4;
+  display: block;
 }
 
-.consultation-quote p { margin: 10px 0 0; font-family: var(--font-serif), "Playfair Display", Georgia, serif; color: var(--charcoal); }
+.consultation-quote p {
+  margin: 8px 0 0;
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  color: var(--charcoal);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
 
-.founder-section { background: var(--cream); }
+.founder-section {
+  background: var(--white);
+  border-top: 1px solid rgba(78, 107, 67, 0.1);
+  padding: clamp(72px, 7vw, 105px) 0;
+}
 
 .founder-grid {
   display: grid;
-  grid-template-columns: .85fr 1.15fr;
-  gap: 75px;
+  grid-template-columns: .88fr 1.12fr;
+  gap: clamp(40px, 5vw, 75px);
   align-items: center;
 }
 
-.founder-image-wrap { position: relative; }
+.founder-image-wrap {
+  position: relative;
+  width: min(100%, 460px);
+  margin: 0 auto;
+  border-radius: 32px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(78, 107, 67, 0.14);
+  box-shadow: var(--shadow-lg);
+}
+
+@media (min-width: 951px) {
+  .founder-image-wrap {
+    margin-left: 0;
+    margin-right: auto;
+  }
+}
 
 .founder-image {
   width: 100%;
-  max-width: 480px;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  border-radius: 30px;
-  box-shadow: var(--shadow);
+  border-radius: 24px;
+  display: block;
 }
 
 .founder-badge {
   position: absolute;
-  right: 0;
-  bottom: 30px;
-  padding: 16px 20px;
-  background: var(--green-dark);
+  right: 20px;
+  bottom: 22px;
+  padding: 12px 18px;
+  background: rgba(24, 37, 22, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: white;
   border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 26px rgba(10, 20, 10, 0.35);
 }
 
 .founder-badge span {
   display: block;
-  font-size: .6rem;
+  font-size: .62rem;
   letter-spacing: .16em;
-  opacity: .7;
+  color: #a3c997;
+  font-weight: 800;
 }
 
-.founder-badge strong { font-family: var(--font-serif), "Playfair Display", Georgia, serif; }
+.founder-badge strong {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+}
 
-.founder-copy p { max-width: 700px; }
+.founder-copy p {
+  max-width: 700px;
+  font-size: 1.05rem;
+  line-height: 1.68;
+  color: #3e4a3c;
+}
+
+.founder-quote {
+  position: relative;
+  margin: 32px 0 0;
+  padding: 24px 28px 24px 32px;
+  border-left: 3.5px solid var(--green);
+  background: rgba(78, 107, 67, 0.05);
+  border-radius: 0 18px 18px 0;
+}
+
+.founder-quote-glyph {
+  font-family: Georgia, serif;
+  font-size: 2.5rem;
+  color: var(--green);
+  line-height: 0.5;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.founder-quote p {
+  margin: 0;
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: clamp(1.15rem, 1.4vw, 1.32rem);
+  line-height: 1.5;
+  color: var(--green-dark);
+  font-style: italic;
+  font-weight: 500;
+}
 
 blockquote {
   margin: 30px 0 0;
@@ -3136,10 +3266,8 @@ blockquote {
 
 /* ==========================================================================
    Approach Section (5 Concepts: Rest, Regulate, Restore, Resilience, Ritual)
-   ========================================================================== */
-
-.approach-section {
-  background: #f4f3ec;
+   =======================================================================.approach-section {
+  background: var(--cream-soft);
   border-top: 1px solid rgba(78, 107, 67, 0.12);
   border-bottom: 1px solid rgba(78, 107, 67, 0.12);
   padding: clamp(72px, 7vw, 105px) 0;
@@ -3147,7 +3275,7 @@ blockquote {
 
 .approach-intro {
   max-width: 820px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .approach-intro h2 {
@@ -3165,20 +3293,42 @@ blockquote {
   color: #435041;
 }
 
+.approach-flow-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.approach-flow-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--green-dark);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.approach-flow-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, rgba(78, 107, 67, 0.28), rgba(78, 107, 67, 0.05));
+}
+
 .approach-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 20px;
+  gap: 18px;
 }
 
 .approach-card {
   display: flex;
   flex-direction: column;
-  padding: 30px 24px;
+  padding: 28px 22px;
   border-radius: 22px;
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(78, 107, 67, 0.16);
+  border: 1px solid rgba(78, 107, 67, 0.15);
   box-shadow: 0 6px 20px rgba(35, 48, 32, 0.04);
   transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.24s ease, border-color 0.24s ease;
 }
@@ -3192,21 +3342,36 @@ blockquote {
 
 .approach-card-header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
-.approach-step {
-  font-family: var(--font-serif), Georgia, serif;
-  font-size: 1.85rem;
-  font-weight: 600;
-  color: var(--green);
+.approach-step-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(78, 107, 67, 0.08);
+  border: 1px solid rgba(78, 107, 67, 0.18);
+}
+
+.approach-step-num {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--green-dark);
   line-height: 1;
 }
 
+.approach-step-glyph {
+  color: var(--green);
+  font-size: 0.85rem;
+}
+
 .approach-tagline {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -3214,18 +3379,51 @@ blockquote {
 }
 
 .approach-card h3 {
-  font-size: 1.45rem;
+  font-size: 1.42rem;
   letter-spacing: 0.04em;
-  margin: 0 0 12px;
+  margin: 0 0 6px;
   color: var(--charcoal);
   font-weight: 700;
 }
 
-.approach-card p {
-  font-size: 0.92rem;
-  line-height: 1.62;
-  color: #505c4e;
-  margin: 0;
+.approach-card-focus {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: 0.86rem;
+  font-style: italic;
+  color: var(--green-dark);
+  margin: 0 0 12px;
+  line-height: 1.35;
+}
+
+.approach-card-desc {
+  font-size: 0.91rem;
+  line-height: 1.6;
+  color: #4e5a4c;
+  margin: 0 0 16px;
+  flex-grow: 1;
+}
+
+.approach-card-ritual {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(78, 107, 67, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.ritual-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-dark);
+}
+
+.approach-card-ritual small {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: #647062;
 }
 
 .approach-footer-row {
@@ -3249,6 +3447,9 @@ blockquote {
 }
 
 .approach-cta-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
   flex-shrink: 0;
 }
 
@@ -3277,7 +3478,7 @@ blockquote {
   border: 1.5px solid rgba(78, 107, 67, 0.14);
   box-shadow: 0 6px 22px rgba(30, 42, 28, 0.04);
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-  min-height: 380px;
+  min-height: 440px;
 }
 
 .pathway-card:hover {
@@ -3292,67 +3493,111 @@ blockquote {
   flex-direction: column;
 }
 
+.pathway-badge-row {
+  margin-bottom: 18px;
+}
+
 .pathway-tag {
   display: inline-block;
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--green-dark);
-  background: rgba(78, 107, 67, 0.08);
-  border: 1px solid rgba(78, 107, 67, 0.16);
   padding: 5px 12px;
   border-radius: 999px;
-  margin-bottom: 20px;
-  align-self: flex-start;
+}
+
+.tag-individuals {
+  background: rgba(78, 107, 67, 0.09);
+  border: 1px solid rgba(78, 107, 67, 0.2);
+  color: var(--green-dark);
+}
+
+.tag-corporates {
+  background: rgba(36, 52, 31, 0.1);
+  border: 1px solid rgba(36, 52, 31, 0.22);
+  color: #24341f;
+}
+
+.tag-professionals {
+  background: rgba(94, 120, 82, 0.1);
+  border: 1px solid rgba(94, 120, 82, 0.22);
+  color: #384e2f;
+}
+
+.tag-hospitality {
+  background: rgba(122, 148, 112, 0.14);
+  border: 1px solid rgba(122, 148, 112, 0.24);
+  color: #2d4c24;
 }
 
 .pathway-card h3 {
   font-size: clamp(1.3rem, 1.55vw, 1.55rem);
   line-height: 1.25;
-  margin: 0 0 14px;
+  margin: 0 0 6px;
   color: var(--charcoal);
   font-weight: 600;
 }
 
-.pathway-card p {
-  font-size: 0.93rem;
+.pathway-subtitle {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: 0.92rem;
+  font-style: italic;
+  color: var(--green-dark);
+  margin: 0 0 14px;
+  line-height: 1.4;
+}
+
+.pathway-desc {
+  font-size: 0.92rem;
   line-height: 1.62;
   color: #525f50;
-  margin: 0;
+  margin: 0 0 18px;
+}
+
+.pathway-feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pathway-feature-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  color: #485446;
+}
+
+.pathway-feature-bullet {
+  color: var(--green);
+  font-size: 0.72rem;
+  flex-shrink: 0;
 }
 
 .pathway-card-bottom {
-  margin-top: 32px;
-  padding-top: 20px;
+  margin-top: 26px;
+  padding-top: 18px;
   border-top: 1px solid rgba(78, 107, 67, 0.12);
 }
 
-.pathway-action-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: var(--green-dark);
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  text-decoration: none;
-  padding: 0;
-  font-family: inherit;
-  transition: color 0.2s ease, transform 0.2s ease;
+.pathway-cta-btn {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+  font-size: 0.88rem;
+  padding: 11px 18px;
 }
 
-.pathway-action-btn span {
+.pathway-cta-btn span {
   transition: transform 0.2s ease;
 }
 
-.pathway-action-btn:hover {
-  color: var(--green);
-}
-
-.pathway-action-btn:hover span {
+.pathway-cta-btn:hover span {
   transform: translateX(4px);
 }
 
@@ -3361,22 +3606,22 @@ blockquote {
    ========================================================================== */
 
 .pillars-section {
-  background: var(--cream);
+  background: var(--cream-soft);
   border-top: 1px solid rgba(78, 107, 67, 0.1);
   padding: clamp(72px, 7vw, 105px) 0;
 }
 
 .pillars-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
 }
 
 .pillar-card {
   background: #ffffff;
   border: 1px solid rgba(78, 107, 67, 0.13);
   border-radius: 20px;
-  padding: 30px 22px;
+  padding: 30px 24px;
   box-shadow: 0 4px 18px rgba(35, 48, 30, 0.04);
   transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
   display: flex;
@@ -3390,32 +3635,52 @@ blockquote {
   border-color: rgba(78, 107, 67, 0.3);
 }
 
+.pillar-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
 .pillar-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 12px;
   background: rgba(78, 107, 67, 0.1);
   border: 1px solid rgba(78, 107, 67, 0.18);
   color: var(--green-dark);
-  font-size: 1.25rem;
-  margin-bottom: 18px;
+  font-size: 1.15rem;
+}
+
+.pillar-category {
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
 }
 
 .pillar-card h3 {
-  font-size: 1.22rem;
+  font-size: 1.25rem;
   margin: 0 0 10px;
   color: var(--charcoal);
   font-weight: 600;
 }
 
 .pillar-card p {
-  font-size: 0.9rem;
-  line-height: 1.55;
+  font-size: 0.92rem;
+  line-height: 1.6;
   color: #556253;
   margin: 0;
+}
+
+.pillars-cta-row {
+  margin-top: 40px;
+  text-align: center;
 }
 
 /* ==========================================================================
@@ -3811,23 +4076,26 @@ blockquote {
   .consultation-wrapper,
   .founder-grid {
     grid-template-columns: 1fr;
+    gap: 40px;
   }
 
   .hero { padding-top: 32px; }
-  .hero-visual { max-width: 620px; width: 100%; margin: 0 auto; }
+  .hero-visual { max-width: 520px; width: 100%; margin: 0 auto; }
   .hero-image-wrapper { margin: 0 auto; }
   .hero-image-card { left: 12px; bottom: 12px; }
   .floating-badge { right: 10px; }
+  .consultation-visual { max-width: 480px; width: 100%; margin: 0 auto; }
   .consultation-quote { right: 10px; }
+  .founder-image-wrap { width: min(100%, 460px); margin: 0 auto; }
+  .founder-image { margin: 0 auto; }
   .section-heading { margin-bottom: 32px; }
   .product-grid, .education-grid, .catalogue-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .approach-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pathways-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .pillars-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pillars-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .cart-layout { grid-template-columns: 1fr; gap: 32px; }
   .cart-checkout { position: static; }
   .recommendations-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .founder-image { margin: 0 auto; }
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
@@ -3845,13 +4113,14 @@ blockquote {
     padding-top: 30px;
   }
   .nav-container { min-height: 72px; }
-  .brand-logo { width: 50px; height: 50px; }
+  .brand-logo { width: 48px; height: 48px; }
   .brand-tagline { display: none; }
   .hero h1 { font-size: clamp(2.2rem, 9vw, 3.2rem); }
-  .hero-image-card { left: 12px; bottom: 12px; }
+  .hero-image-card { left: 8px; bottom: 8px; }
   .floating-badge { right: 8px; }
   .consultation-quote { right: 8px; }
   .product-grid, .education-grid, .catalogue-grid, .approach-grid, .pathways-grid, .pillars-grid, .service-offerings-grid, .service-audiences-grid { grid-template-columns: 1fr; }
+  .approach-flow-header { display: none; }
   .approach-footer-row {
     flex-direction: column;
     align-items: flex-start;
@@ -3868,7 +4137,6 @@ blockquote {
   .consultation-cta-group .btn {
     text-align: center;
     justify-content: center;
-    width: 100%;
   }
   .education-card { min-height: 0; }
   .education-card::after {
