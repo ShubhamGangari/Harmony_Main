@@ -82,7 +82,7 @@ export default function Footer() {
               <span className="footer-nav-sep" aria-hidden="true">|</span>
               <Link href="/consultation">Consultation</Link>
               <span className="footer-nav-sep" aria-hidden="true">|</span>
-              <Link href="/resources">Resources</Link>
+              <Link href="/research-and-evidence">Research &amp; Evidence</Link>
               <span className="footer-nav-sep" aria-hidden="true">|</span>
               <Link href="/contact">Contact</Link>
             </div>
@@ -94,7 +94,7 @@ export default function Footer() {
             <div className="footer-nav-links">
               <Link href="/essential-oil-safety">Safety &amp; Responsible Use</Link>
               <span className="footer-nav-sep" aria-hidden="true">|</span>
-              <Link href="/resources#faq">FAQ</Link>
+              <Link href="/faq">FAQ</Link>
               <span className="footer-nav-sep" aria-hidden="true">|</span>
               <Link href="/privacy">Privacy Policy</Link>
               <span className="footer-nav-sep" aria-hidden="true">|</span>

@@ -81,10 +81,10 @@ export default function SiteHeader() {
             Essential Oils
           </Link>
           <Link
-            href="/resources"
-            className={`nav-link ${isActive("/resources") || pathname.startsWith("/resources") ? "active" : ""}`}
+            href="/faq"
+            className={`nav-link ${isActive("/faq") ? "active" : ""}`}
           >
-            Resources
+            FAQ
           </Link>
           <GoogleFormLink type="consultation" className="nav-cta">
             Book Consultation <span>→</span>
@@ -126,8 +126,8 @@ export default function SiteHeader() {
         <Link href="/products" className={isActive("/products") ? "active" : ""} onClick={close}>
           Essential Oils
         </Link>
-        <Link href="/resources" className={isActive("/resources") || pathname.startsWith("/resources") ? "active" : ""} onClick={close}>
-          Resources &amp; 7-Day Guide
+        <Link href="/faq" className={isActive("/faq") ? "active" : ""} onClick={close}>
+          FAQ
         </Link>
         <GoogleFormLink
           type="consultation"

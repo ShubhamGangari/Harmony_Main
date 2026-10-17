@@ -17,7 +17,7 @@ export default function sitemap() {
     { url: `${baseUrl}/essential-oil-safety`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/research-and-evidence`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${baseUrl}/resources`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/faq`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/resources/7-day-wellness-routine`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${baseUrl}/consultation`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     // Note: Consolidated redirected routes (/wellness -> /approach, /research-evidence -> /resources,
