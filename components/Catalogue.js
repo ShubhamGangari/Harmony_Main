@@ -124,22 +124,28 @@
               loading="lazy"
               referrerPolicy="no-referrer"
               onError={() => setFailed(true)}
+              className="product-actual-img"
             />
           ) : (
-            <div
-              className="product-image-placeholder"
-              aria-hidden="true"
-            >
-              <span className="product-placeholder-icon">{categoryIcon}</span>
-              <small>{size ? `${size}` : "Pure Botanical"}</small>
+            <div className="product-botanical-fallback" aria-hidden="true">
+              <div className="botanical-halo" />
+              <svg className="botanical-motif-svg" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+                <circle cx="50" cy="50" r="44" strokeWidth="0.8" strokeDasharray="3 3" opacity="0.3" />
+                <circle cx="50" cy="50" r="32" strokeWidth="0.8" opacity="0.4" />
+                <path d="M50 14 C55 28, 68 40, 86 50 C68 60, 55 72, 50 86 C45 72, 32 60, 14 50 C32 40, 45 28, 50 14 Z" strokeWidth="1" opacity="0.35" />
+                <circle cx="50" cy="50" r="5" fill="currentColor" opacity="0.25" />
+              </svg>
+              <div className="botanical-fallback-content">
+                <span className="botanical-icon">{categoryIcon}</span>
+                <strong className="botanical-plate-title">{baseTitle}</strong>
+                <span className="botanical-plate-type">{categoryLabel}</span>
+                <span className="botanical-plate-spec">{size || "Pure Botanical Extract"}</span>
+              </div>
             </div>
           )}
 
           <span className="product-label">{categoryLabel}</span>
           <span className="product-brand-badge">{brand}</span>
-          {size ? (
-            <span className="product-size-badge">{size}</span>
-          ) : null}
         </div>
 
         <div className="product-content">
@@ -584,26 +590,28 @@
           </section>
         ) : null}
 
-        {/* Category Filter Navigation */}
-        <div className="catalogue-filter-bar" role="tablist" aria-label="Filter products by category">
-          {PRODUCT_CATEGORIES.map((cat) => {
-            const count = categoryCounts[cat] || 0;
-            const isActive = activeCategory === cat;
+        {/* Category Filter Navigation with mobile scroll affordance */}
+        <div className="catalogue-filter-container">
+          <div className="catalogue-filter-bar" role="tablist" aria-label="Filter products by category">
+            {PRODUCT_CATEGORIES.map((cat) => {
+              const count = categoryCounts[cat] || 0;
+              const isActive = activeCategory === cat;
 
-            return (
-              <button
-                key={cat}
-                type="button"
-                role="tab"
-                aria-selected={isActive}
-                className={`catalogue-filter-pill ${isActive ? "is-active" : ""}`}
-                onClick={() => setActiveCategory(cat)}
-              >
-                <span>{cat}</span>
-                <span className="filter-pill-count">{count}</span>
-              </button>
-            );
-          })}
+              return (
+                <button
+                  key={cat}
+                  type="button"
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`catalogue-filter-pill ${isActive ? "is-active" : ""}`}
+                  onClick={() => setActiveCategory(cat)}
+                >
+                  <span className="filter-pill-label">{cat}</span>
+                  <span className="filter-pill-count">{count}</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         <div className="catalogue-toolbar">
@@ -611,11 +619,53 @@
             className="catalogue-count"
             aria-live="polite"
           >
-            <strong>{filtered.length}</strong>{" "}
-            {filtered.length === 1
-              ? "product"
-              : "products"}
-            {activeCategory !== "All" ? ` in ${activeCategory}` : ""}
+            <span className="catalogue-count-text">
+              <strong>{filtered.length}</strong>{" "}
+              {filtered.length === 1
+                ? "product"
+                : "products"}
+            </span>
+
+            {activeCategory !== "All" ? (
+              <span className="active-filter-chip">
+                <span>Category: {activeCategory}</span>
+                <button
+                  type="button"
+                  onClick={() => setActiveCategory("All")}
+                  aria-label={`Clear ${activeCategory} filter`}
+                  className="chip-remove-btn"
+                >
+                  ×
+                </button>
+              </span>
+            ) : null}
+
+            {query.trim() ? (
+              <span className="active-filter-chip">
+                <span>Search: &ldquo;{query.trim()}&rdquo;</span>
+                <button
+                  type="button"
+                  onClick={() => setQuery("")}
+                  aria-label="Clear search text"
+                  className="chip-remove-btn"
+                >
+                  ×
+                </button>
+              </span>
+            ) : null}
+
+            {activeCategory !== "All" || query.trim() ? (
+              <button
+                type="button"
+                className="reset-all-filters-btn"
+                onClick={() => {
+                  setActiveCategory("All");
+                  setQuery("");
+                }}
+              >
+                Reset all
+              </button>
+            ) : null}
           </div>
 
           <label className="search-box">
