@@ -75,25 +75,25 @@ const UNDERSTANDING_PILLARS = [
     icon: "📖",
     title: "EDUCATION FIRST",
     description:
-      "We believe in helping you understand why, when, and how to use botanical practices — and when not to use them.",
+      "We don't believe in simply telling you what to use. We believe in helping you understand why, when and how — and when not to use it.",
   },
   {
     icon: "🌱",
     title: "NATURE WITH RESPONSIBILITY",
     description:
-      "Essential oils are concentrated botanical extracts that deserve appreciation, respect, and careful dilution standards.",
+      "Essential oils are highly concentrated botanical extracts. We believe they deserve both appreciation and respect, with careful dilution and usage standards.",
   },
   {
     icon: "✦",
     title: "PRACTICAL GUIDANCE",
     description:
-      "Grounded routines designed around the realities of modern schedules, not complex or unrealistic regimens.",
+      "Learning how botanical practices can be incorporated into everyday rituals and realistic routines aligned with modern schedules.",
   },
   {
     icon: "🌿",
     title: "WHOLE-PERSON WELLNESS",
     description:
-      "Bridging nervous-system awareness, circadian biology, and sensory self-care for sustainable vitality.",
+      "Approaching wellbeing as an interconnected whole — bridging nervous-system awareness, daily rhythms, and sensory self-care.",
   },
 ];
 
@@ -216,8 +216,11 @@ export default function HomePage() {
             </h2>
             <p className="section-lead">
               There is no shortage of wellness information today. But more information doesn&apos;t
-              always mean better decisions. At Harmony of Cells, we believe in education before recommendation.
-              We help you understand essential oils, appropriate uses, safety considerations and the role they
+              always mean better decisions.
+            </p>
+            <p className="section-subhead">
+              At Harmony of Cells, we believe in education before recommendation.
+              We help you understand essential oils, their appropriate uses, safety considerations and the role they
               can play within everyday wellness — so you can make choices that are informed, responsible and personal to you.
             </p>
           </div>
