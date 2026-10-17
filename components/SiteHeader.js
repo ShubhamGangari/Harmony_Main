@@ -5,11 +5,15 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import GoogleFormLink from "./FormLink";
 
+import { BRAND_POSITIONING } from "../lib/navigation";
+
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
-  const close = () => setOpen(false);
+  const close = () => {
+    setOpen(false);
+  };
 
   const isActive = (path) => pathname === path;
 
@@ -24,6 +28,17 @@ export default function SiteHeader() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [open]);
 
+  // Lock body scroll when mobile drawer is open to prevent underlying page jitter
+  useEffect(() => {
+    if (open) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [open]);
+
   return (
     <header className="site-header">
       <div className="container nav-container">
@@ -34,20 +49,45 @@ export default function SiteHeader() {
             className="brand-logo"
           />
           <div className="brand-text">
-            <span className="brand-name">Harmony of Cells</span>
-            <span className="brand-tagline">Nature. Science. Preventive Wellness.</span>
+            <span className="brand-name">{BRAND_POSITIONING.name}</span>
+            <span className="brand-tagline">{BRAND_POSITIONING.speciality}</span>
           </div>
         </Link>
 
+        {/* Simplified Primary Navigation */}
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <Link href="/" className={`nav-link ${isActive("/") ? "active" : ""}`}>Home</Link>
-          <Link href="/education" className={`nav-link ${isActive("/education") ? "active" : ""}`}>Education</Link>
-          <Link href="/products" className={`nav-link ${isActive("/products") ? "active" : ""}`}>Products</Link>
-          <GoogleFormLink type="consultation" className="nav-link">
-            Consultation
-          </GoogleFormLink>
+          <Link
+            href="/about"
+            className={`nav-link ${isActive("/about") ? "active" : ""}`}
+          >
+            About
+          </Link>
+          <Link
+            href="/approach"
+            className={`nav-link ${isActive("/approach") ? "active" : ""}`}
+          >
+            Our Approach
+          </Link>
+          <Link
+            href="/education"
+            className={`nav-link ${isActive("/education") ? "active" : ""}`}
+          >
+            Education
+          </Link>
+          <Link
+            href="/products"
+            className={`nav-link ${isActive("/products") ? "active" : ""}`}
+          >
+            Essential Oils
+          </Link>
+          <Link
+            href="/faq"
+            className={`nav-link ${isActive("/faq") ? "active" : ""}`}
+          >
+            FAQ
+          </Link>
           <GoogleFormLink type="consultation" className="nav-cta">
-            Book a Consultation <span>→</span>
+            Book Consultation <span>→</span>
           </GoogleFormLink>
         </nav>
 
@@ -65,22 +105,41 @@ export default function SiteHeader() {
         </button>
       </div>
 
+      {/* Simplified Mobile Navigation */}
       <nav
         id="mobile-navigation"
         className={`mobile-menu ${open ? "open" : ""}`}
         aria-label="Mobile navigation"
       >
-        <Link href="/" className={isActive("/") ? "active" : ""} onClick={close}>Home</Link>
-        <Link href="/education" className={isActive("/education") ? "active" : ""} onClick={close}>Education</Link>
-        <Link href="/products" className={isActive("/products") ? "active" : ""} onClick={close}>Products</Link>
-        <GoogleFormLink type="consultation" onOpen={close}>Consultation</GoogleFormLink>
+        <Link href="/" className={isActive("/") ? "active" : ""} onClick={close}>
+          Home
+        </Link>
+        <Link href="/about" className={isActive("/about") ? "active" : ""} onClick={close}>
+          About &amp; Meet Richa
+        </Link>
+        <Link href="/approach" className={isActive("/approach") ? "active" : ""} onClick={close}>
+          Our Approach
+        </Link>
+        <Link href="/education" className={isActive("/education") ? "active" : ""} onClick={close}>
+          Education
+        </Link>
+        <Link href="/products" className={isActive("/products") ? "active" : ""} onClick={close}>
+          Essential Oils
+        </Link>
+        <Link href="/faq" className={isActive("/faq") ? "active" : ""} onClick={close}>
+          FAQ
+        </Link>
         <GoogleFormLink
           type="consultation"
           className="mobile-menu-cta"
           onOpen={close}
         >
-          Book a Consultation →
+          Book Consultation →
         </GoogleFormLink>
+        <div className="mobile-menu-descriptor" aria-hidden="true">
+          <span>{BRAND_POSITIONING.descriptor}</span>
+          <small>{BRAND_POSITIONING.philosophy}</small>
+        </div>
       </nav>
     </header>
   );

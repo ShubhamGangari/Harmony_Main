@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { validExternalUrl } from "../lib/csv";
 import { sendWeb3FormsNotification } from "../lib/web3forms";
+import { SITE_CONFIG } from "../lib/config";
 
 const FORM_COPY = {
   course: {
@@ -246,7 +247,13 @@ function CustomFormModal({
   triggerRef,
   onClose,
 }) {
-  const copy = FORM_COPY[type];
+  const copy = {
+    ...FORM_COPY[type],
+    ...(itemContext?.eyebrow ? { eyebrow: itemContext.eyebrow } : {}),
+    ...(itemContext?.title ? { title: itemContext.title } : {}),
+    ...(itemContext?.description ? { description: itemContext.description } : {}),
+    ...(itemContext?.submitLabel ? { submitLabel: itemContext.submitLabel } : {}),
+  };
   const fields = getFields(type);
   const titleId = useId();
   const dialogRef = useRef(null);
@@ -267,6 +274,24 @@ function CustomFormModal({
     function handleKeyDown(event) {
       if (event.key === "Escape") {
         onClose();
+        return;
+      }
+
+      if (event.key === "Tab" && dialogRef.current) {
+        const focusables = dialogRef.current.querySelectorAll(
+          'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     }
 
@@ -315,6 +340,15 @@ function CustomFormModal({
     const preferredTime = String(formData.get("preferredTime") || "").trim();
     setSubmittedInfo({ name, preferredDate, preferredTime });
 
+    if (item && type === "consultation") {
+      formData.set("item", item);
+      const currentMessage = String(formData.get("message") || "").trim();
+      const prefix = `[Service: ${item}]`;
+      if (!currentMessage.includes(prefix)) {
+        formData.set("message", currentMessage ? `${prefix}\n\n${currentMessage}` : prefix);
+      }
+    }
+
     setStatus("submitting");
 
     try {
@@ -359,9 +393,11 @@ function CustomFormModal({
   };
   const timeSlotDisplay = slotMap[submittedInfo?.preferredTime] || submittedInfo?.preferredTime || "";
   const waConfirmText = encodeURIComponent(
-    `Hi Harmony of Cells! I just submitted a consultation request on your website for ${submittedInfo?.preferredDate || "an upcoming date"}${timeSlotDisplay ? ` (${timeSlotDisplay})` : ""}. My name is ${submittedInfo?.name || ""}.`
+    `Hi Harmony of Cells! I just submitted an inquiry on your website${item ? ` for ${item}` : ""}${submittedInfo?.preferredDate ? ` for ${submittedInfo.preferredDate}` : ""}${timeSlotDisplay ? ` (${timeSlotDisplay})` : ""}. My name is ${submittedInfo?.name || ""}.`
   );
-  const waConfirmUrl = `https://wa.me/919076002266?text=${waConfirmText}`;
+  const waConfirmUrl = SITE_CONFIG.whatsappNumber
+    ? `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${waConfirmText}`
+    : null;
 
   const modal = (
     <div
@@ -404,33 +440,38 @@ function CustomFormModal({
             <strong>
               {safePaymentUrl
                 ? "Details submitted. Redirecting to payment..."
-                : "Your consultation request has been submitted successfully."}
+                : itemContext?.successTitle ||
+                  (type === "consultation"
+                    ? "Your enquiry has been submitted successfully."
+                    : "Your request has been submitted successfully.")}
             </strong>
 
             <p>
               {safePaymentUrl
                 ? "Your information has been received."
                 : type === "consultation"
-                  ? `Thank you, ${submittedInfo?.name || "there"}. Richa will review your preferred timing${
-                      submittedInfo?.preferredDate ? ` (${submittedInfo.preferredDate}${timeSlotDisplay ? `, ${timeSlotDisplay}` : ""})` : ""
-                    } and contact you to confirm your session.`
+                  ? `Thank you, ${submittedInfo?.name || "there"}. Richa will review your details${
+                      submittedInfo?.preferredDate ? ` and preferred timing (${submittedInfo.preferredDate}${timeSlotDisplay ? `, ${timeSlotDisplay}` : ""})` : ""
+                    } and connect with you shortly.`
                   : "Your information was received, but a payment link is not configured. Please contact us to complete your request."}
             </p>
 
             {type === "consultation" ? (
               <div className="consultation-success-actions">
-                <a
-                  href={waConfirmUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-whatsapp-confirm"
-                >
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="whatsapp-svg-icon" aria-hidden="true">
-                    <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.979-.275-.1-.476-.15-.676.15-.201.3-.777.979-.953 1.18-.175.2-.35.225-.651.075s-1.272-.469-2.423-1.496c-.896-.799-1.501-1.787-1.677-2.088-.176-.301-.019-.464.132-.614.135-.135.301-.35.452-.526.15-.175.2-.3.301-.5.1-.2.05-.376-.025-.526-.075-.15-.676-1.63-.927-2.232-.244-.587-.493-.507-.677-.516-.175-.008-.376-.01-.577-.01-.201 0-.527.075-.803.376s-1.054 1.029-1.054 2.51c0 1.48 1.079 2.909 1.23 3.11.15.2 2.124 3.243 5.145 4.549.719.311 1.28.497 1.718.636.722.229 1.378.197 1.898.12.579-.087 1.78-.727 2.031-1.429.251-.702.251-1.304.176-1.43-.075-.125-.276-.2-.577-.35z"/>
-                    <path d="M12.004 2C6.482 2 2.003 6.48 2.003 12c0 1.99.585 3.845 1.597 5.414L2 22l4.734-1.543A9.957 9.957 0 0 0 12.004 22c5.522 0 10.001-4.48 10.001-10s-4.479-10-10.001-10zm0 18.2c-1.628 0-3.138-.485-4.407-1.319l-.316-.208-2.812.916.932-2.738-.228-.337A8.163 8.163 0 0 1 3.804 12c0-4.522 3.678-8.2 8.2-8.2 4.521 0 8.2 3.678 8.2 8.2 0 4.522-3.679 8.2-8.2 8.2z"/>
-                  </svg>
-                  <span>Chat on WhatsApp for Quick Confirmation →</span>
-                </a>
+                {waConfirmUrl ? (
+                  <a
+                    href={waConfirmUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-whatsapp-confirm"
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor" className="whatsapp-svg-icon" aria-hidden="true">
+                      <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.979-.275-.1-.476-.15-.676.15-.201.3-.777.979-.953 1.18-.175.2-.35.225-.651.075s-1.272-.469-2.423-1.496c-.896-.799-1.501-1.787-1.677-2.088-.176-.301-.019-.464.132-.614.135-.135.301-.35.452-.526.15-.175.2-.3.301-.5.1-.2.05-.376-.025-.526-.075-.15-.676-1.63-.927-2.232-.244-.587-.493-.507-.677-.516-.175-.008-.376-.01-.577-.01-.201 0-.527.075-.803.376s-1.054 1.029-1.054 2.51c0 1.48 1.079 2.909 1.23 3.11.15.2 2.124 3.243 5.145 4.549.719.311 1.28.497 1.718.636.722.229 1.378.197 1.898.12.579-.087 1.78-.727 2.031-1.429.251-.702.251-1.304.176-1.43-.075-.125-.276-.2-.577-.35z"/>
+                      <path d="M12.004 2C6.482 2 2.003 6.48 2.003 12c0 1.99.585 3.845 1.597 5.414L2 22l4.734-1.543A9.957 9.957 0 0 0 12.004 22c5.522 0 10.001-4.48 10.001-10s-4.479-10-10.001-10zm0 18.2c-1.628 0-3.138-.485-4.407-1.319l-.316-.208-2.812.916.932-2.738-.228-.337A8.163 8.163 0 0 1 3.804 12c0-4.522 3.678-8.2 8.2-8.2 4.521 0 8.2 3.678 8.2 8.2 0 4.522-3.679 8.2-8.2 8.2z"/>
+                    </svg>
+                    <span>Chat on WhatsApp for Quick Confirmation →</span>
+                  </a>
+                ) : null}
                 <button
                   type="button"
                   className="btn btn-outline"
@@ -460,10 +501,23 @@ function CustomFormModal({
               name="formType"
               value={type}
             />
+            {item ? (
+              <input
+                type="hidden"
+                name="item"
+                value={item}
+              />
+            ) : null}
 
-            {type !== "consultation" ? (
+            {item ? (
               <div className="form-context" aria-live="polite">
-                <span>{type === "course" ? "Selected course" : "Selected product"}</span>
+                <span>
+                  {type === "course"
+                    ? "Selected course"
+                    : type === "product"
+                    ? "Selected product"
+                    : "Selected service / pathway"}
+                </span>
                 <b>{item}</b>
                 {type === "course" && itemContext?.tier ? (
                   <strong>{itemContext.tier}</strong>
@@ -509,7 +563,11 @@ function CustomFormModal({
                 >
                   <label htmlFor={fieldId}>
                     {field.label}
-                    {field.required ? " *" : ""}
+                    {field.required ? (
+                      <span className="required-indicator" title="Required field" aria-hidden="true">
+                        {" "}*
+                      </span>
+                    ) : null}
                   </label>
 
                   {field.type === "textarea" ? (
@@ -604,12 +662,10 @@ function CustomFormModal({
             })}
 
             {error ? (
-              <p
-                className="custom-form-error"
-                role="alert"
-              >
-                {error}
-              </p>
+              <div className="custom-form-error-box" role="alert">
+                <span className="error-icon" aria-hidden="true">⚠️</span>
+                <p className="custom-form-error">{error}</p>
+              </div>
             ) : null}
 
             <button
@@ -617,9 +673,15 @@ function CustomFormModal({
               className="btn btn-primary custom-form-submit"
               disabled={status === "submitting"}
             >
-              {status === "submitting"
-                ? "Submitting..."
-                : copy.submitLabel}
+              {status === "submitting" ? (
+                <>
+                  <span className="spinner-dot" aria-hidden="true">●</span> Submitting your enquiry...
+                </>
+              ) : (
+                <>
+                  {copy.submitLabel} <span>→</span>
+                </>
+              )}
             </button>
           </form>
         )}
