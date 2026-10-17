@@ -4,61 +4,29 @@ import { SITE_CONFIG } from "../../lib/config";
 import GoogleFormLink from "../../components/FormLink";
 
 export const metadata = {
-  title: "Essential Oil Education & Workshops | Harmony of Cells",
+  title: "Essential Oil Education | Learn at Your Own Level | Harmony of Cells",
   description:
-    "Structured essential oil education and lifestyle wellness pathways for individuals and wellness professionals. Learn at your own pace with botanical integrity.",
+    "Whether you're completely new to essential oils or already work in the wellness space, our education programs are designed to help you build knowledge you can use responsibly.",
 };
 
-const EDUCATION_LEVELS = [
-  {
-    level: "LEVEL 01",
-    tagline: "Foundations & Safety",
-    title: "Essential Oils: The Foundations",
-    description:
-      "Start with the core fundamentals — what essential oils are, how they are produced, and how to handle them safely and responsibly in everyday life.",
-    topics: [
-      "Botanical basics and plant extraction methods",
-      "Understanding aroma profiles and fragrance notes",
-      "Different ways of using oils (inhalation, diffusion, topical)",
-      "Fundamental dilution principles and carrier oils",
-      "Responsible use, skin patch testing, and essential oil safety",
-    ],
-    audience: "Beginners, individuals, and families exploring nature-based wellness.",
-    status: "Active Foundation Pathway",
-  },
-  {
-    level: "LEVEL 02",
-    tagline: "Daily Integration",
-    title: "Essential Oils in Everyday Wellness",
-    description:
-      "Explore how essential oils can be thoughtfully incorporated into daily life, restorative evening routines, and personalized self-care rituals.",
-    topics: [
-      "Evening routines and wind-down practices for restorative sleep",
-      "Sensory relaxation techniques and mindful breathing",
-      "Personal wellness rituals that fit into busy schedules",
-      "Creating calming, supportive home environments",
-      "Mindful transitions between work and personal rest",
-    ],
-    audience: "Individuals seeking deeper personal self-care and daily rhythms.",
-    status: "Everyday Wellness Pathway",
-  },
-  {
-    level: "LEVEL 03",
-    tagline: "Professional Practice",
-    title: "Essential Oils for Wellness Professionals",
-    description:
-      "Designed for professionals who want to understand essential oils more deeply and explore responsible ways of incorporating aromatherapy education into their practice.",
-    topics: [
-      "Professional applications in movement, bodywork, and coaching",
-      "Responsible usage protocols and dilution standards",
-      "Aromatherapy education and aromatic space design",
-      "Ethical client communication and informed consent",
-      "Professional boundaries and non-medical scope of practice",
-    ],
-    audience:
-      "Yoga teachers, wellness coaches, therapists, bodyworkers, spa specialists, and retreat leaders.",
-    status: "Practitioner Curriculum Pathway",
-  },
+const LEVEL_1_TOPICS = [
+  "What essential oils are",
+  "How they are produced",
+  "Botanical basics",
+  "Aroma profiles",
+  "Different ways of using oils",
+  "Basic dilution principles",
+  "Essential oil safety",
+  "Choosing oils responsibly",
+];
+
+const LEVEL_2_HIGHLIGHTS = [
+  "Evening routines & restorative sleep",
+  "Sensory relaxation & mindful breathing",
+  "Personal wellness rituals for busy schedules",
+  "Calming, supportive home environments",
+  "Mindful transitions between work & personal rest",
+  "Responsible self-care & sensory anchors",
 ];
 
 export default function EducationPage() {
@@ -71,12 +39,12 @@ export default function EducationPage() {
 
         <div className="container hero-grid">
           <div className="hero-content">
-            <span className="eyebrow">ESSENTIAL OIL & LIFESTYLE EDUCATION</span>
+            <span className="eyebrow">ESSENTIAL OIL EDUCATION</span>
             <h1>
               Learn at your <em>own level.</em>
             </h1>
             <p className="hero-supporting-title">
-              Whether you are completely new to essential oils or already work in wellness, our education programs help you build knowledge you can use responsibly.
+              Whether you&apos;re completely new to essential oils or already work in the wellness space, our education programs are designed to help you build knowledge you can use responsibly.
             </p>
             <p className="hero-description">
               At Harmony of Cells, education always precedes recommendation. We guide you through
@@ -85,11 +53,11 @@ export default function EducationPage() {
             </p>
 
             <div className="hero-actions">
-              <a href="#pathway-framework" className="btn btn-primary">
-                View 3-Tier Curriculum <span>↓</span>
+              <a href="#levels" className="btn btn-primary">
+                Explore Curriculum Levels <span>↓</span>
               </a>
               <a href="#active-courses" className="btn btn-outline hero-secondary-btn">
-                Browse Active Courses <span>↓</span>
+                Browse Scheduled Courses <span>↓</span>
               </a>
             </div>
 
@@ -131,66 +99,163 @@ export default function EducationPage() {
         </div>
       </section>
 
-      {/* 2. THE THREE-TIER EDUCATIONAL PATHWAYS (Blueprint Specification) */}
-      <section className="section education-pathways-framework" id="pathway-framework">
+      {/* 2. THE THREE-TIER EDUCATIONAL PATHWAYS */}
+      <section className="section education-pathways-framework" id="levels">
         <div className="container">
-          <div className="section-heading text-center">
-            <span className="eyebrow">CURRICULUM BLUEPRINT • THREE LEVELS</span>
+          <div className="section-heading text-center max-w-3xl mx-auto">
+            <span className="eyebrow">CURRICULUM LEVELS</span>
             <h2>
-              The Three-Tier <em>Education Framework.</em>
+              Learn at your <em>own level.</em>
             </h2>
             <p className="section-lead">
-              Our educational framework is structured into three progressive pathways. This represents our
-              master curriculum blueprint across personal self-care and professional practice.
-              To enroll in currently scheduled workshop dates, please refer to the <strong>Active Course Catalogue</strong> below.
+              Whether you&apos;re completely new to essential oils or already work in the wellness space, our education programs are designed to help you build knowledge you can use responsibly.
             </p>
           </div>
 
           <div className="education-levels-grid">
-            {EDUCATION_LEVELS.map((tier, idx) => (
-              <article key={tier.level} className={`education-tier-card tier-tier-${idx + 1}`}>
-                <div className="tier-card-header">
-                  <span className="tier-badge">{tier.level}</span>
-                  <span className="tier-tagline">{tier.tagline}</span>
-                </div>
+            {/* LEVEL 1 CARD */}
+            <article className="education-tier-card tier-tier-1" id="level-1">
+              <div className="tier-card-header">
+                <span className="tier-badge">LEVEL 1</span>
+                <span className="tier-tagline">THE FOUNDATIONS</span>
+              </div>
 
-                <h3>{tier.title}</h3>
-                <p className="tier-description">{tier.description}</p>
+              <h3>Level 1 — Essential Oils: The Foundations</h3>
+              <p className="tier-description">
+                Start with the core fundamentals — what essential oils are, how they are produced, and how to handle them safely and responsibly in everyday life.
+              </p>
 
-                <div className="tier-curriculum-box">
-                  <span className="tier-curriculum-label">Curriculum Highlights:</span>
-                  <ul className="tier-curriculum-list">
-                    {tier.topics.map((topic, pIdx) => (
-                      <li key={pIdx}>
-                        <span className="bullet-icon">✦</span>
-                        <span>{topic}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="tier-curriculum-box">
+                <span className="tier-curriculum-label">Curriculum Topics:</span>
+                <ul className="tier-curriculum-list">
+                  {LEVEL_1_TOPICS.map((topic, idx) => (
+                    <li key={idx}>
+                      <span className="bullet-icon">✓</span>
+                      <span>{topic}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-                <div className="tier-card-footer">
-                  <div className="tier-audience">
-                    <strong>Audience:</strong> {tier.audience}
-                  </div>
-                  <div className="tier-footer-row">
-                    <span className="tier-status-pill">{tier.status}</span>
-                    <a href="#active-courses" className="tier-jump-link">
-                      View Active Enrolment <span>↓</span>
-                    </a>
-                  </div>
+              <div className="tier-card-footer">
+                <div className="tier-audience">
+                  <strong>Audience:</strong> Beginners, individuals, and families exploring nature-based wellness.
                 </div>
-              </article>
-            ))}
+                <div className="tier-footer-cta">
+                  <GoogleFormLink
+                    type="course"
+                    item="Level 1 — Essential Oils: The Foundations"
+                    className="btn btn-primary tier-cta-btn"
+                  >
+                    Explore Level 1 <span>→</span>
+                  </GoogleFormLink>
+                </div>
+              </div>
+            </article>
+
+            {/* LEVEL 2 CARD */}
+            <article className="education-tier-card tier-tier-2" id="level-2">
+              <div className="tier-card-header">
+                <span className="tier-badge">LEVEL 2</span>
+                <span className="tier-tagline">EVERYDAY WELLNESS</span>
+              </div>
+
+              <h3>Level 2 — Essential Oils in Everyday Wellness</h3>
+              <p className="tier-description">
+                Explore how essential oils may be incorporated into evening routines, sensory relaxation, mindful breathing, personal wellness rituals, home environments and self-care practices.
+              </p>
+
+              <div className="tier-curriculum-box">
+                <span className="tier-curriculum-label">Everyday Application Areas:</span>
+                <ul className="tier-curriculum-list">
+                  {LEVEL_2_HIGHLIGHTS.map((highlight, idx) => (
+                    <li key={idx}>
+                      <span className="bullet-icon">✓</span>
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="tier-card-footer">
+                <div className="tier-audience">
+                  <strong>Audience:</strong> Individuals seeking deeper self-care rituals and supportive home rhythms.
+                </div>
+                <div className="tier-footer-cta">
+                  <GoogleFormLink
+                    type="course"
+                    item="Level 2 — Essential Oils in Everyday Wellness"
+                    className="btn btn-primary tier-cta-btn"
+                  >
+                    Explore Level 2 <span>→</span>
+                  </GoogleFormLink>
+                </div>
+              </div>
+            </article>
+
+            {/* LEVEL 3 CARD */}
+            <article className="education-tier-card tier-tier-3" id="level-3">
+              <div className="tier-card-header">
+                <span className="tier-badge">LEVEL 3</span>
+                <span className="tier-tagline">FOR WELLNESS PROFESSIONALS</span>
+              </div>
+
+              <h3>Level 3 — Essential Oils for Wellness Professionals</h3>
+              <p className="tier-description">
+                Designed for professionals who want to understand essential oils more deeply and explore responsible ways of incorporating aromatherapy education into their existing practice.
+              </p>
+
+              <div className="tier-curriculum-box">
+                <span className="tier-curriculum-label">Audience:</span>
+                <p className="tier-audience-text">
+                  Yoga teachers, wellness coaches, therapists, spa professionals, wellness centres, retreat facilitators and other wellness practitioners.
+                </p>
+                <span className="tier-curriculum-label mt-3">Professional Focus:</span>
+                <ul className="tier-curriculum-list">
+                  <li>
+                    <span className="bullet-icon">✓</span>
+                    <span>Responsible dilution standards & client safety</span>
+                  </li>
+                  <li>
+                    <span className="bullet-icon">✓</span>
+                    <span>Sensory space design & ambient aromatic atmospheres</span>
+                  </li>
+                  <li>
+                    <span className="bullet-icon">✓</span>
+                    <span>Ethical client boundaries & non-medical scope</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="tier-card-footer">
+                <div className="tier-audience">
+                  <strong>Path:</strong> Practitioner Curriculum Pathway
+                </div>
+                <div className="tier-footer-cta">
+                  <Link href="/professionals" className="btn btn-primary tier-cta-btn">
+                    Explore Professional Education <span>→</span>
+                  </Link>
+                </div>
+              </div>
+            </article>
           </div>
 
-          {/* Master Principle Banner */}
+          {/* 3. SIGNATURE MESSAGE BANNER */}
           <div className="signature-quote-banner education-signature-banner">
+            <span className="eyebrow signature-eyebrow">SIGNATURE MESSAGE</span>
             <p className="signature-quote-text">
               &ldquo;We don&apos;t believe in simply telling you what to use. We believe in helping you
               understand <strong>WHY, WHEN, HOW — AND WHEN NOT TO USE IT.</strong>&rdquo;
             </p>
-            <span className="signature-principle">Signature Principle: Learn. Understand. Apply.</span>
+            <div className="signature-action">
+              <GoogleFormLink
+                type="consultation"
+                item="Workshops & Experiential Learning"
+                className="btn btn-primary signature-cta-btn"
+              >
+                Explore Workshops <span>→</span>
+              </GoogleFormLink>
+            </div>
           </div>
 
           {/* Credential & Non-Medical Scope Notice */}
@@ -199,20 +264,20 @@ export default function EducationPage() {
               <span className="disclaimer-badge">CREDENTIAL NOTICE</span>
             </div>
             <div className="disclaimer-content">
-              <strong>Professional Education & Accreditation Notice</strong>
+              <strong>Professional Education & Scope Notice</strong>
               <p>
                 Harmony of Cells educational courses and pathways provide educational enrichment,
                 practical aromatherapy knowledge, and responsible usage principles. They do not
-                confer a statutory healthcare license, clinical medical accreditation, or formal
-                state certification. Essential oils must be used strictly within your personal or
-                professional scope of practice and never as a substitute for qualified medical care.
+                confer a statutory healthcare license or clinical medical accreditation. Essential oils
+                must be used strictly within your personal or professional scope of practice and never as
+                a substitute for qualified medical care.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. ACTIVE COURSE CATALOGUE (Clearly Separated Cohorts & Enrolment) */}
+      {/* 4. ACTIVE COURSE CATALOGUE */}
       <section className="section bg-cream-soft catalogue-section education-catalogue" id="active-courses">
         <div className="container">
           <div className="section-heading text-center">
@@ -229,7 +294,7 @@ export default function EducationPage() {
         </div>
       </section>
 
-      {/* 4. WORKSHOP & MENTORING INQUIRY */}
+      {/* 5. WORKSHOP & MENTORING INQUIRY */}
       <section className="section service-cta-section" id="workshop-inquiry">
         <div className="container">
           <div className="service-cta-card">

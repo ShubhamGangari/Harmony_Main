@@ -5891,8 +5891,41 @@ blockquote {
   border: 1px solid rgba(78, 107, 67, 0.18);
 }
 
+.tier-footer-cta {
+  margin-top: 10px;
+}
+
+.tier-cta-btn {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+.tier-audience-text {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #455243;
+  margin: 6px 0 0;
+}
+
 .education-signature-banner {
   margin: 48px 0;
+}
+
+.signature-action {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.signature-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green, #4e6b43);
+  margin-bottom: 12px;
 }
 
 /* Consultation Page Topics & Audiences */
