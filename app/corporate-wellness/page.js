@@ -1,250 +1,306 @@
-import ServicePageTemplate from "../../components/ServicePageTemplate";
+import Link from "next/link";
+import GoogleFormLink from "../../components/FormLink";
+import FounderVisual from "../../components/FounderVisual";
 
 export const metadata = {
-  title: "Workplace Preventive Wellness | Corporate Wellness | Harmony of Cells",
+  title: "Corporate Wellness | Wellbeing at Work Starts with People | Harmony of Cells",
   description:
-    "Practical workplace wellness education, stress resilience, sensory wellness experiences, and preventive health workshops for modern organisations.",
+    "Modern workplaces demand energy, focus, adaptability and resilience. Our corporate wellness experiences introduce practical, accessible approaches to everyday wellbeing through education, sensory experiences and mindful wellness practices.",
 };
+
+const CORPORATE_OFFERINGS = [
+  {
+    step: "01",
+    tagline: "Culture & Daily Vitality",
+    title: "Workplace Wellbeing",
+    description:
+      "Introducing practical, human-centred wellbeing habits, intentional meeting transitions, and mindful desk micro-pauses that nurture a healthy, engaged team culture.",
+    points: [
+      "Mindful workday micro-pauses & desk resets",
+      "Conscious meeting transitions & boundary agreements",
+      "Building supportive, sustainable team rhythms",
+    ],
+  },
+  {
+    step: "02",
+    tagline: "Resilience & Decompression",
+    title: "Stress & Relaxation Education",
+    description:
+      "Grounded education on nervous-system awareness, recognizing cognitive burnout warning signs early, and somatic techniques to down-regulate workday stress.",
+    points: [
+      "Understanding nervous system overdrive & burnout signs",
+      "Practical somatic pause techniques during high pressure",
+      "Sustainable cognitive recovery during intense delivery cycles",
+    ],
+  },
+  {
+    step: "03",
+    tagline: "Olfactory Calming & Focus",
+    title: "Sensory Wellness Experiences",
+    description:
+      "Interactive olfactory sessions introducing pure botanical aromas, guided breathing, and ambient space design to reset mental fatigue and enhance workplace presence.",
+    points: [
+      "Olfactory cues for mental clarity and afternoon energy",
+      "Ambient workspace scent diffusion standards",
+      "Hands-on botanical sensory pause moments",
+    ],
+  },
+  {
+    step: "04",
+    tagline: "Supportive Daily Rhythms",
+    title: "Women's Wellness",
+    description:
+      "Dedicated educational sessions addressing female professional wellbeing, hormonal lifecycle awareness, energy management, and supportive daily rituals in demanding careers.",
+    points: [
+      "Navigating professional fatigue & sustainable pacing",
+      "Hormonal rhythm awareness and self-care tools",
+      "Creating inclusive, empathetic workplace support",
+    ],
+  },
+  {
+    step: "05",
+    tagline: "Detachment & Restorative Sleep",
+    title: "Sleep & Recovery Education",
+    description:
+      "Practical frameworks helping busy professionals detach from digital overdrive in the evening, establish calming wind-down rituals, and achieve deep, restorative sleep.",
+    points: [
+      "Evening mental detachment & digital boundary setting",
+      "Circadian sleep hygiene and bedroom sensory environments",
+      "Sustaining daytime clarity without over-caffeination",
+    ],
+  },
+  {
+    step: "06",
+    tagline: "Tailored Corporate Experiences",
+    title: "Custom Wellness Programs",
+    description:
+      "Bespoke masterclasses, executive offsites, wellness days, and retreat facilitation tailored precisely to your organisation's unique schedule, culture, and strategic goals.",
+    points: [
+      "60-minute masterclasses, half-day, or full-day formats",
+      "Executive leadership offsite and retreat facilitation",
+      "On-site, hybrid, and remote workforce customization",
+    ],
+  },
+];
 
 export default function CorporateWellnessPage() {
   return (
-    <ServicePageTemplate
-      theme="corporate"
-      hero={{
-        eyebrow: "WORKPLACE PREVENTIVE WELLNESS",
-        title: (
-          <>
-            Wellness at work starts with <em>people.</em>
-          </>
-        ),
-        supporting:
-          "Practical education and sensory wellness experiences designed around the realities of modern working life.",
-        description:
-          "Modern organisations demand energy, focus, adaptability and sustained resilience. Harmony of Cells introduces human-centred, preventive wellness programs that bridge decades of corporate leadership with nature-based sensory practices — helping teams perform sustainably without burning out.",
-        primaryCta: {
-          text: "Inquire for Your Workplace",
-          type: "form",
-          formItem: "Corporate Workplace Wellness Inquiry",
-          formItemContext: {
-            eyebrow: "WORKPLACE PREVENTIVE WELLNESS • ENQUIRY",
-            title: "Enquire for Your Organisation",
-            description:
-              "Share your organisation's details, estimated team size, and wellness objectives. Richa will connect with you to discuss tailored workplace wellness experiences.",
-            submitLabel: "Submit Workplace Enquiry",
-            successTitle: "Your corporate enquiry has been submitted successfully.",
-          },
-        },
-        secondaryCta: {
-          text: "Explore Corporate Offerings",
-          href: "#offerings",
-        },
-        microline: "HR Leaders • Founders • CXOs • Corporate Wellness Teams",
-        announcement: "Executive Resilience • Sensory Workspace Design • Lunch & Learn Workshops • Desk Micro-Pauses",
-        badge: {
-          tag: "WORKPLACE WELLNESS",
-          title: "Sustainable team resilience.",
-          sub: "Preventive Care • Sensory Micro-breaks",
-        },
-        image: "/assets/hero-image.jpg",
-        imageAlt: "Calm, supportive workplace wellness atmosphere",
-      }}
-      intro={{
-        eyebrow: "A HUMAN-CENTRED PERSPECTIVE",
-        title: "High performance requires intentional recovery.",
-        lead:
-          "Corporate wellness is not a token gift basket or an app download. It is an intentional workplace culture that respects human biology and equips employees with practical tools for rest, recovery, and daily focus.",
-        paragraphs: [
-          "In today's fast-moving business climate, constant connectivity and back-to-back cognitive demands place chronic strain on employees. Without intentional tools to decompress, chronic workday stress leads to disengagement, cognitive fatigue, and diminished innovation.",
-          "Our Workplace Preventive Wellness programs are designed specifically for corporate reality. We introduce bite-sized, accessible educational concepts and sensory micro-practices that employees can actually apply at their desks, during team transitions, and in their home lives.",
-        ],
-        highlightQuote:
-          "We understand both sides of the equation: the relentless commercial demands of the workplace, and the deeply human need for sustainable daily rhythms.",
-      }}
-      offerings={{
-        id: "offerings",
-        layout: "modular",
-        eyebrow: "PROGRAM PILLARS",
-        title: (
-          <>
-            Comprehensive corporate <em>wellness offerings.</em>
-          </>
-        ),
-        description:
-          "Customizable workshops, executive masterclasses, and hands-on sensory wellness experiences designed for modern teams.",
-        items: [
-          {
-            step: "01",
-            tagline: "Stress & Resilience",
-            title: "Stress Awareness & Resilience Education",
-            description:
-              "Grounded education on nervous-system awareness, somatic pause techniques, and practical cognitive pauses to prevent workplace burnout during high-pressure delivery cycles.",
-            points: [
-              "Recognizing burnout warning signs early",
-              "Micro-pauses for intense workdays",
-              "Building adaptive team resilience",
-            ],
-          },
-          {
-            step: "02",
-            tagline: "Sustainable Energy",
-            title: "Rest & Recovery for Professionals",
-            description:
-              "Teaching busy executives and team members how to establish psychological boundaries, transition from workday overdrive, and achieve restorative nighttime sleep.",
-            points: [
-              "Evening mental detachment routines",
-              "Circadian sleep hygiene protocols",
-              "Sustaining daytime focus without over-caffeination",
-            ],
-          },
-          {
-            step: "03",
-            tagline: "Aromatic Calming",
-            title: "Sensory Wellness Experiences",
-            description:
-              "Interactive experiential sessions introducing intentional botanical aromas, guided breathwork, and ambient space design for calm, focused meeting rooms.",
-            points: [
-              "Olfactory cues for mental clarity & calm",
-              "Responsible botanical dilution standards",
-              "Creating sensory pause corners in offices",
-            ],
-          },
-          {
-            step: "04",
-            tagline: "Inclusive Culture",
-            title: "Women's Wellbeing at Work",
-            description:
-              "Dedicated educational sessions addressing female leadership fatigue, hormonal lifecycle transitions, and supportive daily rhythms in competitive professional environments.",
-            points: [
-              "Lifecycle rhythm awareness",
-              "Managing fatigue with self-care tools",
-              "Fostering inclusive team support",
-            ],
-          },
-          {
-            step: "05",
-            tagline: "Team Habits",
-            title: "Healthy Workplace Rituals",
-            description:
-              "Practical team protocols: mindful meeting opening minutes, digital boundary agreements, screen-break habits, and hydration/movement check-ins.",
-            points: [
-              "Conscious 2-minute meeting transitions",
-              "Combating digital and visual fatigue",
-              "Sustainable collaborative rhythms",
-            ],
-          },
-          {
-            step: "06",
-            tagline: "Custom Experiences",
-            title: "Executive Retreats & Offsite Sessions",
-            description:
-              "Turnkey experiential wellness sessions for leadership offsites, annual conferences, and executive team retreats focused on deep renewal and strategic clarity.",
-            points: [
-              "Half-day and full-day experiential workshops",
-              "Hands-on essential-oil blending experiences",
-              "Executive resilience roundtables",
-            ],
-          },
-        ],
-      }}
-      howItWorks={{
-        id: "how-it-works",
-        eyebrow: "WORKPLACE IMPLEMENTATION",
-        title: (
-          <>
-            How our corporate wellness <em>programs operate.</em>
-          </>
-        ),
-        description:
-          "From initial organisational discovery to actionable, memorable team workshops with lasting impact.",
-        steps: [
-          {
-            num: "01",
-            title: "Workplace Wellness & Needs Discovery",
-            description:
-              "We meet with HR and business leaders to understand team pressure points, working modes (hybrid, remote, in-office), and key wellness objectives.",
-            highlight: "Strategic Alignment",
-          },
-          {
-            num: "02",
-            title: "Curriculum Customization",
-            description:
-              "We tailor workshop content to your workforce: stress awareness, executive recovery, circadian sleep routines, or sensory workspace setup.",
-            highlight: "Bespoke Design",
-          },
-          {
-            num: "03",
-            title: "Experiential Workshop Delivery",
-            description:
-              "Interactive sessions combining grounded science, sensory aromatic touchpoints, and practical desk micro-pauses that require zero jargon.",
-            highlight: "High Engagement",
-          },
-          {
-            num: "04",
-            title: "Post-Session Integration Toolkit",
-            description:
-              "Participants receive practical summary guides, desk reference cards, and optional follow-up resources to cement sustainable daily habits.",
-            highlight: "Measurable Value",
-          },
-        ],
-      }}
-      founderCredibility={{
-        eyebrow: "THE B2B DIFFERENTIATOR",
-        title: "Backed by 28+ years of corporate leadership and HR experience.",
-        paragraphs: [
-          "Unlike generic wellness practitioners, Founder Richa Ramola spent nearly three decades in Human Resources and Business Operations across multinational corporations.",
-          "She has managed large teams, navigated board-level deadlines, and dealt firsthand with the pressures of corporate restructuring and high-growth targets. She knows the language of business, respects company budgets, and understands what makes a wellness initiative succeed in a real workplace.",
-          "Today, she bridges that extensive corporate background with specialized education in essential oils, aromatherapy, and lifestyle wellness education — providing organisations with authentic, sensible, and scientifically responsible programs.",
-        ],
-        quote:
-          "When organisations treat rest and resilience as strategic business assets rather than afterthoughts, performance and human wellbeing rise together.",
-        ctaText: "Schedule a Corporate Discovery Call",
-        formItem: "Corporate Discovery Consultation",
-        formItemContext: {
-          eyebrow: "CORPORATE DISCOVERY CALL",
-          title: "Connect with Richa Ramola",
-          description:
-            "Share your organisation details. Richa will connect with you directly to explore how custom workplace wellness workshops can support your team.",
-          submitLabel: "Request Discovery Call",
-        },
-      }}
-      disclaimer={{
-        title: "Workplace Wellness Educational Scope",
-        text:
-          "Harmony of Cells corporate wellness programs provide educational workshops, experiential sensory sessions, and lifestyle learning intended to support employee self-care and preventive workplace habits. These sessions are not clinical psychological counseling, psychiatric therapy, or medical diagnosis. They are designed to complement, not replace, existing occupational healthcare and Employee Assistance Programs (EAPs).",
-      }}
-      ctaSection={{
-        id: "corporate-inquiry",
-        eyebrow: "BRING WELLNESS TO YOUR WORKPLACE",
-        title: (
-          <>
-            Equip your team with <em>sustainable resilience.</em>
-          </>
-        ),
-        description:
-          "Connect with Richa Ramola to discuss your organisation's size, workplace dynamics, and wellness objectives.",
-        points: [
-          "Customized for on-site, hybrid, or remote workforces",
-          "Interactive hands-on sensory wellness experiences",
-          "Practical takeaway tools employees use immediately",
-          "Flexible formats from 60-minute masterclasses to leadership offsites",
-        ],
-        primaryCta: {
-          text: "Submit Workplace Enquiry",
-          formItem: "Corporate Workplace Wellness Program",
-          formItemContext: {
-            eyebrow: "WORKPLACE PREVENTIVE WELLNESS • ENQUIRY",
-            title: "Enquire for Your Workplace",
-            description:
-              "Share your details and team size. We will connect with you to review workshop options, timelines, and tailored corporate proposals.",
-            submitLabel: "Submit Corporate Enquiry",
-          },
-        },
-        secondaryCta: {
-          text: "Explore Foundation Education",
-          href: "/education",
-        },
-        showContactLinks: true,
-      }}
-    />
+    <main className="corporate-wellness-page">
+      {/* 1. HERO SECTION */}
+      <section className="hero service-hero corporate-hero" id="top">
+        <div className="hero-decoration hero-decoration-one" />
+        <div className="hero-decoration hero-decoration-two" />
+
+        <div className="container hero-grid">
+          <div className="hero-content">
+            <span className="eyebrow">CORPORATE WELLNESS</span>
+            <h1>
+              Wellbeing at work starts with <em>people.</em>
+            </h1>
+            <p className="hero-supporting-title">
+              Modern workplaces demand energy, focus, adaptability and resilience. Our corporate wellness experiences introduce practical, accessible approaches to everyday wellbeing through education, sensory experiences and mindful wellness practices.
+            </p>
+            <p className="hero-description">
+              Backed by nearly three decades of corporate HR and leadership experience, we design workplace wellness programs that bridge business realities with human wellbeing — helping teams thrive without burning out.
+            </p>
+
+            <div className="hero-actions">
+              <GoogleFormLink
+                type="consultation"
+                item="Bring Wellness to Your Workplace"
+                className="btn btn-primary"
+              >
+                Bring Wellness to Your Workplace <span>→</span>
+              </GoogleFormLink>
+              <a href="#offerings" className="btn btn-outline hero-secondary-btn">
+                Explore Offerings <span>↓</span>
+              </a>
+            </div>
+
+            <div className="hero-note">
+              <span className="note-icon">✦</span>
+              <p>Founded on nearly three decades of corporate HR &amp; business leadership experience.</p>
+            </div>
+          </div>
+
+          <div className="hero-visual">
+            <div className="hero-image-wrapper">
+              <img
+                src="/assets/hero-image.jpg"
+                alt="Corporate workplace wellness and sensory experience"
+                className="hero-image"
+              />
+              <div className="hero-image-card">
+                <span className="mini-label">WORKPLACE WELLBEING</span>
+                <strong>People. And the workplace.</strong>
+                <small>Education • Sensory Experiences • Mindful Rituals</small>
+              </div>
+            </div>
+            <div className="floating-badge">
+              <span>✦</span>
+              <small>
+                WORKPLACE<br />
+                WELLBEING
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div className="container announcement-container">
+          <div className="announcement">
+            <span className="announcement-symbol">✦</span>
+            <span>
+              Workplace Wellbeing • Stress &amp; Relaxation • Sensory Experiences • Women&apos;s Wellness • Sleep &amp; Recovery • Custom Programs
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. OFFERINGS SECTION */}
+      <section className="section corporate-offerings-section" id="offerings">
+        <div className="container">
+          <div className="section-heading text-center max-w-3xl mx-auto">
+            <span className="eyebrow">PRACTICAL &amp; ACCESSIBLE PROGRAMS</span>
+            <h2>Offerings</h2>
+            <p className="section-lead">
+              Modern workplaces demand energy, focus, adaptability and resilience. Our corporate wellness experiences introduce practical, accessible approaches to everyday wellbeing through education, sensory experiences and mindful wellness practices.
+            </p>
+          </div>
+
+          <div className="corporate-offerings-grid">
+            {CORPORATE_OFFERINGS.map((offering) => (
+              <article key={offering.step} className="corporate-offering-card">
+                <div className="offering-card-top">
+                  <span className="offering-card-step">{offering.step}</span>
+                  <span className="offering-card-tagline">{offering.tagline}</span>
+                </div>
+
+                <h3>{offering.title}</h3>
+                <p className="offering-card-description">{offering.description}</p>
+
+                <ul className="offering-points-list">
+                  {offering.points.map((pt, pIdx) => (
+                    <li key={pIdx}>
+                      <span className="point-bullet" aria-hidden="true">✓</span>
+                      <span>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="offering-card-footer">
+                  <GoogleFormLink
+                    type="consultation"
+                    item={`Corporate Wellness Offering: ${offering.title}`}
+                    className="btn btn-outline offering-cta-btn"
+                  >
+                    Inquire About This Offering <span>→</span>
+                  </GoogleFormLink>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. WHY HARMONY OF CELLS? */}
+      <section className="section corporate-why-section" id="why-harmony">
+        <div className="container">
+          <div className="section-heading text-center max-w-3xl mx-auto">
+            <span className="eyebrow">THE FOUNDER&apos;S ADVANTAGE</span>
+            <h2>Why Harmony of Cells?</h2>
+          </div>
+
+          {/* Signature Quote Banner */}
+          <div className="quote-banner corporate-quote-banner">
+            <p className="quote-text">
+              &ldquo;Our founder brings nearly three decades of corporate HR and leadership experience together with her work in wellness education. That means we understand both sides: <strong>People. And the workplace.</strong>&rdquo;
+            </p>
+          </div>
+
+          <div className="founder-grid corporate-founder-grid">
+            <FounderVisual />
+
+            <div className="founder-copy">
+              <span className="eyebrow">MEET RICHA RAMOLA</span>
+              <h3>A career built around people. A new chapter built around wellbeing.</h3>
+              <p>
+                For nearly three decades, Richa Ramola worked in Human Resources and business leadership across multinational and growth-oriented organisations. Her professional journey gave her a deep understanding of people — how they work, adapt, lead, perform and navigate the relentless demands of modern life.
+              </p>
+              <p>
+                When wellness initiatives are treated as superficial perks, they fail to create lasting engagement. Because Richa has sat in leadership meetings, managed high-stakes deadlines, and guided diverse workforces, Harmony of Cells programs are designed around business realities: practical, respectful of time, and immediately usable.
+              </p>
+              <p>
+                We bridge leadership and people development with pure botanical essential oils, sensory relaxation, and nature-based wellness education.
+              </p>
+
+              <div className="founder-actions">
+                <GoogleFormLink
+                  type="consultation"
+                  item="Corporate Wellness Discovery Call"
+                  className="btn btn-primary"
+                >
+                  Schedule Corporate Discovery <span>→</span>
+                </GoogleFormLink>
+                <Link href="/about" className="btn btn-outline">
+                  Meet Founder Richa Ramola <span>→</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. EDUCATIONAL & PREVENTIVE SCOPE NOTICE */}
+      <section className="section corporate-scope-section">
+        <div className="container">
+          <div className="method-disclaimer-box" role="note">
+            <div className="disclaimer-icon-wrap">
+              <span className="disclaimer-badge">EDUCATIONAL SCOPE NOTICE</span>
+            </div>
+            <div className="disclaimer-content">
+              <strong>Workplace Preventive Wellness Scope</strong>
+              <p>
+                Harmony of Cells corporate wellness programs provide educational workshops, sensory experiences, and preventive self-care practices. They are designed to support employee wellbeing, stress awareness, and healthy daily habits. They do not constitute clinical psychological therapy, psychiatric intervention, or medical treatment, and are intended to complement qualified healthcare and Employee Assistance Programs (EAPs).
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. FINAL CTA SECTION */}
+      <section className="section consultation-section corporate-final-cta-section" id="bring-wellness">
+        <div className="container">
+          <div className="consultation-wrapper">
+            <div className="consultation-content">
+              <span className="eyebrow">TRANSFORM YOUR WORKPLACE</span>
+              <h2>Bring Wellness to Your Workplace</h2>
+              <p className="section-lead">
+                Modern workplaces demand energy, focus, adaptability and resilience. Our corporate wellness experiences introduce practical, accessible approaches to everyday wellbeing through education, sensory experiences and mindful wellness practices.
+              </p>
+
+              <div className="consultation-points">
+                <span>✓ Practical, accessible education teams use immediately</span>
+                <span>✓ Grounded in nearly three decades of corporate HR &amp; leadership</span>
+                <span>✓ Interactive sensory experiences with pure botanical oils</span>
+                <span>✓ Flexible formats: 60-min sessions, lunch &amp; learns, or executive offsites</span>
+              </div>
+
+              <div className="consultation-cta-group">
+                <GoogleFormLink
+                  type="consultation"
+                  item="Bring Wellness to Your Workplace"
+                  className="btn btn-primary cta-btn-large"
+                >
+                  Bring Wellness to Your Workplace <span>→</span>
+                </GoogleFormLink>
+                <Link href="/education" className="btn btn-outline cta-btn-secondary">
+                  Explore Essential Oil Education <span>→</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

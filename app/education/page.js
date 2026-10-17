@@ -241,9 +241,8 @@ export default function EducationPage() {
           </div>
 
           {/* 3. SIGNATURE MESSAGE BANNER */}
-          <div className="signature-quote-banner education-signature-banner">
-            <span className="eyebrow signature-eyebrow">SIGNATURE MESSAGE</span>
-            <p className="signature-quote-text">
+          <div className="quote-banner education-banner">
+            <p className="quote-text">
               &ldquo;We don&apos;t believe in simply telling you what to use. We believe in helping you
               understand <strong>WHY, WHEN, HOW — AND WHEN NOT TO USE IT.</strong>&rdquo;
             </p>

@@ -1,249 +1,274 @@
-import ServicePageTemplate from "../../components/ServicePageTemplate";
+import Link from "next/link";
+import GoogleFormLink from "../../components/FormLink";
 
 export const metadata = {
-  title: "Essential Oil Education for Wellness Professionals | Harmony of Cells",
+  title: "For Wellness Professionals | Add Knowledge. Expand Your Toolkit. | Harmony of Cells",
   description:
-    "Professional education in essential oils, responsible application, dilution safety, and aromatic wellness for yoga teachers, coaches, and spa professionals.",
+    "If you already work with people in a wellness setting, understanding essential oils can add another dimension to the experiences you create. Responsible, evidence-informed practitioner education.",
 };
+
+const AUDIENCE_GROUPS = [
+  {
+    title: "Yoga Teachers",
+    description: "Enhance savasana, mindful breathwork (pranayama), and grounding rituals with safe, atmospheric aromatic diffusion and ambient space design.",
+    tag: "Movement & Mind",
+  },
+  {
+    title: "Wellness Coaches",
+    description: "Equip your clients with sensory anchoring tools, evening decompression routines, and practical daily wellness rituals for modern life.",
+    tag: "Lifestyle Integration",
+  },
+  {
+    title: "Therapists & Bodyworkers",
+    description: "Incorporate responsible topical dilution, carrier oil selection, and soothing botanical aromas to deepen client relaxation safely.",
+    tag: "Touch & Calming",
+  },
+  {
+    title: "Spa Professionals",
+    description: "Design memorable sensory arrival rituals, ambient treatment room atmospheres, and compliant essential-oil application standards.",
+    tag: "Hospitality & Spa",
+  },
+  {
+    title: "Retreat Centres & Facilitators",
+    description: "Create immersive nature-based sensory experiences, restorative evening wind-down circles, and grounding breath transitions.",
+    tag: "Retreat Environments",
+  },
+  {
+    title: "Wellness Practitioners",
+    description: "Build deep botanical literacy, evaluate essential oil purity benchmarks, and confidently recommend responsible aromatic habits.",
+    tag: "Holistic Practice",
+  },
+  {
+    title: "Healthcare & Allied-Health Professionals",
+    description: "Selected clinicians and therapists exploring evidence-informed complementary wellness education within strict, non-medical ethical boundaries.",
+    tag: "Complementary Scope",
+  },
+];
+
+const CURRICULUM_TOPICS = [
+  {
+    num: "01",
+    title: "Essential oil fundamentals",
+    description:
+      "Plant botanical origins, harvesting methods, distillation science, chemical constituent classifications, and what makes each essential oil unique.",
+  },
+  {
+    num: "02",
+    title: "Responsible application",
+    description:
+      "Appropriate topical, aromatic, and ambient diffusion methods matched to diverse client sensitivities and physical environments.",
+  },
+  {
+    num: "03",
+    title: "Aromatic experiences",
+    description:
+      "Designing intentional atmospheric spaces, diffusion safety, and olfactory anchoring for group classes, private sessions, and treatment rooms.",
+  },
+  {
+    num: "04",
+    title: "Dilution and safety",
+    description:
+      "Rigorous dilution ratios, carrier oil selection, phototoxicity considerations, patch testing protocols, and special population precautions.",
+  },
+  {
+    num: "05",
+    title: "Client communication",
+    description:
+      "Clear intake frameworks, managing client expectations, transparent sensory descriptions, and obtaining informed client consent.",
+  },
+  {
+    num: "06",
+    title: "Creating wellness rituals",
+    description:
+      "Formulating customized morning awakening, mid-day refocusing, and evening restorative rituals to support client wellbeing goals.",
+  },
+  {
+    num: "07",
+    title: "Professional boundaries",
+    description:
+      "Ethical scope of practice, compliant non-medical language standards, and knowing precisely when to refer clients to qualified medical professionals.",
+  },
+];
 
 export default function ProfessionalsPage() {
   return (
-    <ServicePageTemplate
-      theme="professionals"
-      hero={{
-        eyebrow: "FOR WELLNESS PROFESSIONALS",
-        title: (
-          <>
-            Add knowledge. Expand your toolkit. <em>Stay responsible.</em>
-          </>
-        ),
-        supporting:
-          "Evidence-informed essential-oil education and aromatic practices for yoga teachers, coaches, therapists, and wellness facilitators.",
-        description:
-          "If you already work with people in a wellness setting, understanding botanical essential oils and sensory practices adds a powerful, grounded dimension to your client experiences. Harmony of Cells provides structured professional education focused on botanical science, safe dilution, sensory space design, and ethical client boundaries — without commercial hype or pseudoscientific claims.",
-        primaryCta: {
-          text: "Explore Professional Education",
-          type: "form",
-          formItem: "Wellness Professional Practitioner Pathway",
-          formItemContext: {
-            eyebrow: "PRACTITIONER PATHWAY • ENQUIRY",
-            title: "Professional Education Enquiry",
-            description:
-              "Connect with Richa to discuss practitioner training, advanced essential-oil education, and aromatic rituals for your client practice.",
-            submitLabel: "Submit Professional Enquiry",
-            successTitle: "Your professional enquiry has been submitted successfully.",
-          },
-        },
-        secondaryCta: {
-          text: "View Practitioner Curriculum",
-          href: "/education",
-        },
-        microline: "Yoga Teachers • Coaches • Therapists • Spa Professionals • Retreat Facilitators",
-        announcement: "Botanical Chemistry • Dilution Safety • Scope of Practice • Space Ambience Design",
-        badge: {
-          tag: "PROFESSIONAL TOOLKIT",
-          title: "Responsible application.",
-          sub: "Dilution Standards • Client Ethics",
-        },
-        image: "/assets/hero-image.jpg",
-        imageAlt: "Calm professional wellness studio setting with botanical essences",
-      }}
-      intro={{
-        eyebrow: "ELEVATING PROFESSIONAL PRACTICE",
-        title: "Integrity, science, and responsible boundaries in sensory wellness.",
-        lead:
-          "In a marketplace saturated with exaggerated claims and irresponsible advice, true professionalism is defined by evidence-informed knowledge, precision in dilution, and strict ethical boundaries.",
-        paragraphs: [
-          "Wellness practitioners frequently encounter clients seeking natural ways to decompress, ease tension, and establish evening calm. While botanical aromas offer extraordinary sensory anchoring, using them in a professional setting requires genuine botanical understanding, skin safety protocols, and clear client communication.",
-          "Our professional education pathway is designed to give you rigorous, non-medical botanical knowledge you can incorporate into your existing practice with complete confidence. You will learn not just what oils to select, but why, when, how — and when not to use them.",
-        ],
-        highlightQuote:
-          "Essential oils should complement responsible wellness practice — not replace qualified medical diagnosis or clinical treatment.",
-      }}
-      offerings={{
-        id: "offerings",
-        eyebrow: "PROFESSIONAL CURRICULUM",
-        title: (
-          <>
-            Core competencies for <em>wellness practitioners.</em>
-          </>
-        ),
-        description:
-          "Designed to deepen your botanical understanding and seamlessly integrate into classes, private sessions, and treatment rooms.",
-        items: [
-          {
-            step: "01",
-            tagline: "Botanical Chemistry",
-            title: "Essential Oil Science & Purity",
-            description:
-              "Understanding plant extraction methods, quality and botanical purity testing standards, aroma chemistry classifications, and the authentic science of olfactory pathways.",
-            points: [
-              "Botanical profiles and extraction methods",
-              "Understanding GC/MS testing & purity",
-              "How olfactory cues influence sensory wellbeing",
-            ],
-          },
-          {
-            step: "02",
-            tagline: "Safety Protocols",
-            title: "Responsible Application & Dilution",
-            description:
-              "Responsible dilution principles, carrier oil selection, skin patch testing, phototoxicity considerations, and precautions across diverse client populations.",
-            points: [
-              "Responsible dilution principles and safety protocols",
-              "Carrier oil selection and skin considerations",
-              "Precautions: pregnancy, sensitive skin & medical conditions",
-            ],
-          },
-          {
-            step: "03",
-            tagline: "Studio Ambiance",
-            title: "Aromatic Experiences & Space Design",
-            description:
-              "Integrating olfactory cues into yoga savasana, coaching check-ins, guided meditation, breathwork (pranayama), and massage therapy transitions.",
-            points: [
-              "Room-by-room aromatic profile selection",
-              "Safe passive and ultrasonic diffusion",
-              "Sensory anchoring for mindful movement",
-            ],
-          },
-          {
-            step: "04",
-            tagline: "Somatic Application",
-            title: "AromaTouch & Sensory Rituals",
-            description:
-              "Structured, step-by-step methods for gentle aromatic touch to promote deep relaxation and sensory grounding without claiming medical healing.",
-            points: [
-              "Sequential botanical layering technique",
-              "Gentle, non-invasive tactile touch",
-              "Pre- and post-session client grounding",
-            ],
-          },
-          {
-            step: "05",
-            tagline: "Ethical Practice",
-            title: "Client Communication & Boundaries",
-            description:
-              "Clear intake scripts, informed consent protocols, and ethical guardrails to ensure you communicate benefits accurately without crossing into clinical diagnosis.",
-            points: [
-              "Informed consent and client intake forms",
-              "Compliant non-medical language guidelines",
-              "Knowing when to refer to medical professionals",
-            ],
-          },
-          {
-            step: "06",
-            tagline: "Structured Pathway",
-            title: "Tiered Practitioner Training Pathways",
-            description:
-              "A progressive 3-tier education framework taking you from essential oil foundations to advanced practitioner application and bespoke workshop facilitation.",
-            points: [
-              "Foundations to advanced practitioner modules",
-              "Hands-on blending and application labs",
-              "Peer community and ongoing mentorship",
-            ],
-          },
-        ],
-      }}
-      howItWorks={{
-        id: "how-it-works",
-        eyebrow: "PRACTITIONER CURRICULUM JOURNEY",
-        title: (
-          <>
-            How the professional <em>learning pathway works.</em>
-          </>
-        ),
-        description:
-          "Rigorous, non-medical training designed to integrate safely into classes, clinics, and private client sessions.",
-        steps: [
-          {
-            num: "01",
-            title: "Modality Assessment & Scope Alignment",
-            description:
-              "We evaluate your current practice (yoga, coaching, bodywork) to identify appropriate sensory touchpoints within ethical non-medical boundaries.",
-            highlight: "Scope Rigour",
-          },
-          {
-            num: "02",
-            title: "Botanical Chemistry & Dilution Standards",
-            description:
-              "Master essential oil constituent profiles, phototoxicity charts, carrier oil ratios, and strict skin patch testing protocols.",
-            highlight: "Safety Mastery",
-          },
-          {
-            num: "03",
-            title: "Sensory Anchoring & Session Architecture",
-            description:
-              "Learn practical techniques to blend breath, ambient scent diffusion, and grounding rituals that enhance client presence.",
-            highlight: "Client Experience",
-          },
-          {
-            num: "04",
-            title: "Informed Consent & Client Communication",
-            description:
-              "Receive intake questionnaires, contraindication checklists, and communication guidelines that protect your professional reputation.",
-            highlight: "Professional Ethics",
-          },
-        ],
-      }}
-      founderCredibility={{
-        eyebrow: "PRACTITIONER MENTORSHIP",
-        title: "Mentored by Richa Ramola.",
-        paragraphs: [
-          "Richa Ramola guides wellness practitioners, corporate professionals, and educators in adopting responsible nature-based wellness practices.",
-          "Her mentoring emphasizes rigorous compliance, botanical accuracy, and practical business ethics. She teaches practitioners how to build sustainable, high-integrity offerings without relying on exaggerated claims or unscientific fads.",
-        ],
-        quote:
-          "When you operate from truth, deep botanical knowledge, and genuine client care, your professional credibility speaks for itself.",
-        ctaText: "Inquire About Practitioner Mentoring",
-        formItem: "Practitioner Mentoring with Richa",
-        formItemContext: {
-          eyebrow: "PRACTITIONER MENTORING",
-          title: "Inquire with Richa Ramola",
-          description:
-            "Share your professional background and areas of interest. Richa will connect with you to discuss practitioner education pathways and mentoring.",
-          submitLabel: "Request Mentoring Information",
-        },
-      }}
-      disclaimer={{
-        tag: "COMPLIANCE & CREDENTIAL NOTICE",
-        title: "Professional Education & Scope of Practice",
-        text:
-          "Harmony of Cells education courses provide advanced educational enrichment, practical aromatherapy knowledge, and responsible application protocols to complement existing wellness disciplines. Our courses do not confer a licensed medical qualification, clinical healthcare license, or statutory board certification. Essential oils must always be used within your professional scope of practice and must never be represented as medical diagnosis, clinical treatment, or a replacement for medical care.",
-      }}
-      ctaSection={{
-        id: "professional-inquiry",
-        eyebrow: "EXPAND YOUR PROFESSIONAL TOOLKIT",
-        title: (
-          <>
-            Elevate your client practice with <em>botanical integrity.</em>
-          </>
-        ),
-        description:
-          "Join our next professional cohort or connect with Richa Ramola to explore tailored practitioner training for your team or studio.",
-        points: [
-          "Comprehensive botanical chemistry and dilution protocols",
-          "Ethical client communication scripts and consent templates",
-          "Turnkey aromatic rituals for yoga, coaching, and bodywork",
-          "Direct access to ongoing mentoring and educational updates",
-        ],
-        primaryCta: {
-          text: "Inquire for Professional Pathway",
-          formItem: "Professional Education Pathway",
-          formItemContext: {
-            eyebrow: "PRACTITIONER PATHWAY • ENQUIRY",
-            title: "Professional Education Enquiry",
-            description:
-              "Share your professional practice details. We will share upcoming course dates, curriculum modules, and enrollment details.",
-            submitLabel: "Submit Professional Enquiry",
-          },
-        },
-        secondaryCta: {
-          text: "View 3-Tier Curriculum",
-          href: "/education",
-        },
-        showContactLinks: true,
-      }}
-    />
+    <main className="professionals-page">
+      {/* 1. HERO SECTION */}
+      <section className="hero service-hero professionals-hero" id="top">
+        <div className="hero-decoration hero-decoration-one" />
+        <div className="hero-decoration hero-decoration-two" />
+
+        <div className="container hero-grid">
+          <div className="hero-content">
+            <span className="eyebrow">FOR WELLNESS PROFESSIONALS</span>
+            <h1>
+              Add knowledge. Expand your toolkit. <em>Stay responsible.</em>
+            </h1>
+            <p className="hero-supporting-title">
+              If you already work with people in a wellness setting, understanding essential oils can add another dimension to the experiences you create.
+            </p>
+            <p className="hero-description">
+              At Harmony of Cells, we help practitioners understand the science, safety, and sensory art of pure essential oils — empowering you to incorporate aromatherapy education into your practice with total integrity and clear boundaries.
+            </p>
+
+            <div className="hero-actions">
+              <GoogleFormLink
+                type="course"
+                item="Explore Professional Education — Practitioner Pathway"
+                className="btn btn-primary"
+              >
+                Explore Professional Education <span>→</span>
+              </GoogleFormLink>
+              <a href="#topics" className="btn btn-outline hero-secondary-btn">
+                View Topics <span>↓</span>
+              </a>
+            </div>
+
+            <div className="hero-note">
+              <span className="note-icon">✦</span>
+              <p>Evidence-informed botanical education • Dilution safety • Non-medical scope.</p>
+            </div>
+          </div>
+
+          <div className="hero-visual">
+            <div className="hero-image-wrapper">
+              <img
+                src="/assets/hero-image.jpg"
+                alt="Wellness practitioner setting with botanical essential oils"
+                className="hero-image"
+              />
+              <div className="hero-image-card">
+                <span className="mini-label">PRACTITIONER STANDARD</span>
+                <strong>Add knowledge. Stay responsible.</strong>
+                <small>Complementary Wellness Education</small>
+              </div>
+            </div>
+            <div className="floating-badge">
+              <span>✦</span>
+              <small>
+                WELLNESS<br />
+                EXPERTS
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div className="container announcement-container">
+          <div className="announcement">
+            <span className="announcement-symbol">✦</span>
+            <span>
+              Yoga Teachers • Wellness Coaches • Therapists • Spa Professionals • Retreat Centres • Practitioners
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. AUDIENCE SECTION */}
+      <section className="section professionals-audience-section" id="audience">
+        <div className="container">
+          <div className="section-heading text-center max-w-3xl mx-auto">
+            <span className="eyebrow">TARGET AUDIENCE</span>
+            <h2>Designed for wellness leaders &amp; practitioners.</h2>
+            <p className="section-lead">
+              <strong>Audience:</strong> Yoga teachers; wellness coaches; therapists; spa professionals; retreat centres; wellness practitioners; selected healthcare and allied-health professionals interested in complementary wellness education.
+            </p>
+          </div>
+
+          <div className="professionals-audience-grid">
+            {AUDIENCE_GROUPS.map((aud, idx) => (
+              <article key={idx} className="professionals-audience-card">
+                <span className="audience-tag">{aud.tag}</span>
+                <h3>{aud.title}</h3>
+                <p>{aud.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. TOPICS SECTION */}
+      <section className="section professionals-topics-section" id="topics">
+        <div className="container">
+          <div className="section-heading text-center max-w-3xl mx-auto">
+            <span className="eyebrow">CURRICULUM AREAS</span>
+            <h2>Topics</h2>
+            <p className="section-lead">
+              A comprehensive curriculum designed to help you understand essential oils deeply, use them safely, and build meaningful sensory wellness rituals for your clients.
+            </p>
+          </div>
+
+          <div className="professionals-topics-grid">
+            {CURRICULUM_TOPICS.map((topic) => (
+              <article key={topic.num} className="professionals-topic-card">
+                <div className="topic-card-header">
+                  <span className="topic-num">{topic.num}</span>
+                  <span className="topic-badge">CORE TOPIC</span>
+                </div>
+                <h3>{topic.title}</h3>
+                <p>{topic.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. PRINCIPLE BANNER */}
+      <section className="section professionals-principle-section" id="principle">
+        <div className="container">
+          <div className="quote-banner professional-principle-banner">
+            <p className="quote-text">
+              &ldquo;<strong>Principle:</strong> Essential oils should complement responsible wellness practice — not replace qualified medical care.&rdquo;
+            </p>
+          </div>
+
+          <div className="method-disclaimer-box" role="note">
+            <div className="disclaimer-icon-wrap">
+              <span className="disclaimer-badge">CREDENTIAL &amp; ETHICS NOTICE</span>
+            </div>
+            <div className="disclaimer-content">
+              <strong>Scope of Practice &amp; Complementary Standard</strong>
+              <p>
+                Harmony of Cells professional courses provide non-clinical educational enrichment, sensory training, and responsible application protocols. They do not confer a licensed medical credential, clinical healthcare license, or statutory board certification. Essential oils must always be used within your professional scope of practice and must never be represented as medical diagnosis, clinical treatment, or a replacement for medical care.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. FINAL CTA SECTION */}
+      <section className="section consultation-section professionals-final-cta-section" id="explore-education">
+        <div className="container">
+          <div className="consultation-wrapper">
+            <div className="consultation-content">
+              <span className="eyebrow">PRACTITIONER PATHWAY</span>
+              <h2>Explore Professional Education</h2>
+              <p className="section-lead">
+                If you already work with people in a wellness setting, understanding essential oils can add another dimension to the experiences you create. Join our next practitioner cohort or connect with Founder Richa Ramola for mentoring.
+              </p>
+
+              <div className="consultation-points">
+                <span>✓ 7 core professional curriculum topics</span>
+                <span>✓ Responsible dilution principles &amp; client safety</span>
+                <span>✓ Mentorship and practical coaching from Founder Richa Ramola</span>
+                <span>✓ Connected to our Level 3 Education Framework</span>
+              </div>
+
+              <div className="consultation-cta-group">
+                <GoogleFormLink
+                  type="course"
+                  item="Explore Professional Education — Practitioner Pathway"
+                  className="btn btn-primary cta-btn-large"
+                >
+                  Explore Professional Education <span>→</span>
+                </GoogleFormLink>
+                <Link href="/education#level-3" className="btn btn-outline cta-btn-secondary">
+                  View Level 3 in Education <span>→</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

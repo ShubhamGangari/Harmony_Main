@@ -5488,7 +5488,8 @@ blockquote {
 }
 
 /* Signature Quote Banner */
-.signature-quote-banner {
+.signature-quote-banner,
+.quote-banner {
   margin-top: 48px;
   padding: 36px 32px;
   background: linear-gradient(135deg, rgba(78, 107, 67, 0.12), rgba(78, 107, 67, 0.04));
@@ -5497,7 +5498,8 @@ blockquote {
   text-align: center;
 }
 
-.signature-quote-text {
+.signature-quote-text,
+.quote-text {
   font-family: var(--font-serif), "Playfair Display", Georgia, serif;
   font-size: clamp(1.2rem, 1.8vw, 1.6rem);
   line-height: 1.45;
@@ -5506,7 +5508,8 @@ blockquote {
   font-style: italic;
 }
 
-.signature-quote-text strong {
+.signature-quote-text strong,
+.quote-text strong {
   font-style: normal;
   letter-spacing: 0.02em;
 }
@@ -10631,4 +10634,250 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ==========================================================================
+   CORPORATE WELLNESS & PROFESSIONALS PAGES STYLING
+   ========================================================================== */
+
+/* Corporate Offerings Grid */
+.corporate-offerings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.corporate-offering-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white, #ffffff);
+  border: 1.5px solid rgba(78, 107, 67, 0.16);
+  border-radius: 24px;
+  padding: 32px 28px;
+  box-shadow: 0 4px 20px rgba(35, 48, 30, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.corporate-offering-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--green, #4e6b43);
+  box-shadow: 0 12px 32px rgba(35, 48, 30, 0.08);
+}
+
+.offering-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.offering-card-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: rgba(78, 107, 67, 0.1);
+  color: var(--green-dark, #3b5232);
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.offering-card-tagline {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-dark, #3b5232);
+}
+
+.corporate-offering-card h3 {
+  font-size: 1.35rem;
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  color: var(--charcoal, #222222);
+  margin: 0 0 12px;
+  line-height: 1.3;
+}
+
+.offering-card-description {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #455243;
+  margin: 0 0 20px;
+}
+
+.offering-points-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.offering-points-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #3f4e3c;
+}
+
+.offering-card-footer {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid rgba(78, 107, 67, 0.12);
+}
+
+.offering-cta-btn {
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Why Corporate Section */
+.corporate-quote-banner {
+  margin: 40px auto 52px;
+  max-width: 900px;
+}
+
+.corporate-founder-grid {
+  margin-top: 40px;
+}
+
+/* Professionals Audience Grid */
+.professionals-audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+  margin-top: 48px;
+}
+
+.professionals-audience-card {
+  padding: 28px 24px;
+  background: var(--white, #ffffff);
+  border: 1.5px solid rgba(78, 107, 67, 0.14);
+  border-radius: 20px;
+  box-shadow: 0 4px 18px rgba(35, 48, 30, 0.04);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.professionals-audience-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--green, #4e6b43);
+}
+
+.professionals-audience-card h3 {
+  font-size: 1.25rem;
+  color: var(--charcoal, #222222);
+  margin: 0 0 10px;
+  line-height: 1.25;
+}
+
+.professionals-audience-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #526050;
+  margin: 0;
+}
+
+/* Professionals Topics Grid */
+.professionals-topics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.professionals-topic-card {
+  padding: 28px 24px;
+  background: var(--white, #ffffff);
+  border: 1.5px solid rgba(78, 107, 67, 0.14);
+  border-radius: 20px;
+  box-shadow: 0 4px 18px rgba(35, 48, 30, 0.04);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.professionals-topic-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--green, #4e6b43);
+}
+
+.topic-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.topic-num {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--green, #4e6b43);
+}
+
+.topic-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(78, 107, 67, 0.1);
+  color: var(--green-dark, #3b5232);
+}
+
+.professionals-topic-card h3 {
+  font-size: 1.2rem;
+  color: var(--charcoal, #222222);
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+
+.professionals-topic-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #526050;
+  margin: 0;
+}
+
+/* Professional Principle Banner */
+.professional-principle-banner {
+  margin: 40px auto;
+  max-width: 900px;
+}
+
+/* CTA Buttons Styling */
+.cta-btn-large {
+  padding: 16px 32px;
+  font-size: 1rem;
+}
+
+.cta-btn-secondary {
+  padding: 16px 28px;
+  font-size: 1rem;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .corporate-offerings-grid,
+  .professionals-topics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .corporate-offerings-grid,
+  .professionals-topics-grid,
+  .professionals-audience-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 
