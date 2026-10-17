@@ -145,8 +145,8 @@ export default function EducationPage() {
           </div>
 
           <div className="education-levels-grid">
-            {EDUCATION_LEVELS.map((tier) => (
-              <article key={tier.level} className="education-tier-card">
+            {EDUCATION_LEVELS.map((tier, idx) => (
+              <article key={tier.level} className={`education-tier-card tier-tier-${idx + 1}`}>
                 <div className="tier-card-header">
                   <span className="tier-badge">{tier.level}</span>
                   <span className="tier-tagline">{tier.tagline}</span>
@@ -158,8 +158,8 @@ export default function EducationPage() {
                 <div className="tier-curriculum-box">
                   <span className="tier-curriculum-label">Curriculum Highlights:</span>
                   <ul className="tier-curriculum-list">
-                    {tier.topics.map((topic, idx) => (
-                      <li key={idx}>
+                    {tier.topics.map((topic, pIdx) => (
+                      <li key={pIdx}>
                         <span className="bullet-icon">✦</span>
                         <span>{topic}</span>
                       </li>
@@ -171,7 +171,12 @@ export default function EducationPage() {
                   <div className="tier-audience">
                     <strong>Audience:</strong> {tier.audience}
                   </div>
-                  <span className="tier-status-pill">{tier.status}</span>
+                  <div className="tier-footer-row">
+                    <span className="tier-status-pill">{tier.status}</span>
+                    <a href="#active-courses" className="tier-jump-link">
+                      View Courses <span>↓</span>
+                    </a>
+                  </div>
                 </div>
               </article>
             ))}

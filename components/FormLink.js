@@ -558,7 +558,11 @@ function CustomFormModal({
                 >
                   <label htmlFor={fieldId}>
                     {field.label}
-                    {field.required ? " *" : ""}
+                    {field.required ? (
+                      <span className="required-indicator" title="Required field" aria-hidden="true">
+                        {" "}*
+                      </span>
+                    ) : null}
                   </label>
 
                   {field.type === "textarea" ? (
@@ -653,12 +657,10 @@ function CustomFormModal({
             })}
 
             {error ? (
-              <p
-                className="custom-form-error"
-                role="alert"
-              >
-                {error}
-              </p>
+              <div className="custom-form-error-box" role="alert">
+                <span className="error-icon" aria-hidden="true">⚠️</span>
+                <p className="custom-form-error">{error}</p>
+              </div>
             ) : null}
 
             <button
@@ -666,9 +668,15 @@ function CustomFormModal({
               className="btn btn-primary custom-form-submit"
               disabled={status === "submitting"}
             >
-              {status === "submitting"
-                ? "Submitting..."
-                : copy.submitLabel}
+              {status === "submitting" ? (
+                <>
+                  <span className="spinner-dot" aria-hidden="true">●</span> Submitting your enquiry...
+                </>
+              ) : (
+                <>
+                  {copy.submitLabel} <span>→</span>
+                </>
+              )}
             </button>
           </form>
         )}

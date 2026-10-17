@@ -9,6 +9,7 @@ export const metadata = {
 export default function IndividualsPage() {
   return (
     <ServicePageTemplate
+      theme="individuals"
       hero={{
         eyebrow: "PERSONAL LIFESTYLE WELLNESS • FOR INDIVIDUALS",
         title: (
@@ -38,6 +39,7 @@ export default function IndividualsPage() {
           href: "#offerings",
         },
         microline: "Learn. Understand. Apply. • Personal educational guidance.",
+        announcement: "Personalized Routines • Sleep Wind-Down • Stress Micro-Pauses • Sensory Self-Care",
         badge: {
           tag: "FOR INDIVIDUALS",
           title: "Calm daily rhythms.",

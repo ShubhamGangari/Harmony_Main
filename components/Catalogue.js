@@ -658,19 +658,18 @@
           </div>
         ) : (
           <div className="no-results">
-            <strong>No products found.</strong>
-
-            <p>Try clearing your search query or selecting another category.</p>
-
+            <span className="no-results-icon" aria-hidden="true">🌿</span>
+            <strong>No products match your criteria.</strong>
+            <p>Try clearing your search query or selecting a different category above.</p>
             <button
               type="button"
-              className="clear-search-button"
+              className="btn btn-outline clear-search-button"
               onClick={() => {
                 setQuery("");
                 setActiveCategory("All");
               }}
             >
-              Reset filters
+              Reset filters & search <span>→</span>
             </button>
           </div>
         )}

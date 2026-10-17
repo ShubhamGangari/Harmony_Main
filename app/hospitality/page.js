@@ -9,6 +9,7 @@ export const metadata = {
 export default function HospitalityPage() {
   return (
     <ServicePageTemplate
+      theme="hospitality"
       hero={{
         eyebrow: "SENSORY WELLNESS FOR SPACES",
         title: (
@@ -38,6 +39,7 @@ export default function HospitalityPage() {
           href: "#offerings",
         },
         microline: "Spas • Yoga & Pilates Studios • Retreats • Wellness Centres",
+        announcement: "Bespoke Ambient Concepts • Multi-Sensory Guest Journeys • Staff Training • Non-Synthetic Integrity",
         badge: {
           tag: "SENSORY SPACE DESIGN",
           title: "Bespoke ambient concepts.",

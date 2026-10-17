@@ -3,6 +3,7 @@ import GoogleFormLink from "./FormLink";
 import FounderVisual from "./FounderVisual";
 
 export default function ServicePageTemplate({
+  theme = "general",
   hero,
   intro,
   offerings,
@@ -12,7 +13,7 @@ export default function ServicePageTemplate({
   ctaSection,
 }) {
   return (
-    <main className="service-page-main">
+    <main className={`service-page-main service-theme-${theme}`}>
       {/* 1. HERO SECTION */}
       <section className="hero service-hero" id="top">
         <div className="hero-decoration hero-decoration-one" />
@@ -85,6 +86,15 @@ export default function ServicePageTemplate({
             </div>
           </div>
         </div>
+
+        {hero.announcement && (
+          <div className="container announcement-container">
+            <div className="announcement">
+              <span className="announcement-symbol">✦</span>
+              <span>{hero.announcement}</span>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* 2. INTRODUCTORY CONTEXT & PHILOSOPHY */}
@@ -104,7 +114,7 @@ export default function ServicePageTemplate({
 
               {intro.highlightQuote && (
                 <blockquote className="service-highlight-quote">
-                  "{intro.highlightQuote}"
+                  &ldquo;{intro.highlightQuote}&rdquo;
                 </blockquote>
               )}
             </div>
@@ -114,19 +124,20 @@ export default function ServicePageTemplate({
 
       {/* 3. CORE OFFERINGS / PILLARS GRID */}
       {offerings && (
-        <section className="section service-offerings-section" id={offerings.id || "offerings"}>
+        <section className={`section service-offerings-section section-theme-${theme}`} id={offerings.id || "offerings"}>
           <div className="container">
-            <div className="section-heading">
+            <div className="section-heading text-center">
               {offerings.eyebrow && <span className="eyebrow">{offerings.eyebrow}</span>}
               <h2>{offerings.title}</h2>
-              {offerings.description && <p>{offerings.description}</p>}
+              {offerings.description && <p className="section-lead">{offerings.description}</p>}
             </div>
 
-            <div className="service-offerings-grid">
+            <div className={`service-offerings-grid ${offerings.layout ? `layout-${offerings.layout}` : ""}`}>
               {offerings.items?.map((item, idx) => (
-                <article key={idx} className="service-offering-card">
+                <article key={idx} className={`service-offering-card ${item.highlight ? "card-highlight" : ""}`}>
                   <div className="service-card-top">
                     {item.step && <span className="service-card-step">{item.step}</span>}
+                    {item.icon && <span className="service-card-icon" aria-hidden="true">{item.icon}</span>}
                     {item.tagline && <span className="service-card-tagline">{item.tagline}</span>}
                   </div>
                   <h3>{item.title}</h3>
@@ -135,9 +146,30 @@ export default function ServicePageTemplate({
                   {item.points && (
                     <ul className="service-card-points">
                       {item.points.map((pt, pIdx) => (
-                        <li key={pIdx}>✓ {pt}</li>
+                        <li key={pIdx}>
+                          <span className="point-bullet" aria-hidden="true">✓</span>
+                          <span>{pt}</span>
+                        </li>
                       ))}
                     </ul>
+                  )}
+
+                  {item.action && (
+                    <div className="service-card-action">
+                      {item.action.type === "form" ? (
+                        <GoogleFormLink
+                          type="consultation"
+                          item={item.action.formItem || item.title}
+                          className="service-card-link"
+                        >
+                          {item.action.text || "Enquire About This"} <span>→</span>
+                        </GoogleFormLink>
+                      ) : (
+                        <Link href={item.action.href || "#contact"} className="service-card-link">
+                          {item.action.text || "Learn More"} <span>→</span>
+                        </Link>
+                      )}
+                    </div>
                   )}
                 </article>
               ))}
@@ -150,16 +182,16 @@ export default function ServicePageTemplate({
       {audiences && (
         <section className="section service-audiences-section" id={audiences.id || "audiences"}>
           <div className="container">
-            <div className="section-heading">
+            <div className="section-heading text-center">
               {audiences.eyebrow && <span className="eyebrow">{audiences.eyebrow}</span>}
               <h2>{audiences.title}</h2>
-              {audiences.description && <p>{audiences.description}</p>}
+              {audiences.description && <p className="section-lead">{audiences.description}</p>}
             </div>
 
             <div className="service-audiences-grid">
               {audiences.items?.map((aud, idx) => (
                 <div key={idx} className="service-audience-card">
-                  <span className="pathway-tag">{aud.tag}</span>
+                  {aud.tag && <span className="pathway-tag">{aud.tag}</span>}
                   <h3>{aud.title}</h3>
                   <p>{aud.description}</p>
                 </div>
@@ -184,7 +216,7 @@ export default function ServicePageTemplate({
               ))}
 
               {founderCredibility.quote && (
-                <blockquote>“{founderCredibility.quote}”</blockquote>
+                <blockquote>&ldquo;{founderCredibility.quote}&rdquo;</blockquote>
               )}
 
               <div className="founder-actions">

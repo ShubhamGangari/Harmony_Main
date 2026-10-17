@@ -9,6 +9,7 @@ export const metadata = {
 export default function ProfessionalsPage() {
   return (
     <ServicePageTemplate
+      theme="professionals"
       hero={{
         eyebrow: "FOR WELLNESS PROFESSIONALS",
         title: (
@@ -38,6 +39,7 @@ export default function ProfessionalsPage() {
           href: "/education",
         },
         microline: "Yoga Teachers • Coaches • Therapists • Spa Professionals • Retreat Facilitators",
+        announcement: "Botanical Chemistry • Dilution Safety • Scope of Practice • Space Ambience Design",
         badge: {
           tag: "PROFESSIONAL TOOLKIT",
           title: "Responsible application.",

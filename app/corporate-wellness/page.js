@@ -9,6 +9,7 @@ export const metadata = {
 export default function CorporateWellnessPage() {
   return (
     <ServicePageTemplate
+      theme="corporate"
       hero={{
         eyebrow: "WORKPLACE PREVENTIVE WELLNESS",
         title: (
@@ -38,6 +39,7 @@ export default function CorporateWellnessPage() {
           href: "#offerings",
         },
         microline: "HR Leaders • Founders • CXOs • Corporate Wellness Teams",
+        announcement: "Executive Resilience • Sensory Workspace Design • Lunch & Learn Workshops • Desk Micro-Resets",
         badge: {
           tag: "WORKPLACE WELLNESS",
           title: "Sustainable team resilience.",
@@ -60,6 +62,7 @@ export default function CorporateWellnessPage() {
       }}
       offerings={{
         id: "offerings",
+        layout: "modular",
         eyebrow: "PROGRAM PILLARS",
         title: (
           <>
