@@ -69,48 +69,108 @@ const DISCOVER_PATHWAYS = [
   },
 ];
 
-const GATEWAY_ENTRY_POINTS = [
+const APPROACHED_DIFFERENTLY_PILLARS = [
   {
-    tag: "WELLNESS EDUCATION",
-    badgeClass: "entry-badge-edu",
-    title: "Evidence-Informed Learning",
+    icon: "🌿",
+    title: "Botanical knowledge",
     description:
-      "Explore our 3-tier education framework: Foundations, Daily Integration, and Professional Practice. Build knowledge you can use safely and responsibly.",
-    points: [
-      "Botanical chemistry & dilution safety",
-      "Evening sleep & nervous system wind-down",
-      "Professional practitioner curriculum",
-    ],
-    linkText: "Explore Wellness Education",
+      "Understanding where oils come from, how they are produced and what makes each one unique.",
+  },
+  {
+    icon: "📖",
+    title: "Practical education",
+    description:
+      "Learning how oils can be incorporated into everyday rituals and wellness practices.",
+  },
+  {
+    icon: "💧",
+    title: "Responsible use",
+    description:
+      "Understanding dilution, application, individual considerations and appropriate precautions.",
+  },
+  {
+    icon: "🔬",
+    title: "Evidence-informed thinking",
+    description:
+      "Exploring what research tells us — while being transparent about what it does not.",
+  },
+];
+
+const FEATURED_OILS = [
+  {
+    name: "Lavender",
+    tag: "CALM & RESTORATION",
+    aroma: "Soft • Floral • Herbaceous",
+    context:
+      "A comforting aroma chosen for evening wind-down, mindful breathing, and tranquil home spaces.",
+    badgeClass: "oil-badge-lavender",
+  },
+  {
+    name: "Peppermint",
+    tag: "FOCUS & VITALITY",
+    aroma: "Fresh • Cooling • Invigorating",
+    context:
+      "Crisp and revitalizing, ideal for daytime focus rituals, clear breathing, and afternoon refreshment.",
+    badgeClass: "oil-badge-peppermint",
+  },
+  {
+    name: "Frankincense",
+    tag: "GROUNDING & CENTERING",
+    aroma: "Resinous • Grounding • Rich",
+    context:
+      "A deeply grounding botanical aroma for meditation, reflective pauses, and quiet stillness.",
+    badgeClass: "oil-badge-frankincense",
+  },
+  {
+    name: "Wild Orange",
+    tag: "UPLIFT & RADIANCE",
+    aroma: "Bright • Citrus • Uplifting",
+    context:
+      "Energizing citrus brightness to uplift the senses, brighten morning routines, and enliven your room.",
+    badgeClass: "oil-badge-orange",
+  },
+];
+
+const WELLNESS_TOUCHPOINTS = [
+  {
+    icon: "📖",
+    step: "01",
+    title: "EDUCATION",
+    description: "Learn essential-oil fundamentals and responsible application.",
+    linkText: "Explore Education",
     href: "/education",
   },
   {
-    tag: "SIGNATURE BOTANICALS",
-    badgeClass: "entry-badge-oils",
-    title: "Essential Oils as Sensory Anchors",
-    description:
-      "Discover pure botanical extracts curated as intentional sensory anchors for mindful breathing, evening routines, and calming spaces.",
-    points: [
-      "Aroma profile & usage guidance",
-      "Zero health claims; sensory focus",
-      "Dedicated inquiry & WhatsApp ordering",
-    ],
-    linkText: "Explore Botanical Collection",
-    href: "/products",
+    icon: "✨",
+    step: "02",
+    title: "EXPERIENCES",
+    description: "Participate in workshops, sensory wellness experiences and retreats.",
+    linkText: "Explore Experiences",
+    href: "/education",
   },
   {
-    tag: "PERSONAL GUIDANCE",
-    badgeClass: "entry-badge-consult",
-    title: "1-on-1 Lifestyle Consultations",
-    description:
-      "Sometimes you don't need more information — you need someone to help you make sense of it. Connect with Richa Ramola for personalized guidance.",
-    points: [
-      "Personalized daily rhythm assessment",
-      "Tailored botanical & aromatic rituals",
-      "Responsible, non-medical self-care",
-    ],
-    linkText: "About Consultations",
+    icon: "🌿",
+    step: "03",
+    title: "CONSULTATION",
+    description: "Receive personalised guidance for your wellness journey.",
+    linkText: "Book Consultation",
     href: "/consultation",
+  },
+  {
+    icon: "🎓",
+    step: "04",
+    title: "PROFESSIONAL PRACTICE",
+    description: "Build knowledge that can complement your existing wellness practice.",
+    linkText: "For Professionals",
+    href: "/professionals",
+  },
+  {
+    icon: "🏛️",
+    step: "05",
+    title: "CORPORATE WELLNESS",
+    description: "Bring practical wellbeing education into organisations.",
+    linkText: "Workplace Wellness",
+    href: "/corporate-wellness",
   },
 ];
 
@@ -238,151 +298,217 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. ABOUT THE FOUNDER & CREDIBILITY */}
-      <section className="section founder-section" id="founder">
-        <div className="container founder-grid">
-          <FounderVisual />
-
-          <div className="founder-copy">
-            <p className="eyebrow">ABOUT THE FOUNDER</p>
-            <h2>
-              Bridging corporate leadership with <em>people-centred wellness.</em>
-            </h2>
-            <p>
-              <strong>Richa Ramola</strong> is the Founder of Harmony of Cells and a Wellness
-              Educator with a mission to make nervous-system wellbeing and nature-based self-care
-              practical, responsible, and accessible.
-            </p>
-            <p>
-              With nearly three decades of leadership experience in Human Resources and Business
-              Operations across multinational organisations, Richa brings a rare, people-centred
-              corporate perspective to wellness. Having navigated the relentless demands of high-performance
-              workplaces firsthand, she understands both sides: the realities of corporate stress and the
-              profound need for sustainable rest and recovery practices.
-            </p>
-            <p>
-              Today, she combines her leadership background with comprehensive education in essential
-              oils, aromatherapy, and sensory wellness — bridging <strong>Workplace Preventive Wellness</strong> with
-              individual education, practitioner mentoring, and bespoke hospitality concepts.
-            </p>
-            <blockquote className="founder-quote">
-              <span className="founder-quote-glyph" aria-hidden="true">“</span>
-              <p>
-                Education, purity, and small daily rituals come together to create healthier,
-                more empowered lives and workplaces — one conscious pause at a time.
-              </p>
-            </blockquote>
-            <div className="founder-actions">
-              <GoogleFormLink type="consultation" className="btn btn-primary">
-                Connect with Richa <span>→</span>
-              </GoogleFormLink>
-              <Link href="/education" className="outline-link">
-                Explore Her Education Programs <span>→</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. EDUCATION, ESSENTIAL OILS & CONSULTATION ENTRY POINTS */}
-      <section className="section bg-cream-soft home-gateway-section" id="gateways">
+      {/* 4. ESSENTIAL OILS, APPROACHED DIFFERENTLY */}
+      <section className="section bg-cream-soft approached-section" id="approached-differently">
         <div className="container">
-          <div className="section-heading text-center">
-            <span className="eyebrow">DISCOVER HARMONY OF CELLS</span>
+          <div className="section-heading text-center max-w-3xl mx-auto">
+            <span className="eyebrow">OUR BOTANICAL PHILOSOPHY</span>
             <h2>
-              Three ways to <em>experience our platform.</em>
+              Essential oils, <em>approached differently.</em>
             </h2>
             <p className="section-lead">
-              Grounded knowledge, authentic botanicals, and personalized guidance for your wellness journey.
+              Essential oils are highly concentrated botanical extracts. We believe they deserve both appreciation and respect.
             </p>
           </div>
 
-          <div className="home-gateway-grid">
-            {GATEWAY_ENTRY_POINTS.map((gateway, idx) => (
-              <article key={idx} className="gateway-card">
-                <div className="gateway-card-header">
-                  <span className={`gateway-tag ${gateway.badgeClass}`}>{gateway.tag}</span>
-                  <h3>{gateway.title}</h3>
-                </div>
-                <p className="gateway-description">{gateway.description}</p>
-                <ul className="gateway-points">
-                  {gateway.points.map((pt, pIdx) => (
-                    <li key={pIdx}>
-                      <span className="gateway-bullet" aria-hidden="true">✓</span>
-                      <span>{pt}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="gateway-card-footer">
-                  <Link href={gateway.href} className="btn btn-outline gateway-cta-btn">
-                    {gateway.linkText} <span>→</span>
-                  </Link>
-                </div>
-              </article>
+          <div className="approached-grid">
+            {APPROACHED_DIFFERENTLY_PILLARS.map((pillar, idx) => (
+              <div key={idx} className="approached-card">
+                <span className="approached-icon" aria-hidden="true">{pillar.icon}</span>
+                <h3>{pillar.title}</h3>
+                <p>{pillar.description}</p>
+              </div>
             ))}
+          </div>
+
+          <div className="text-center approached-action">
+            <Link href="/education" className="btn btn-primary">
+              Explore Essential Oil Education <span>→</span>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* 7. STRONG FINAL CONVERSION CTA */}
-      <section className="section consultation-section" id="final-cta">
+      {/* 5. EXPLORE OUR ESSENTIAL OILS */}
+      <section className="section explore-oils-section" id="featured-oils">
         <div className="container">
-          <div className="consultation-wrapper">
-            <div className="consultation-content">
-              <span className="eyebrow">YOUR WELLNESS JOURNEY</span>
+          <div className="section-heading text-center max-w-3xl mx-auto">
+            <span className="eyebrow">THE ESSENTIAL COLLECTION</span>
+            <h2>
+              Explore our <em>essential oils.</em>
+            </h2>
+            <p className="section-lead">
+              From single botanical oils to carefully selected blends, discover products that can become part of your personal wellness rituals.
+            </p>
+          </div>
+
+          <div className="featured-oils-grid">
+            {FEATURED_OILS.map((oil, idx) => (
+              <div key={idx} className="featured-oil-card">
+                <div className="featured-oil-top">
+                  <span className={`featured-oil-badge ${oil.badgeClass}`}>{oil.tag}</span>
+                  <h3>{oil.name}</h3>
+                  <p className="oil-aroma-line">
+                    <span className="aroma-label">Aroma:</span> {oil.aroma}
+                  </p>
+                </div>
+                <p className="oil-context">{oil.context}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="explore-oils-footer text-center">
+            <div className="explore-oils-action">
+              <Link href="/products" className="btn btn-primary">
+                Explore the Collection <span>→</span>
+              </Link>
+            </div>
+            <p className="explore-oils-microcopy">
+              <span className="microcopy-glyph" aria-hidden="true">✦</span>
+              Product descriptions focus on aroma, usage context and responsible wellness applications rather than medical outcomes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. PERSONAL GUIDANCE */}
+      <section className="section bg-cream-soft personal-guidance-section" id="guidance">
+        <div className="container">
+          <div className="personal-guidance-wrapper">
+            <div className="personal-guidance-content">
+              <span className="eyebrow">ONE-TO-ONE SUPPORT</span>
               <h2>
-                Your wellness journey starts with <em>understanding.</em>
+                Sometimes you don&apos;t need more information. <em>You need someone to help you make sense of it.</em>
               </h2>
-              <p>
-                Sometimes you don&apos;t need another list of wellness tips. You need someone to help
-                you make sense of it all and create practical routines aligned with your unique lifestyle,
-                work demands, and personal goals.
+              <p className="guidance-lead">
+                Our one-to-one wellness consultations help you understand essential oils, explore appropriate ways of incorporating them into your routine and develop practical wellness rituals aligned with your lifestyle and goals.
               </p>
 
-              <div className="consultation-points">
-                <div className="consultation-point-item">
-                  <span className="consultation-point-check" aria-hidden="true">✓</span>
-                  <span>Explore nervous-system-friendly daily rhythms</span>
+              <div className="guidance-points">
+                <div className="guidance-point-item">
+                  <span className="guidance-point-check" aria-hidden="true">✓</span>
+                  <span>Personalized daily rhythm & sensory routine evaluation</span>
                 </div>
-                <div className="consultation-point-item">
-                  <span className="consultation-point-check" aria-hidden="true">✓</span>
-                  <span>Learn responsible essential-oil dilution & application</span>
+                <div className="guidance-point-item">
+                  <span className="guidance-point-check" aria-hidden="true">✓</span>
+                  <span>Dilution, responsible topical care & diffusion guidance</span>
                 </div>
-                <div className="consultation-point-item">
-                  <span className="consultation-point-check" aria-hidden="true">✓</span>
-                  <span>Design calming evening wind-down rituals</span>
+                <div className="guidance-point-item">
+                  <span className="guidance-point-check" aria-hidden="true">✓</span>
+                  <span>Evening nervous system rest & mindful pause rituals</span>
                 </div>
-                <div className="consultation-point-item">
-                  <span className="consultation-point-check" aria-hidden="true">✓</span>
-                  <span>Inquire about corporate & hospitality workshops</span>
+                <div className="guidance-point-item">
+                  <span className="guidance-point-check" aria-hidden="true">✓</span>
+                  <span>Non-medical, evidence-informed wellness education</span>
                 </div>
               </div>
 
-              <div className="consultation-cta-group">
+              <div className="guidance-actions">
                 <GoogleFormLink type="consultation" className="btn btn-primary">
                   Book a Consultation <span>→</span>
                 </GoogleFormLink>
                 <Link href="/consultation" className="btn btn-outline">
                   About Consultations <span>→</span>
                 </Link>
-                <Link href="/education" className="btn btn-outline">
-                  View Education Pathways <span>→</span>
-                </Link>
               </div>
             </div>
 
-            <div className="consultation-visual">
-              <div className="consultation-image-frame">
+            <div className="personal-guidance-visual">
+              <div className="guidance-image-frame">
                 <img
                   src="/assets/hero-image.jpg"
-                  alt="Natural botanical wellness setting for calm and restoration"
-                  className="consultation-image"
+                  alt="Personal wellness consultation and calming botanical setting"
+                  className="guidance-image"
                 />
               </div>
-              <div className="consultation-quote">
-                <span>“</span>
-                <p>Learn. Understand. Apply. • Wellness begins with education.</p>
+              <div className="guidance-floating-quote">
+                <span className="quote-glyph" aria-hidden="true">“</span>
+                <p>Informed choices create lasting wellness — one personal ritual at a time.</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. MEET RICHA RAMOLA */}
+      <section className="section founder-section" id="meet-richa">
+        <div className="container founder-grid">
+          <FounderVisual />
+
+          <div className="founder-copy">
+            <span className="eyebrow">ABOUT THE FOUNDER</span>
+            <h2>
+              From leadership and people to <em>wellness and prevention.</em>
+            </h2>
+            <p>
+              With nearly three decades of leadership experience across Human Resources and business
+              operations, Richa brings a people-centred perspective to wellness.
+            </p>
+            <p>
+              As Founder of Harmony of Cells, she combines her experience in leadership, education
+              and people development with her passion for nature-based wellness.
+            </p>
+            <p>
+              Her work focuses on helping individuals, families, wellness professionals and organisations
+              approach essential oils and everyday wellness with greater understanding and responsibility.
+            </p>
+            <div className="founder-actions">
+              <Link href="/approach" className="btn btn-primary">
+                Meet Richa <span>→</span>
+              </Link>
+              <GoogleFormLink type="consultation" className="btn btn-outline">
+                Connect Directly <span>→</span>
+              </GoogleFormLink>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. WELLNESS THAT CAN BE LEARNED, EXPERIENCED AND SHARED */}
+      <section className="section bg-cream-soft ecosystem-section" id="ecosystem">
+        <div className="container">
+          <div className="section-heading text-center max-w-3xl mx-auto">
+            <span className="eyebrow">HOLISTIC WELLNESS ECOSYSTEM</span>
+            <h2>
+              Wellness that can be <em>learned, experienced and shared.</em>
+            </h2>
+          </div>
+
+          <div className="ecosystem-grid">
+            {WELLNESS_TOUCHPOINTS.map((item, idx) => (
+              <div key={idx} className="ecosystem-card">
+                <div className="ecosystem-card-header">
+                  <span className="ecosystem-step">{item.step}</span>
+                  <span className="ecosystem-icon" aria-hidden="true">{item.icon}</span>
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <div className="ecosystem-card-footer">
+                  <Link href={item.href} className="ecosystem-link">
+                    {item.linkText} <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 9. FINAL CTA */}
+      <section className="section final-cta-section" id="final-cta">
+        <div className="container">
+          <div className="final-cta-card">
+            <span className="eyebrow final-eyebrow">YOUR WELLNESS JOURNEY STARTS WITH UNDERSTANDING.</span>
+            <h2>
+              Explore. Learn. <em>Experience.</em>
+            </h2>
+            <div className="final-actions">
+              <Link href="/education" className="btn btn-primary final-btn-primary">
+                Start Your Journey <span>→</span>
+              </Link>
+              <GoogleFormLink type="consultation" className="btn btn-outline final-btn-secondary">
+                Book your First Consultation <span>→</span>
+              </GoogleFormLink>
             </div>
           </div>
         </div>

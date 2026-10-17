@@ -9445,106 +9445,504 @@ body {
   transform: translateX(4px);
 }
 
-/* 3. Homepage: Gateway 3-Way Entry Points */
-.home-gateway-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 2.5rem;
+/* 3. Homepage: Section — Essential Oils, Approached Differently */
+.approached-section {
+  background: var(--cream-soft, #f4f3ec);
+  border-bottom: 1px solid rgba(78, 107, 67, 0.08);
 }
 
-.gateway-card {
+.approached-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  align-items: stretch;
+}
+
+.approached-card {
   background: var(--surface-card, #ffffff);
   border: 1px solid var(--border-subtle, rgba(78, 107, 67, 0.14));
-  border-radius: var(--radius-lg, 24px);
-  padding: 2.25rem 2rem;
+  border-radius: var(--radius-md, 18px);
+  padding: 2.25rem 1.75rem 2rem;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-sm, 0 4px 14px rgba(35, 48, 30, 0.04));
+  align-items: center;
+  text-align: center;
+  height: 100%;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 4px 14px rgba(35, 48, 30, 0.04);
 }
 
-.gateway-card:hover {
+.approached-card:hover {
   transform: translateY(-4px);
   border-color: var(--sage, #7a9470);
-  box-shadow: var(--shadow-md, 0 10px 28px rgba(35, 48, 30, 0.07));
+  box-shadow: 0 10px 28px rgba(35, 48, 30, 0.07);
 }
 
-.gateway-card-header {
-  margin-bottom: 1rem;
+.approached-icon {
+  width: 52px;
+  height: 52px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+  background: rgba(78, 107, 67, 0.08);
+  border: 1px solid rgba(78, 107, 67, 0.16);
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
-.gateway-tag {
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.3rem 0.75rem;
-  border-radius: var(--radius-pill, 999px);
-  margin-bottom: 0.75rem;
-}
-
-.entry-badge-edu {
-  background: rgba(78, 107, 67, 0.1);
-  color: var(--green-dark, #3b5232);
-}
-
-.entry-badge-oils {
-  background: rgba(122, 148, 112, 0.15);
-  color: var(--green-deep, #182516);
-}
-
-.entry-badge-consult {
-  background: rgba(212, 151, 59, 0.12);
-  color: #8c5b12;
-}
-
-.gateway-card h3 {
-  font-size: 1.35rem;
-  color: var(--charcoal, #222222);
-  margin: 0 0 0.5rem 0;
-  font-weight: 600;
-}
-
-.gateway-description {
+.approached-card h3 {
+  font-family: var(--font-sans), Inter, sans-serif;
   font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--text-body, #3c463b);
-  margin-bottom: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--green-dark, #3b5232);
+  margin-bottom: 0.85rem;
+  min-height: 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.3;
 }
 
-.gateway-points {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 2rem 0;
-  flex-grow: 1;
+.approached-card p {
+  font-size: 0.92rem;
+  line-height: 1.62;
+  color: var(--text-body, #3c463b);
+  margin: 0;
+  text-align: center;
+}
+
+.approached-action {
+  margin-top: 1rem;
+}
+
+/* 4. Homepage: Section — Explore Our Essential Oils */
+.explore-oils-section {
+  background: var(--surface-card, #ffffff);
+  border-bottom: 1px solid rgba(78, 107, 67, 0.08);
+}
+
+.featured-oils-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+  margin-bottom: 2.5rem;
+  align-items: stretch;
+}
+
+.featured-oil-card {
+  background: #faf9f5;
+  border: 1px solid rgba(78, 107, 67, 0.14);
+  border-radius: var(--radius-md, 18px);
+  padding: 2.25rem 1.75rem 2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  justify-content: space-between;
+  height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 4px 14px rgba(35, 48, 30, 0.03);
 }
 
-.gateway-points li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  font-size: 0.9rem;
-  color: var(--text-body, #3c463b);
+.featured-oil-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--sage, #7a9470);
+  box-shadow: 0 12px 30px rgba(35, 48, 30, 0.08);
 }
 
-.gateway-bullet {
+.featured-oil-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 1.15rem;
+}
+
+.oil-badge-lavender {
+  background: rgba(138, 114, 168, 0.12);
+  color: #5a4279;
+}
+
+.oil-badge-peppermint {
+  background: rgba(78, 140, 107, 0.14);
+  color: #285e42;
+}
+
+.oil-badge-frankincense {
+  background: rgba(184, 146, 75, 0.14);
+  color: #73541b;
+}
+
+.oil-badge-orange {
+  background: rgba(224, 130, 48, 0.14);
+  color: #9c4f0b;
+}
+
+.featured-oil-card h3 {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--green-dark, #23301e);
+  margin: 0 0 0.5rem 0;
+  line-height: 1.25;
+}
+
+.oil-aroma-line {
+  font-size: 0.88rem;
+  font-weight: 600;
   color: var(--green, #4e6b43);
-  font-weight: bold;
+  margin-bottom: 1.15rem;
+  font-style: italic;
 }
 
-.gateway-card-footer {
-  margin-top: auto;
+.oil-context {
+  font-size: 0.92rem;
+  line-height: 1.62;
+  color: var(--text-body, #4f584d);
+  margin: 0;
 }
 
-.gateway-cta-btn {
-  width: 100%;
-  text-align: center;
+.explore-oils-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.explore-oils-microcopy {
+  font-size: 0.88rem;
+  color: var(--muted, #5e685c);
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  gap: 8px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.microcopy-glyph {
+  color: var(--green, #4e6b43);
+  font-size: 0.9rem;
+}
+
+/* 5. Homepage: Section — Personal Guidance */
+.personal-guidance-section {
+  background: var(--cream-soft, #f4f3ec);
+  border-bottom: 1px solid rgba(78, 107, 67, 0.08);
+}
+
+.personal-guidance-wrapper {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(40px, 5vw, 70px);
+  align-items: center;
+}
+
+.personal-guidance-content h2 {
+  font-size: clamp(2rem, 3.2vw, 3.2rem);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.guidance-lead {
+  font-size: 1.05rem;
+  line-height: 1.68;
+  color: var(--text-body, #3e4a3c);
+  margin-bottom: 1.75rem;
+}
+
+.guidance-points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 20px;
+  margin: 24px 0 32px;
+}
+
+.guidance-point-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: #485446;
+  line-height: 1.45;
+}
+
+.guidance-point-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(78, 107, 67, 0.12);
+  color: var(--green-dark, #3b5232);
+  font-size: 0.82rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.guidance-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.personal-guidance-visual {
+  position: relative;
+  width: min(100%, 460px);
+  margin: 0 auto;
+}
+
+.guidance-image-frame {
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(78, 107, 67, 0.14);
+  box-shadow: var(--shadow-lg, 0 15px 35px rgba(25, 38, 22, 0.1));
+  background: #ffffff;
+}
+
+.guidance-image {
+  width: 100%;
+  aspect-ratio: 4 / 4.6;
+  object-fit: cover;
+  display: block;
+}
+
+.guidance-floating-quote {
+  position: absolute;
+  right: clamp(-10px, 0px, 12px);
+  bottom: 24px;
+  max-width: 270px;
+  padding: 18px 20px;
+  background: rgba(253, 252, 248, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(78, 107, 67, 0.14);
+  border-radius: var(--radius-md, 18px);
+  box-shadow: var(--shadow-md, 0 8px 24px rgba(35, 48, 30, 0.08));
+}
+
+.guidance-floating-quote .quote-glyph {
+  color: var(--green, #4e6b43);
+  font-family: Georgia, serif;
+  font-size: 2.2rem;
+  line-height: 0.8;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.guidance-floating-quote p {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--charcoal, #2a3328);
+  font-style: italic;
+  margin: 0;
+}
+
+/* 6. Homepage: Section — Wellness Ecosystem */
+.ecosystem-section {
+  background: var(--cream-soft, #f4f3ec);
+  border-bottom: 1px solid rgba(78, 107, 67, 0.08);
+}
+
+.ecosystem-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+  align-items: stretch;
+}
+
+.ecosystem-card {
+  background: var(--surface-card, #ffffff);
+  border: 1px solid var(--border-subtle, rgba(78, 107, 67, 0.14));
+  border-radius: var(--radius-md, 18px);
+  padding: 1.75rem 1.35rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 4px 14px rgba(35, 48, 30, 0.03);
+  text-align: left;
+}
+
+.ecosystem-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--sage, #7a9470);
+  box-shadow: 0 10px 28px rgba(35, 48, 30, 0.07);
+}
+
+.ecosystem-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.ecosystem-step {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--green, #4e6b43);
+  font-family: var(--font-sans), Inter, sans-serif;
+}
+
+.ecosystem-icon {
+  font-size: 1.35rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(78, 107, 67, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ecosystem-card h3 {
+  font-family: var(--font-sans), Inter, sans-serif;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--green-dark, #23301e);
+  margin-bottom: 0.75rem;
+  min-height: 2.4rem;
+  display: flex;
+  align-items: center;
+  line-height: 1.3;
+}
+
+.ecosystem-card p {
+  font-size: 0.88rem;
+  line-height: 1.58;
+  color: var(--text-body, #4f584d);
+  margin: 0 0 1.5rem 0;
+  flex-grow: 1;
+}
+
+.ecosystem-card-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(78, 107, 67, 0.08);
+}
+
+.ecosystem-link {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--green, #4e6b43);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.ecosystem-link:hover {
+  color: var(--green-dark, #23301e);
+  transform: translateX(3px);
+}
+
+/* 7. Homepage: Section — Final CTA */
+.final-cta-section {
+  background: var(--surface-card, #ffffff);
+  padding: clamp(60px, 7vw, 90px) 0;
+}
+
+.final-cta-card {
+  background: linear-gradient(145deg, #182516 0%, #253922 100%);
+  color: #ffffff;
+  border-radius: 28px;
+  padding: clamp(48px, 6vw, 76px) clamp(24px, 5vw, 56px);
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto;
+  box-shadow: 0 20px 50px rgba(15, 25, 14, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.final-eyebrow {
+  color: #a3c997 !important;
+  margin-bottom: 1rem;
+  display: inline-block;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.final-cta-card h2 {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: clamp(2rem, 3.8vw, 3.4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.22;
+  color: #ffffff;
+  max-width: 780px;
+  margin: 0 auto 1.25rem;
+  font-weight: 500;
+}
+
+.final-cta-card h2 em {
+  font-style: italic;
+  color: #d0e4c9;
+  font-weight: 400;
+}
+
+.final-subhead {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.88);
+  letter-spacing: 0.04em;
+  margin-bottom: 2.25rem;
+}
+
+.final-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.final-btn-primary {
+  background: #ffffff !important;
+  color: #182516 !important;
+  border-color: #ffffff !important;
+  padding: 14px 28px;
+  font-weight: 700;
+}
+
+.final-btn-primary:hover {
+  background: #eef5eb !important;
+  transform: translateY(-2px);
+}
+
+.final-btn-secondary {
+  background: transparent !important;
+  color: #ffffff !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+  padding: 14px 28px;
+  font-weight: 700;
+}
+
+.final-btn-secondary:hover {
+  border-color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  transform: translateY(-2px);
 }
 
 /* 3. Universal Section Quick Jump Navigation */
@@ -9768,8 +10166,16 @@ body {
 /* 7. Responsive Media Queries for 375px, 430px, 768px, 1024px, 1440px */
 @media (max-width: 1024px) {
   .home-understanding-grid,
-  .pathway-discovery-grid {
+  .pathway-discovery-grid,
+  .approached-grid,
+  .featured-oils-grid,
+  .ecosystem-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .personal-guidance-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 
   .home-gateway-grid,
@@ -9784,12 +10190,31 @@ body {
 
 @media (max-width: 768px) {
   .home-understanding-grid,
-  .pathway-discovery-grid {
+  .pathway-discovery-grid,
+  .approached-grid,
+  .featured-oils-grid,
+  .ecosystem-grid {
     grid-template-columns: 1fr;
   }
 
-  .pathway-title {
+  .pathway-title,
+  .approached-card h3,
+  .ecosystem-card h3 {
     min-height: auto;
+  }
+
+  .guidance-points {
+    grid-template-columns: 1fr;
+  }
+
+  .final-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .final-actions .btn {
+    width: 100%;
+    justify-content: center;
   }
 
   .home-gateway-grid,
