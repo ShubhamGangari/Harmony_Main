@@ -39,7 +39,7 @@ export default function CorporateWellnessPage() {
           href: "#offerings",
         },
         microline: "HR Leaders • Founders • CXOs • Corporate Wellness Teams",
-        announcement: "Executive Resilience • Sensory Workspace Design • Lunch & Learn Workshops • Desk Micro-Resets",
+        announcement: "Executive Resilience • Sensory Workspace Design • Lunch & Learn Workshops • Desk Micro-Pauses",
         badge: {
           tag: "WORKPLACE WELLNESS",
           title: "Sustainable team resilience.",
@@ -77,7 +77,7 @@ export default function CorporateWellnessPage() {
             tagline: "Stress & Resilience",
             title: "Stress Awareness & Resilience Education",
             description:
-              "Grounded education on nervous-system awareness, somatic pause techniques, and practical cognitive resets to prevent workplace burnout during high-pressure delivery cycles.",
+              "Grounded education on nervous-system awareness, somatic pause techniques, and practical cognitive pauses to prevent workplace burnout during high-pressure delivery cycles.",
             points: [
               "Recognizing burnout warning signs early",
               "Micro-pauses for intense workdays",
@@ -159,7 +159,7 @@ export default function CorporateWellnessPage() {
         steps: [
           {
             num: "01",
-            title: "Leadership Discovery & Culture Audit",
+            title: "Workplace Wellness & Needs Discovery",
             description:
               "We meet with HR and business leaders to understand team pressure points, working modes (hybrid, remote, in-office), and key wellness objectives.",
             highlight: "Strategic Alignment",

@@ -164,11 +164,11 @@ export default function HomePage() {
             </p>
 
             <div className="hero-actions">
-              <Link href="/education" className="btn btn-primary">
-                Explore Wellness Education <span>→</span>
+              <Link href="/approach" className="btn btn-primary hero-primary-btn">
+                Explore Our Approach <span>→</span>
               </Link>
-              <Link href="/products" className="btn btn-outline hero-secondary-btn">
-                Explore Essential Oils <span>→</span>
+              <Link href="/consultation" className="btn btn-outline hero-secondary-btn">
+                Start Your Wellness Journey <span>→</span>
               </Link>
             </div>
 

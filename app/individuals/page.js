@@ -79,7 +79,7 @@ export default function IndividualsPage() {
               "Accessible somatic micro-practices, conscious breathing, and mindful daytime pauses that help prevent tension from compounding throughout the day.",
             points: [
               "Recognizing personal stress signals early",
-              "2-minute workday reset protocols",
+              "2-minute mindful pause practices",
               "Aromatic cues for conscious calm",
             ],
           },

@@ -144,8 +144,10 @@
             </div>
           )}
 
-          <span className="product-label">{categoryLabel}</span>
-          <span className="product-brand-badge">{brand}</span>
+          <div className="product-badges-row">
+            <span className="product-label">{categoryLabel}</span>
+            <span className="product-brand-badge">{brand}</span>
+          </div>
         </div>
 
         <div className="product-content">

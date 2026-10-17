@@ -126,7 +126,7 @@ export default function HospitalityPage() {
             description:
               "Empowering spa therapists, front-desk concierges, and housekeeping teams with rigorous knowledge of essential-oil safety, hygienic diffuser maintenance, and guest communication.",
             points: [
-              "Diffuser cleaning and maintenance SOPs",
+              "Diffuser cleaning, care, and safety guidance",
               "Safe botanical dilution standards",
               "Guest allergy screening and intake guidelines",
             ],
@@ -167,7 +167,7 @@ export default function HospitalityPage() {
             num: "02",
             title: "Bespoke Aromatic Profile Design",
             description:
-              "We formulate custom botanical aroma menus: welcoming citrus for reception, invigorating herbs for movement studios, and grounding resins for spa suites.",
+              "We curate tailored botanical aroma menus: welcoming citrus for reception, invigorating herbs for movement studios, and grounding resins for spa suites.",
             highlight: "Zone Calibration",
           },
           {
@@ -181,8 +181,8 @@ export default function HospitalityPage() {
             num: "04",
             title: "Staff Education & Ritual Training",
             description:
-              "Your front-of-house, spa, and housekeeping teams receive hands-on training and SOPs to operate diffusers safely and answer guest questions with confidence.",
-            highlight: "Operational SOPs",
+              "Your front-of-house, spa, and housekeeping teams receive hands-on training and operational guidelines to operate diffusers safely and answer guest questions with confidence.",
+            highlight: "Operational Guidelines",
           },
         ],
       }}
@@ -191,7 +191,7 @@ export default function HospitalityPage() {
         title: "Strategic corporate leadership meets sensory botanical wellness.",
         paragraphs: [
           "Richa Ramola approaches hospitality spaces with both an artistic sensory sensibility and an operator's demand for commercial viability, safety compliance, and team executability.",
-          "Her extensive multinational leadership background ensures that every concept is delivered with clear Standard Operating Procedures (SOPs), staff training modules, and seamless operational integration.",
+          "Her extensive multinational leadership background ensures that every concept is delivered with clear operational guidelines, staff training modules, and seamless operational integration.",
         ],
         quote:
           "In luxury hospitality, sensory ambiance is not decoration. It is the invisible signature of your brand's excellence.",
@@ -224,7 +224,7 @@ export default function HospitalityPage() {
         points: [
           "Comprehensive on-site or virtual sensory space evaluation",
           "Custom room-by-room botanical fragrance architecture",
-          "Full operational SOPs and staff training documentation",
+          "Complete operational guidelines and staff training documentation",
           "Exclusive guest amenities and retail product opportunities",
         ],
         primaryCta: {

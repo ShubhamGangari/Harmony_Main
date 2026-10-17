@@ -38,7 +38,7 @@ const WELLNESS_PILLARS = [
       "Accessible somatic pauses, stress awareness, and practical daily habits to prevent tension from compounding over demanding schedules.",
     details: [
       "Recognizing early sensory and physiological indicators of tension",
-      "2-minute workday reset protocols and conscious breathing micro-breaks",
+      "2-minute mindful pause practices and conscious breathing micro-breaks",
       "Establishing healthy psychological boundaries during high-demand cycles",
       "Building emotional adaptability and steady energy without burnout",
     ],
