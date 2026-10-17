@@ -36,6 +36,17 @@ export default function SiteHeader() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [open, dropdownOpen]);
 
+  // Lock body scroll when mobile drawer is open to prevent underlying page jitter
+  useEffect(() => {
+    if (open) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prevOverflow;
+      };
+    }
+  }, [open]);
+
   return (
     <header className="site-header">
       <div className="container nav-container">
