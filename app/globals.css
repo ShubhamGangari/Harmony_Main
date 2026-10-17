@@ -4825,9 +4825,25 @@ blockquote {
   }
 
   .variant-pill {
-    padding: 4px 11px;
+    position: relative;
+    padding: 5px 12px;
     font-size: 0.74rem;
-    min-height: 28px;
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .variant-pill::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 44px;
+    width: 100%;
+    height: 44px;
   }
 
   .product-meta-row {
@@ -4884,9 +4900,9 @@ blockquote {
 
   .product-enquire-btn,
   .product-wa-btn {
-    min-height: 40px;
-    padding: 9px 12px;
-    font-size: 0.8rem;
+    min-height: 44px;
+    padding: 10px 12px;
+    font-size: 0.82rem;
   }
 
   .product-card-reassurance {
