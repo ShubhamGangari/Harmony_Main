@@ -453,7 +453,7 @@ export default function HomePage() {
               approach essential oils and everyday wellness with greater understanding and responsibility.
             </p>
             <div className="founder-actions">
-              <Link href="/approach" className="btn btn-primary">
+              <Link href="/about" className="btn btn-primary">
                 Meet Richa <span>→</span>
               </Link>
               <GoogleFormLink type="consultation" className="btn btn-outline">

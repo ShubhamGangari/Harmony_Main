@@ -57,6 +57,12 @@ export default function SiteHeader() {
         {/* Simplified Primary Navigation */}
         <nav className="desktop-nav" aria-label="Primary navigation">
           <Link
+            href="/about"
+            className={`nav-link ${isActive("/about") ? "active" : ""}`}
+          >
+            About
+          </Link>
+          <Link
             href="/approach"
             className={`nav-link ${isActive("/approach") ? "active" : ""}`}
           >
@@ -107,6 +113,9 @@ export default function SiteHeader() {
       >
         <Link href="/" className={isActive("/") ? "active" : ""} onClick={close}>
           Home
+        </Link>
+        <Link href="/about" className={isActive("/about") ? "active" : ""} onClick={close}>
+          About &amp; Meet Richa
         </Link>
         <Link href="/approach" className={isActive("/approach") ? "active" : ""} onClick={close}>
           Our Approach

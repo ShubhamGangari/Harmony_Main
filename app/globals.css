@@ -9945,6 +9945,213 @@ body {
   transform: translateY(-2px);
 }
 
+/* ==========================================================================
+   ABOUT / FOUNDER PAGE STYLING
+   ========================================================================== */
+.about-hero-section {
+  padding-bottom: clamp(60px, 7vw, 90px);
+}
+
+.about-story-section {
+  background: var(--cream-soft, #f4f3ec);
+  border-bottom: 1px solid rgba(78, 107, 67, 0.08);
+}
+
+.about-story-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(40px, 5vw, 72px);
+  align-items: center;
+}
+
+.about-story-copy h2 {
+  font-size: clamp(2.2rem, 3.4vw, 3.2rem);
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 0.75rem 0 1.5rem;
+}
+
+.story-paragraph {
+  font-size: 1.05rem;
+  line-height: 1.72;
+  color: var(--text-body, #3e4a3c);
+  margin-bottom: 1.25rem;
+}
+
+.story-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.about-story-callout-card {
+  position: relative;
+}
+
+.callout-inner {
+  background: var(--surface-card, #ffffff);
+  border: 1px solid var(--border-subtle, rgba(78, 107, 67, 0.16));
+  border-left: 4px solid var(--green, #4e6b43);
+  border-radius: var(--radius-md, 18px);
+  padding: 2.5rem 2.25rem 2.25rem;
+  box-shadow: 0 12px 36px rgba(35, 48, 30, 0.06);
+}
+
+.callout-glyph {
+  font-family: Georgia, serif;
+  font-size: 3rem;
+  line-height: 0.8;
+  color: var(--green, #4e6b43);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.callout-inner blockquote {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--green-dark, #23301e);
+  margin: 0 0 1.25rem 0;
+  font-weight: 500;
+}
+
+.callout-sub {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--text-body, #4f584d);
+  margin: 0 0 1.75rem 0;
+}
+
+.callout-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(78, 107, 67, 0.12);
+}
+
+.callout-footer strong {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--green-dark, #23301e);
+}
+
+.callout-footer span {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--green, #4e6b43);
+  font-weight: 700;
+}
+
+/* Key Areas of Focus */
+.about-key-areas-section {
+  background: var(--surface-card, #ffffff);
+  border-bottom: 1px solid rgba(78, 107, 67, 0.08);
+}
+
+.key-areas-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+  align-items: stretch;
+}
+
+.key-area-card {
+  background: #faf9f5;
+  border: 1px solid rgba(78, 107, 67, 0.14);
+  border-radius: var(--radius-md, 18px);
+  padding: 2rem 1.75rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 4px 14px rgba(35, 48, 30, 0.03);
+}
+
+.key-area-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--sage, #7a9470);
+  box-shadow: 0 12px 30px rgba(35, 48, 30, 0.08);
+}
+
+.key-area-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.key-area-step {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--green, #4e6b43);
+  font-family: var(--font-sans), Inter, sans-serif;
+  background: rgba(78, 107, 67, 0.08);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.key-area-icon {
+  font-size: 1.35rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(78, 107, 67, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.key-area-card h3 {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--green-dark, #23301e);
+  margin-bottom: 0.75rem;
+  min-height: 2.8rem;
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.3;
+}
+
+.key-area-card p {
+  font-size: 0.92rem;
+  line-height: 1.62;
+  color: var(--text-body, #4f584d);
+  margin: 0 0 1.5rem 0;
+  flex-grow: 1;
+}
+
+.key-area-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(78, 107, 67, 0.08);
+}
+
+.key-area-link {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--green, #4e6b43);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.key-area-link:hover {
+  color: var(--green-dark, #23301e);
+  transform: translateX(3px);
+}
+
+.about-cta-section {
+  background: var(--cream-soft, #f4f3ec);
+  padding: clamp(60px, 7vw, 90px) 0;
+}
+
 /* 3. Universal Section Quick Jump Navigation */
 .approach-nav-container,
 .day-nav-wrapper {
@@ -10169,11 +10376,13 @@ body {
   .pathway-discovery-grid,
   .approached-grid,
   .featured-oils-grid,
-  .ecosystem-grid {
+  .ecosystem-grid,
+  .key-areas-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .personal-guidance-wrapper {
+  .personal-guidance-wrapper,
+  .about-story-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
@@ -10193,13 +10402,15 @@ body {
   .pathway-discovery-grid,
   .approached-grid,
   .featured-oils-grid,
-  .ecosystem-grid {
+  .ecosystem-grid,
+  .key-areas-grid {
     grid-template-columns: 1fr;
   }
 
   .pathway-title,
   .approached-card h3,
-  .ecosystem-card h3 {
+  .ecosystem-card h3,
+  .key-area-card h3 {
     min-height: auto;
   }
 

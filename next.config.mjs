@@ -42,6 +42,11 @@ const nextConfig = {
         destination: "/resources",
         permanent: true,
       },
+      {
+        source: "/founder",
+        destination: "/about",
+        permanent: true,
+      },
     ];
   },
 };

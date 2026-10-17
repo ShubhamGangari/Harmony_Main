@@ -102,6 +102,7 @@ export default function Footer() {
             <span className="footer-col-title">Platform &amp; Resources</span>
             <nav className="footer-links-nav" aria-label="Footer Platform Navigation">
               <Link href="/">Home</Link>
+              <Link href="/about">Meet Richa (About)</Link>
               <Link href="/approach">Our Approach</Link>
               <Link href="/education">Education Pathways</Link>
               <Link href="/products">Essential Oils</Link>
