@@ -149,32 +149,28 @@ export default function HomePage() {
       <section className="hero" id="home">
         <div className="container hero-grid">
           <div className="hero-content">
-            <span className="eyebrow">HARMONY OF CELLS</span>
+            <span className="eyebrow">NATURE. KNOWLEDGE. INFORMED WELLNESS.</span>
             <h1>
-              Nervous System Wellness for <em>Everyday Life.</em>
+              Understand Your Wellness. <em>Make More Informed Choices.</em>
             </h1>
-            <p className="hero-supporting-title">
-              Supporting wellbeing through lifestyle, sensory practices and informed self-care.
-            </p>
             <p className="hero-description">
-              Modern life places continuous demands on the body and mind. Harmony of Cells
-              brings together wellness education, lifestyle practices, aromatherapy and
-              sensory experiences to help people create more supportive daily rhythms for
-              rest, resilience and wellbeing.
+              Harmony of Cells brings together essential oil education, nature-based
+              wellness practices and personalised guidance to help you create thoughtful,
+              practical wellness rituals for everyday life.
             </p>
 
             <div className="hero-actions">
-              <Link href="/approach" className="btn btn-primary hero-primary-btn">
-                Explore Our Approach <span>→</span>
+              <Link href="/education" className="btn btn-primary hero-primary-btn">
+                Explore Wellness Education <span>→</span>
               </Link>
-              <Link href="/consultation" className="btn btn-outline hero-secondary-btn">
-                Start Your Wellness Journey <span>→</span>
+              <Link href="/products" className="btn btn-outline hero-secondary-btn">
+                Explore Essential Oils <span>→</span>
               </Link>
             </div>
 
             <div className="hero-note">
               <span className="note-icon">✦</span>
-              <p>Learn. Understand. Apply. • Nature-based educational self-care.</p>
+              <p>Learn. Understand. Apply.</p>
             </div>
           </div>
 
