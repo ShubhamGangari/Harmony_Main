@@ -71,7 +71,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "How can I enquire about or purchase botanical products?",
-    a: "To ensure that every customer receives authentic products alongside proper safety and usage education, our catalogue operates on an inquiry-first model. You can enquire directly via our interactive product form on any product card, or chat with our team on WhatsApp (+91 90760 02266). We provide personalized guidance regarding availability, pricing, and appropriate daily rituals.",
+    a: "To ensure that every customer receives authentic products alongside proper safety and usage education, our catalogue operates on an inquiry-first model. You can enquire directly via our interactive product form on any product card, or connect with our team via email or our consultation form. We provide personalized guidance regarding availability, pricing, and appropriate daily rituals.",
   },
 ];
 
@@ -465,12 +465,10 @@ export default function ResourcesPage() {
                 Book a Consultation
               </GoogleFormLink>
               <a
-                href="https://wa.me/919076002266"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:connect@harmonyofcells.com"
                 className="btn btn-outline"
               >
-                💬 WhatsApp +91 90760 02266
+                ✉ Email Our Team
               </a>
             </div>
           </div>

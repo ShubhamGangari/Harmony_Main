@@ -112,7 +112,9 @@
     const waText = encodeURIComponent(
       `Hello Harmony of Cells, I would like to enquire about ordering ${itemLabel}. Could you please share availability and ordering guidance?`
     );
-    const waUrl = `https://wa.me/919076002266?text=${waText}`;
+    const waUrl = SITE_CONFIG.whatsappNumber
+      ? `https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${waText}`
+      : `/consultation?item=${encodeURIComponent(itemLabel)}`;
 
     return (
       <article className="product-card">

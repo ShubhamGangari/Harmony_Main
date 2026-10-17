@@ -593,9 +593,9 @@ export default function CartPage() {
                 </button>
               </div>
 
-              {paymentReceipt ? (
+              {paymentReceipt && SITE_CONFIG.whatsappNumber ? (
                 <a
-                  href={`https://wa.me/919076002266?text=${encodeURIComponent(
+                  href={`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
                     `Hello Richa! I've completed payment on Harmony of Cells (Payment ID: ${paymentReceipt.paymentId}).\n\n` +
                       `*Items:*\n` +
                       paymentReceipt.items
@@ -613,7 +613,7 @@ export default function CartPage() {
                     <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.979-.275-.1-.476-.15-.676.15-.201.3-.777.979-.953 1.18-.175.2-.35.225-.651.075s-1.272-.469-2.423-1.496c-.896-.799-1.501-1.787-1.677-2.088-.176-.301-.019-.464.132-.614.135-.135.301-.35.452-.526.15-.175.2-.3.301-.5.1-.2.05-.376-.025-.526-.075-.15-.676-1.63-.927-2.232-.244-.587-.493-.507-.677-.516-.175-.008-.376-.01-.577-.01-.201 0-.527.075-.803.376s-1.054 1.029-1.054 2.51c0 1.48 1.079 2.909 1.23 3.11.15.2 2.124 3.243 5.145 4.549.719.311 1.28.497 1.718.636.722.229 1.378.197 1.898.12.579-.087 1.78-.727 2.031-1.429.251-.702.251-1.304.176-1.43-.075-.125-.276-.2-.577-.35z"/>
                     <path d="M12.004 2C6.482 2 2.003 6.48 2.003 12c0 1.99.585 3.845 1.597 5.414L2 22l4.734-1.543A9.957 9.957 0 0 0 12.004 22c5.522 0 10.001-4.48 10.001-10s-4.479-10-10.001-10zm0 18.2c-1.628 0-3.138-.485-4.407-1.319l-.316-.208-2.812.916.932-2.738-.228-.337A8.163 8.163 0 0 1 3.804 12c0-4.522 3.678-8.2 8.2-8.2 4.521 0 8.2 3.678 8.2 8.2 0 4.522-3.679 8.2-8.2 8.2z"/>
                   </svg>
-                  <span>Chat with Richa on WhatsApp for Fast Dispatch →</span>
+                  <span>Chat on WhatsApp for Fast Dispatch →</span>
                 </a>
               ) : null}
             </div>
@@ -627,7 +627,7 @@ export default function CartPage() {
             <h2>Order Received Successfully!</h2>
             <p>
               Thank you, {directOrderDetails.customerName}! Your order has been registered in our system.
-              To finalize and dispatch your items, please connect with Richa on WhatsApp below to complete payment via UPI (GPay, PhonePe, Paytm, BHIM) or Bank Transfer.
+              To finalize and dispatch your items, please connect with our team below to complete payment via UPI (GPay, PhonePe, Paytm, BHIM) or Bank Transfer.
             </p>
 
             <div className="direct-upi-success-box">
@@ -662,13 +662,13 @@ export default function CartPage() {
               <div className="upi-instruction-step">
                 <span className="upi-step-num">1</span>
                 <div>
-                  <strong>Tap the WhatsApp button below</strong> to send your order reference directly to Richa.
+                  <strong>{SITE_CONFIG.whatsappNumber ? "Tap the WhatsApp button below" : "Connect with our team below"}</strong> to send your order reference.
                 </div>
               </div>
               <div className="upi-instruction-step">
                 <span className="upi-step-num">2</span>
                 <div>
-                  Richa will share the direct <strong>UPI QR code</strong> or bank transfer details for instant clearance.
+                  Our team will share the direct <strong>UPI QR code</strong> or bank transfer details for instant clearance.
                 </div>
               </div>
               <div className="upi-instruction-step">
@@ -680,32 +680,46 @@ export default function CartPage() {
             </div>
 
             <div className="paid-actions" style={{ flexDirection: "column", gap: "12px", alignItems: "center" }}>
-              <a
-                href={`https://wa.me/919076002266?text=${encodeURIComponent(
-                  `Hello Richa! I've placed an order on Harmony of Cells (Order #${directOrderDetails.orderRef}).\n\n` +
-                    `*Items:*\n` +
-                    directOrderDetails.items
-                      .map((it) => `• ${it.name} ${it.tier ? `(${it.tier})` : ""} × ${it.quantity}`)
-                      .join("\n") +
-                    `\n\n*Total Amount:* ₹${directOrderDetails.amount.toLocaleString("en-IN")}\n` +
-                    `*Name:* ${directOrderDetails.customerName}\n` +
-                    `*Phone:* ${directOrderDetails.customerPhone}\n` +
-                    (directOrderDetails.customerAddress
-                      ? `*Delivery Address:* ${directOrderDetails.customerAddress}\n`
-                      : "") +
-                    `\nPlease share your UPI payment QR code so I can complete payment. Thank you!`
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-whatsapp-confirm"
-                style={{ width: "100%", maxWidth: "420px", justifyContent: "center" }}
-              >
-                <svg viewBox="0 0 24 24" fill="currentColor" className="whatsapp-svg-icon" aria-hidden="true">
-                  <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.979-.275-.1-.476-.15-.676.15-.201.3-.777.979-.953 1.18-.175.2-.35.225-.651.075s-1.272-.469-2.423-1.496c-.896-.799-1.501-1.787-1.677-2.088-.176-.301-.019-.464.132-.614.135-.135.301-.35.452-.526.15-.175.2-.3.301-.5.1-.2.05-.376-.025-.526-.075-.15-.676-1.63-.927-2.232-.244-.587-.493-.507-.677-.516-.175-.008-.376-.01-.577-.01-.201 0-.527.075-.803.376s-1.054 1.029-1.054 2.51c0 1.48 1.079 2.909 1.23 3.11.15.2 2.124 3.243 5.145 4.549.719.311 1.28.497 1.718.636.722.229 1.378.197 1.898.12.579-.087 1.78-.727 2.031-1.429.251-.702.251-1.304.176-1.43-.075-.125-.276-.2-.577-.35z"/>
-                  <path d="M12.004 2C6.482 2 2.003 6.48 2.003 12c0 1.99.585 3.845 1.597 5.414L2 22l4.734-1.543A9.957 9.957 0 0 0 12.004 22c5.522 0 10.001-4.48 10.001-10s-4.479-10-10.001-10zm0 18.2c-1.628 0-3.138-.485-4.407-1.319l-.316-.208-2.812.916.932-2.738-.228-.337A8.163 8.163 0 0 1 3.804 12c0-4.522 3.678-8.2 8.2-8.2 4.521 0 8.2 3.678 8.2 8.2 0 4.522-3.679 8.2-8.2 8.2z"/>
-                </svg>
-                <span>Confirm & Pay via WhatsApp (Richa) →</span>
-              </a>
+              {SITE_CONFIG.whatsappNumber ? (
+                <a
+                  href={`https://wa.me/${SITE_CONFIG.whatsappNumber}?text=${encodeURIComponent(
+                    `Hello Richa! I've placed an order on Harmony of Cells (Order #${directOrderDetails.orderRef}).\n\n` +
+                      `*Items:*\n` +
+                      directOrderDetails.items
+                        .map((it) => `• ${it.name} ${it.tier ? `(${it.tier})` : ""} × ${it.quantity}`)
+                        .join("\n") +
+                      `\n\n*Total Amount:* ₹${directOrderDetails.amount.toLocaleString("en-IN")}\n` +
+                      `*Name:* ${directOrderDetails.customerName}\n` +
+                      `*Phone:* ${directOrderDetails.customerPhone}\n` +
+                      (directOrderDetails.customerAddress
+                        ? `*Delivery Address:* ${directOrderDetails.customerAddress}\n`
+                        : "") +
+                      `\nPlease share your UPI payment QR code so I can complete payment. Thank you!`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-whatsapp-confirm"
+                  style={{ width: "100%", maxWidth: "420px", justifyContent: "center" }}
+                >
+                  <svg viewBox="0 0 24 24" fill="currentColor" className="whatsapp-svg-icon" aria-hidden="true">
+                    <path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.979-.275-.1-.476-.15-.676.15-.201.3-.777.979-.953 1.18-.175.2-.35.225-.651.075s-1.272-.469-2.423-1.496c-.896-.799-1.501-1.787-1.677-2.088-.176-.301-.019-.464.132-.614.135-.135.301-.35.452-.526.15-.175.2-.3.301-.5.1-.2.05-.376-.025-.526-.075-.15-.676-1.63-.927-2.232-.244-.587-.493-.507-.677-.516-.175-.008-.376-.01-.577-.01-.201 0-.527.075-.803.376s-1.054 1.029-1.054 2.51c0 1.48 1.079 2.909 1.23 3.11.15.2 2.124 3.243 5.145 4.549.719.311 1.28.497 1.718.636.722.229 1.378.197 1.898.12.579-.087 1.78-.727 2.031-1.429.251-.702.251-1.304.176-1.43-.075-.125-.276-.2-.577-.35z"/>
+                    <path d="M12.004 2C6.482 2 2.003 6.48 2.003 12c0 1.99.585 3.845 1.597 5.414L2 22l4.734-1.543A9.957 9.957 0 0 0 12.004 22c5.522 0 10.001-4.48 10.001-10s-4.479-10-10.001-10zm0 18.2c-1.628 0-3.138-.485-4.407-1.319l-.316-.208-2.812.916.932-2.738-.228-.337A8.163 8.163 0 0 1 3.804 12c0-4.522 3.678-8.2 8.2-8.2 4.521 0 8.2 3.678 8.2 8.2 0 4.522-3.679 8.2-8.2 8.2z"/>
+                  </svg>
+                  <span>Confirm & Pay via WhatsApp →</span>
+                </a>
+              ) : (
+                <a
+                  href={`mailto:connect@harmonyofcells.com?subject=${encodeURIComponent(`UPI Order Payment Reference: ${directOrderDetails.orderRef}`)}&body=${encodeURIComponent(
+                    `Hello Harmony of Cells,\n\nI have placed an order #${directOrderDetails.orderRef} on Harmony of Cells.\n` +
+                    `Amount: ₹${directOrderDetails.amount}\nName: ${directOrderDetails.customerName}\nPhone: ${directOrderDetails.customerPhone}\n\n` +
+                    `Please share the UPI payment details to complete this order.\n\nThank you!`
+                  )}`}
+                  className="btn btn-primary"
+                  style={{ width: "100%", maxWidth: "420px", justifyContent: "center" }}
+                >
+                  ✉ Email Our Team to Complete Payment →
+                </a>
+              )}
 
               <Link className="btn btn-outline" href="/" style={{ width: "100%", maxWidth: "420px", justifyContent: "center" }}>
                 Return to Home <span>→</span>

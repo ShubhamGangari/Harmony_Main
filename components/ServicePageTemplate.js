@@ -1,6 +1,7 @@
 import Link from "next/link";
 import GoogleFormLink from "./FormLink";
 import FounderVisual from "./FounderVisual";
+import { SITE_CONFIG } from "../lib/config";
 
 export default function ServicePageTemplate({
   theme = "general",
@@ -322,10 +323,11 @@ export default function ServicePageTemplate({
                     <small>Direct contact channels:</small>
                     <div className="service-contact-pills">
                       <a href="mailto:connect@harmonyofcells.com">✉ connect@harmonyofcells.com</a>
-                      <a href="tel:+919076002266">✆ +91 90760 02266</a>
-                      <a href="https://wa.me/919076002266" target="_blank" rel="noopener noreferrer">
-                        💬 WhatsApp Direct
-                      </a>
+                      {SITE_CONFIG.whatsappNumber && (
+                        <a href={`https://wa.me/${SITE_CONFIG.whatsappNumber}`} target="_blank" rel="noopener noreferrer">
+                          💬 WhatsApp Direct
+                        </a>
+                      )}
                     </div>
                   </div>
                 )}

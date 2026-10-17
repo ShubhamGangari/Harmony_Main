@@ -44,7 +44,7 @@ export default function ShippingReturnsPage() {
               <p>To order products from our curated collection:</p>
               <ol>
                 <li>Explore our catalogue on the <Link href="/products" className="underline font-bold">Essential Oils page</Link>.</li>
-                <li>Click <strong>&ldquo;Enquire to Order&rdquo;</strong> on your chosen oil or kit, or click <strong>&ldquo;WhatsApp&rdquo;</strong> to chat directly with our team (+91 90760 02266).</li>
+                <li>Click <strong>&ldquo;Enquire to Order&rdquo;</strong> on your chosen oil or kit to submit your inquiry directly to our team.</li>
                 <li>Our team confirms current stock availability, bottle size, current INR pricing, and applicable courier shipping charges to your PIN code.</li>
                 <li>Upon your confirmation, payment details are provided via direct bank transfer (UPI / NEFT) or secure payment link.</li>
                 <li>Once payment is verified, your order is prepared for dispatch.</li>
@@ -59,7 +59,7 @@ export default function ShippingReturnsPage() {
               <ul>
                 <li><strong>Order Processing & Dispatch:</strong> Confirmed orders are typically processed and dispatched within 2 to 3 business days (excluding Sundays and national holidays).</li>
                 <li><strong>Estimated Delivery:</strong> Most metropolitan shipments arrive within 3 to 5 business days from dispatch. Regional and remote locations may take 5 to 8 business days.</li>
-                <li><strong>Tracking:</strong> Once your consignment is picked up by our courier partner, tracking details are shared with you directly via WhatsApp or email.</li>
+                <li><strong>Tracking:</strong> Once your consignment is picked up by our courier partner, tracking details are shared with you directly via email or registered messaging channel.</li>
               </ul>
             </div>
 
@@ -71,7 +71,7 @@ export default function ShippingReturnsPage() {
               </p>
               <ul>
                 <li>Please take clear photographs of the outer carton, courier shipping label, and the damaged product immediately upon receipt.</li>
-                <li>Contact our support team within <strong>48 hours</strong> of delivery at <strong>connect@harmonyofcells.com</strong> or via WhatsApp at <strong>+91 90760 02266</strong>.</li>
+                <li>Contact our support team within <strong>48 hours</strong> of delivery at <strong>connect@harmonyofcells.com</strong>.</li>
                 <li>Our team will promptly coordinate a replacement or resolution.</li>
               </ul>
             </div>
