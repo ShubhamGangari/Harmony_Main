@@ -1,11 +1,10 @@
 import Link from "next/link";
 import GoogleFormLink from "../../components/FormLink";
-import { DELIVERY_CHANNELS } from "../../lib/navigation";
 
 export const metadata = {
   title: "The Approach — Nervous System & Lifestyle Wellness | Harmony of Cells",
   description:
-    "Explore the Harmony of Cells 5R method (Rest, Regulate, Restore, Resilience, Ritual) and our Six Pillars of Everyday Wellness for calmer, healthier living.",
+    "Explore the Harmony of Cells approach to nervous system and lifestyle wellness, our Six Pillars of Everyday Wellness, and education pathways for calmer, healthier living.",
 };
 
 const WELLNESS_PILLARS = [
@@ -24,8 +23,8 @@ const WELLNESS_PILLARS = [
       "Digital detachment practices that reduce evening sensory stimulation",
     ],
     pathway: {
-      text: "Explore Individual Sleep Routines",
-      href: "/individuals",
+      text: "Explore Rest & Sleep Guidance",
+      href: "/consultation",
     },
   },
   {
@@ -63,7 +62,7 @@ const WELLNESS_PILLARS = [
     ],
     pathway: {
       text: "Learn About Women's Self-Care",
-      href: "/individuals",
+      href: "/consultation",
     },
   },
   {
@@ -100,8 +99,8 @@ const WELLNESS_PILLARS = [
       "Practical hydration and nourishment rhythms that sustain daytime focus",
     ],
     pathway: {
-      text: "View Everyday Routines",
-      href: "/individuals",
+      text: "Explore Education Pathways",
+      href: "/education",
     },
   },
   {
@@ -325,10 +324,9 @@ export default function ApproachPage() {
           <nav className="approach-quick-nav" aria-label="Our Approach page navigation">
             <span className="quick-nav-label">JUMP TO:</span>
             <a href="#philosophy" className="quick-nav-pill">Our Philosophy</a>
-            <a href="#five-r" className="quick-nav-pill">The 5R Framework</a>
             <a href="#wellness-pillars" className="quick-nav-pill">Everyday Wellness Areas</a>
             <a href="#education-bridge" className="quick-nav-pill">Education Pathway</a>
-            <a href="#pathways" className="quick-nav-pill">Delivery Channels</a>
+            <a href="#cta" className="quick-nav-pill">Get Started</a>
           </nav>
         </div>
       </section>
@@ -546,35 +544,6 @@ export default function ApproachPage() {
         </div>
       </section>
 
-      {/* 6. FOUR DELIVERY CHANNELS */}
-      <section className="section approach-channels-section" id="pathways">
-        <div className="container">
-          <div className="section-heading text-center">
-            <span className="eyebrow">FOUR DELIVERY CHANNELS</span>
-            <h2>
-              Experience the method <em>in your world.</em>
-            </h2>
-            <p className="section-lead">
-              The Harmony of Cells approach is tailored across four distinct delivery channels
-              to meet you exactly where you are.
-            </p>
-          </div>
-
-          <div className="channels-grid">
-            {DELIVERY_CHANNELS.map((channel) => (
-              <article key={channel.id} className="channel-card">
-                <span className="channel-tag">{channel.target}</span>
-                <h3>{channel.label}</h3>
-                <span className="channel-subtitle">{channel.subtitle}</span>
-                <p>{channel.description}</p>
-                <Link href={channel.href} className="channel-link">
-                  Explore {channel.label} <span>→</span>
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 7. RELEVANT CALL TO ACTION */}
       <section className="section service-cta-section" id="cta">

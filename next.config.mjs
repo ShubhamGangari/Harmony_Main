@@ -48,6 +48,21 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/resources/:path*",
+        destination: "/faq",
+        permanent: true,
+      },
+      {
+        source: "/individuals",
+        destination: "/approach",
+        permanent: true,
+      },
+      {
+        source: "/hospitality",
+        destination: "/corporate-wellness",
+        permanent: true,
+      },
+      {
         source: "/founder",
         destination: "/about",
         permanent: true,
