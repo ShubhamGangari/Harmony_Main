@@ -30,6 +30,45 @@ const UNDERSTANDING_PILLARS = [
   },
 ];
 
+const DISCOVER_PATHWAYS = [
+  {
+    step: "01",
+    tag: "BEGINNERS",
+    title: "I'm new to essential oils",
+    description:
+      "Start with the basics — what essential oils are, how to use them responsibly and where they may fit into everyday wellness.",
+    cta: "Start Here",
+    href: "/education",
+  },
+  {
+    step: "02",
+    tag: "BOTANICALS",
+    title: "I already use essential oils",
+    description:
+      "Explore individual oils, blends, practical applications and responsible-use guidance.",
+    cta: "Explore Essential Oils",
+    href: "/products",
+  },
+  {
+    step: "03",
+    tag: "PROFESSIONALS",
+    title: "I'm a wellness professional",
+    description:
+      "Build your knowledge and explore ways to incorporate essential-oil education into your professional practice.",
+    cta: "Professional Education",
+    href: "/professionals",
+  },
+  {
+    step: "04",
+    tag: "ORGANISATIONS",
+    title: "I'm an organisation",
+    description:
+      "Bring practical wellbeing education and sensory wellness experiences into your workplace or organisation.",
+    cta: "Corporate Wellness",
+    href: "/corporate-wellness",
+  },
+];
+
 const GATEWAY_ENTRY_POINTS = [
   {
     tag: "WELLNESS EDUCATION",
@@ -170,7 +209,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. ABOUT THE FOUNDER & CREDIBILITY */}
+      {/* 3. DISCOVER YOUR PATHWAY */}
+      <section className="section pathway-discovery-section" id="discover-pathway">
+        <div className="container">
+          <div className="section-heading text-center max-w-3xl mx-auto">
+            <span className="eyebrow">CHOOSE YOUR STARTING POINT</span>
+            <h2>
+              Discover your <em>pathway.</em>
+            </h2>
+          </div>
+
+          <div className="pathway-discovery-grid">
+            {DISCOVER_PATHWAYS.map((pathway, idx) => (
+              <div key={idx} className="pathway-discovery-card">
+                <div className="pathway-card-header">
+                  <span className="pathway-step-tag">PATHWAY {pathway.step}</span>
+                  <h3 className="pathway-title">{pathway.title}</h3>
+                </div>
+                <p className="pathway-desc">{pathway.description}</p>
+                <div className="pathway-card-footer">
+                  <Link href={pathway.href} className="btn pathway-cta-btn">
+                    {pathway.cta} <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. ABOUT THE FOUNDER & CREDIBILITY */}
       <section className="section founder-section" id="founder">
         <div className="container founder-grid">
           <FounderVisual />

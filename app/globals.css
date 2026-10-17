@@ -9334,7 +9334,118 @@ body {
   text-align: center;
 }
 
-/* 2. Homepage: Gateway 3-Way Entry Points */
+/* 2. Homepage: Section — Discover Your Pathway */
+.pathway-discovery-section {
+  background: var(--surface-card, #ffffff);
+  border-bottom: 1px solid rgba(78, 107, 67, 0.08);
+}
+
+.pathway-discovery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+  align-items: stretch;
+}
+
+.pathway-discovery-card {
+  background: #faf9f5;
+  border: 1px solid rgba(78, 107, 67, 0.14);
+  border-radius: var(--radius-md, 18px);
+  padding: 2.25rem 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  box-shadow: 0 4px 14px rgba(35, 48, 30, 0.03);
+}
+
+.pathway-discovery-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--sage, #7a9470);
+  box-shadow: 0 12px 30px rgba(35, 48, 30, 0.08);
+}
+
+.pathway-card-header {
+  margin-bottom: 1rem;
+}
+
+.pathway-step-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green, #4e6b43);
+  background: rgba(78, 107, 67, 0.08);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 1.15rem;
+}
+
+.pathway-title {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.32;
+  color: var(--green-dark, #23301e);
+  min-height: 3.4rem;
+  display: flex;
+  align-items: flex-start;
+  margin: 0;
+}
+
+.pathway-desc {
+  font-size: 0.92rem;
+  line-height: 1.62;
+  color: var(--text-body, #4f584d);
+  margin: 0 0 1.75rem 0;
+  flex-grow: 1;
+}
+
+.pathway-card-footer {
+  margin-top: auto;
+  width: 100%;
+}
+
+.pathway-cta-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: var(--radius-sm, 10px);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--green-dark, #3b5232);
+  border: 1px solid rgba(78, 107, 67, 0.28);
+  background: #ffffff;
+  transition: all 0.25s ease;
+  text-align: center;
+  text-decoration: none;
+}
+
+.pathway-cta-btn:hover {
+  background: var(--green-dark, #3b5232);
+  color: #ffffff;
+  border-color: var(--green-dark, #3b5232);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(35, 48, 30, 0.15);
+}
+
+.pathway-cta-btn span {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.pathway-cta-btn:hover span {
+  transform: translateX(4px);
+}
+
+/* 3. Homepage: Gateway 3-Way Entry Points */
 .home-gateway-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -9656,7 +9767,8 @@ body {
 
 /* 7. Responsive Media Queries for 375px, 430px, 768px, 1024px, 1440px */
 @media (max-width: 1024px) {
-  .home-understanding-grid {
+  .home-understanding-grid,
+  .pathway-discovery-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -9671,8 +9783,13 @@ body {
 }
 
 @media (max-width: 768px) {
-  .home-understanding-grid {
+  .home-understanding-grid,
+  .pathway-discovery-grid {
     grid-template-columns: 1fr;
+  }
+
+  .pathway-title {
+    min-height: auto;
   }
 
   .home-gateway-grid,
