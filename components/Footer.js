@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BRAND_POSITIONING, DELIVERY_CHANNELS } from "../lib/navigation";
+import { BRAND_POSITIONING } from "../lib/navigation";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -96,20 +96,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Who We Help (Delivery Channels) */}
-          <div className="footer-col">
-            <span className="footer-col-title">Who We Help</span>
-            <ul className="footer-channels-list">
-              {DELIVERY_CHANNELS.map((channel) => (
-                <li key={channel.id} className="footer-channel-item">
-                  <Link href={channel.href} className="footer-channel-link">
-                    <strong>{channel.label}</strong>
-                    <span>{channel.subtitle}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
 
           {/* Column 3: Platform & Resources */}
           <div className="footer-col">

@@ -9,30 +9,16 @@ import { BRAND_POSITIONING } from "../lib/navigation";
 
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const pathname = usePathname();
 
   const close = () => {
     setOpen(false);
-    setDropdownOpen(false);
   };
 
   const isActive = (path) => pathname === path;
-  const isWhoWeHelpActive = [
-    "/individuals",
-    "/corporate-wellness",
-    "/professionals",
-    "/hospitality",
-  ].includes(pathname);
-
-  const handleDropdownBlur = (event) => {
-    if (!event.currentTarget.contains(event.relatedTarget)) {
-      setDropdownOpen(false);
-    }
-  };
 
   useEffect(() => {
-    if (!open && !dropdownOpen) return undefined;
+    if (!open) return undefined;
 
     const handleKeyDown = (event) => {
       if (event.key === "Escape") close();
@@ -40,7 +26,7 @@ export default function SiteHeader() {
 
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [open, dropdownOpen]);
+  }, [open]);
 
   // Lock body scroll when mobile drawer is open to prevent underlying page jitter
   useEffect(() => {
@@ -76,70 +62,6 @@ export default function SiteHeader() {
           >
             Our Approach
           </Link>
-
-          {/* Grouped Who We Help Dropdown */}
-          <div
-            className="nav-dropdown-wrapper"
-            onMouseEnter={() => setDropdownOpen(true)}
-            onMouseLeave={() => setDropdownOpen(false)}
-            onBlur={handleDropdownBlur}
-          >
-            <button
-              type="button"
-              className={`nav-link nav-dropdown-btn ${isWhoWeHelpActive ? "active" : ""}`}
-              aria-expanded={dropdownOpen}
-              aria-haspopup="true"
-              onClick={() => setDropdownOpen((value) => !value)}
-            >
-              Who We Help <span className="dropdown-caret" aria-hidden="true">▾</span>
-            </button>
-
-            {dropdownOpen && (
-              <div className="nav-dropdown-menu" role="menu">
-                <Link
-                  href="/individuals"
-                  className={`nav-dropdown-item ${isActive("/individuals") ? "active" : ""}`}
-                  role="menuitem"
-                  onClick={close}
-                >
-                  <span className="nav-dropdown-tag">INDIVIDUALS &amp; FAMILIES</span>
-                  <strong>Personal Lifestyle &amp; Rhythms</strong>
-                  <small>Daily stress, sleep routines &amp; 1-on-1 consultations</small>
-                </Link>
-                <Link
-                  href="/corporate-wellness"
-                  className={`nav-dropdown-item ${isActive("/corporate-wellness") ? "active" : ""}`}
-                  role="menuitem"
-                  onClick={close}
-                >
-                  <span className="nav-dropdown-tag">CORPORATE WELLNESS</span>
-                  <strong>Workplace Preventive Wellness</strong>
-                  <small>Executive resilience &amp; team sensory wellbeing</small>
-                </Link>
-                <Link
-                  href="/professionals"
-                  className={`nav-dropdown-item ${isActive("/professionals") ? "active" : ""}`}
-                  role="menuitem"
-                  onClick={close}
-                >
-                  <span className="nav-dropdown-tag">WELLNESS PROFESSIONALS</span>
-                  <strong>Practitioners, Teachers &amp; Coaches</strong>
-                  <small>Botanical education &amp; responsible application</small>
-                </Link>
-                <Link
-                  href="/hospitality"
-                  className={`nav-dropdown-item ${isActive("/hospitality") ? "active" : ""}`}
-                  role="menuitem"
-                  onClick={close}
-                >
-                  <span className="nav-dropdown-tag">HOSPITALITY &amp; SPAS</span>
-                  <strong>Spas, Resorts &amp; Wellness Centres</strong>
-                  <small>Sensory space design &amp; aromatic concepts</small>
-                </Link>
-              </div>
-            )}
-          </div>
-
           <Link
             href="/education"
             className={`nav-link ${isActive("/education") ? "active" : ""}`}
@@ -189,43 +111,6 @@ export default function SiteHeader() {
         <Link href="/approach" className={isActive("/approach") ? "active" : ""} onClick={close}>
           Our Approach
         </Link>
-
-        <div className="mobile-group-block">
-          <span className="mobile-group-label">Who We Help</span>
-          <Link
-            href="/individuals"
-            className={`mobile-sub-link ${isActive("/individuals") ? "active" : ""}`}
-            onClick={close}
-          >
-            <span className="mobile-pathway-badge">INDIVIDUALS</span>
-            <span className="mobile-pathway-title">Individuals &amp; Families</span>
-          </Link>
-          <Link
-            href="/corporate-wellness"
-            className={`mobile-sub-link ${isActive("/corporate-wellness") ? "active" : ""}`}
-            onClick={close}
-          >
-            <span className="mobile-pathway-badge">CORPORATES</span>
-            <span className="mobile-pathway-title">Corporate Wellness</span>
-          </Link>
-          <Link
-            href="/professionals"
-            className={`mobile-sub-link ${isActive("/professionals") ? "active" : ""}`}
-            onClick={close}
-          >
-            <span className="mobile-pathway-badge">PROFESSIONALS</span>
-            <span className="mobile-pathway-title">Wellness Professionals</span>
-          </Link>
-          <Link
-            href="/hospitality"
-            className={`mobile-sub-link ${isActive("/hospitality") ? "active" : ""}`}
-            onClick={close}
-          >
-            <span className="mobile-pathway-badge">HOSPITALITY</span>
-            <span className="mobile-pathway-title">Hospitality &amp; Spas</span>
-          </Link>
-        </div>
-
         <Link href="/education" className={isActive("/education") ? "active" : ""} onClick={close}>
           Education
         </Link>

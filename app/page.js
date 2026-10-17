@@ -3,72 +3,6 @@ import GoogleFormLink from "../components/FormLink";
 import FounderVisual from "../components/FounderVisual";
 import FiveRFramework from "../components/FiveRFramework";
 
-const AUDIENCE_PATHWAYS = [
-  {
-    id: "individuals",
-    tag: "FOR INDIVIDUALS",
-    badgeAccent: "tag-individuals",
-    title: "Personal Lifestyle & Daily Rhythms",
-    subtitle: "Personal Nervous System & Lifestyle Wellness",
-    description:
-      "Stress & relaxation education, sleep-supportive routines, women's wellness, and one-on-one consultations to build calm into your personal life.",
-    features: [
-      "1-on-1 Lifestyle Wellness Consultations",
-      "Restorative Sleep & Evening Wind-Down",
-      "Personalized Sensory Botanical Rituals",
-    ],
-    cta: "Explore Individual Pathway",
-    href: "/individuals",
-  },
-  {
-    id: "corporates",
-    tag: "FOR CORPORATES",
-    badgeAccent: "tag-corporates",
-    title: "Workplace Preventive Wellness",
-    subtitle: "Resilience & Sensory Balance for Teams",
-    description:
-      "Practical education, stress resilience, nervous-system-friendly practices, and sensory wellness workshops tailored for modern organisations.",
-    features: [
-      "Workplace Preventive Wellness Workshops",
-      "Executive Resilience & Stress Boundaries",
-      "Sensory Calming Space Consultations",
-    ],
-    cta: "Explore Corporate Wellness",
-    href: "/corporate-wellness",
-  },
-  {
-    id: "professionals",
-    tag: "FOR PROFESSIONALS",
-    badgeAccent: "tag-professionals",
-    title: "Wellness Practitioners & Coaches",
-    subtitle: "Evidence-Informed Botanical Curriculum",
-    description:
-      "Expand your professional toolkit with evidence-informed essential-oil education, aromatic rituals, dilution safety, and responsible client boundaries.",
-    features: [
-      "Conservative Dilution & Safety Standards",
-      "Somatic Sensory Anchoring Protocols",
-      "Responsible Client Scope of Practice",
-    ],
-    cta: "Explore Practitioner Pathway",
-    href: "/professionals",
-  },
-  {
-    id: "hospitality",
-    tag: "FOR HOSPITALITY",
-    badgeAccent: "tag-hospitality",
-    title: "Hospitality & Wellness Centres",
-    subtitle: "Ambient Scent Architecture & Guest Journeys",
-    description:
-      "Sensory wellness space design, ambient room-by-room aromatic concepts, guest experiences, and staff education for spas, retreats, and studios.",
-    features: [
-      "Room-by-Room Ambient Scent Design",
-      "Bespoke Spa & Retreat Sensory Menus",
-      "On-Site Staff Aromatherapy Training",
-    ],
-    cta: "Explore Hospitality Concepts",
-    href: "/hospitality",
-  },
-];
 
 const UNDERSTANDING_PILLARS = [
   {
@@ -232,52 +166,6 @@ export default function HomePage() {
                 <h3>{pillar.title}</h3>
                 <p>{pillar.description}</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. FOUR AUDIENCE PATHWAYS */}
-      <section className="section pathways-section" id="pathways">
-        <div className="container">
-          <div className="section-heading text-center">
-            <span className="eyebrow">FOUR DELIVERY CHANNELS</span>
-            <h2>
-              Discover your <em>wellness pathway.</em>
-            </h2>
-            <p className="section-lead">
-              Whether you are an individual seeking calmer daily rhythms, an organisation building
-              workplace resilience, a wellness professional expanding your toolkit, or a sensory
-              hospitality space.
-            </p>
-          </div>
-
-          <div className="pathways-grid">
-            {AUDIENCE_PATHWAYS.map((pathway) => (
-              <article key={pathway.id} className={`pathway-card pathway-card-${pathway.id}`}>
-                <div className="pathway-card-top">
-                  <div className="pathway-badge-row">
-                    <span className={`pathway-tag ${pathway.badgeAccent}`}>{pathway.tag}</span>
-                  </div>
-                  <h3>{pathway.title}</h3>
-                  <p className="pathway-subtitle">{pathway.subtitle}</p>
-                  <p className="pathway-desc">{pathway.description}</p>
-
-                  <ul className="pathway-feature-list" aria-label={`Key features of ${pathway.title}`}>
-                    {pathway.features.map((feature) => (
-                      <li key={feature}>
-                        <span className="pathway-feature-bullet" aria-hidden="true">✦</span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="pathway-card-bottom">
-                  <Link href={pathway.href} className="btn btn-outline pathway-cta-btn">
-                    {pathway.cta} <span>→</span>
-                  </Link>
-                </div>
-              </article>
             ))}
           </div>
         </div>
