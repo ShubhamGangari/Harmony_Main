@@ -107,6 +107,7 @@ export default function Footer() {
               <Link href="/education">Education Pathways</Link>
               <Link href="/products">Essential Oils</Link>
               <Link href="/essential-oil-safety">Safety &amp; Responsible Use</Link>
+              <Link href="/research-and-evidence">Research &amp; Evidence</Link>
               <Link href="/resources">Resources Hub</Link>
               <Link href="/resources/7-day-wellness-routine">7-Day Supportive Wellness Routine</Link>
               <Link href="/resources#evidence">Evidence &amp; Scientific Context</Link>

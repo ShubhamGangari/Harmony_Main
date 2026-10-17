@@ -10880,4 +10880,582 @@ body {
   }
 }
 
+/* ==========================================================================
+   HOMEPAGE TRUST & SOCIAL PROOF SECTION
+   ========================================================================== */
+
+.trust-social-proof-section {
+  background: var(--white, #ffffff);
+  border-top: 1px solid rgba(78, 107, 67, 0.1);
+  border-bottom: 1px solid rgba(78, 107, 67, 0.1);
+}
+
+.trust-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.trust-metric-card {
+  padding: 32px 26px;
+  background: var(--bg-soft, #f7f9f5);
+  border: 1.5px solid rgba(78, 107, 67, 0.14);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.trust-metric-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--green, #4e6b43);
+}
+
+.trust-metric-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-dark, #3b5232);
+  margin-bottom: 12px;
+}
+
+.trust-metric-number {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.metric-val {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: clamp(2rem, 3vw, 2.75rem);
+  font-weight: 700;
+  color: var(--charcoal, #222222);
+  line-height: 1;
+}
+
+.metric-unit {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--green-dark, #3b5232);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.trust-metric-card h3 {
+  font-size: 1.15rem;
+  color: var(--charcoal, #222222);
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+
+.trust-metric-card p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #526050;
+  margin: 0;
+}
+
+/* Workshop Experience Banner */
+.trust-workshop-banner {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 48px;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(78, 107, 67, 0.07), rgba(78, 107, 67, 0.02));
+  border: 1.5px solid rgba(78, 107, 67, 0.16);
+  border-radius: 28px;
+  padding: 40px;
+  margin: 56px 0;
+}
+
+.trust-workshop-visual {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(35, 48, 30, 0.08);
+}
+
+.trust-workshop-img {
+  width: 100%;
+  height: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  display: block;
+}
+
+.trust-workshop-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(78, 107, 67, 0.18);
+}
+
+.workshop-badge-title {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-dark, #3b5232);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.trust-workshop-badge p {
+  font-size: 0.8rem;
+  color: #40503c;
+  margin: 0;
+  font-weight: 600;
+}
+
+.trust-workshop-content h3 {
+  font-size: clamp(1.4rem, 2vw, 1.85rem);
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  color: var(--charcoal, #222222);
+  margin: 8px 0 16px;
+  line-height: 1.3;
+}
+
+.trust-workshop-content p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #455243;
+  margin-bottom: 20px;
+}
+
+.trust-checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trust-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #3b4a38;
+}
+
+.check-icon {
+  color: var(--green, #4e6b43);
+  font-weight: 700;
+}
+
+/* Screened Compliant Testimonials */
+.trust-testimonials-wrapper {
+  margin: 56px 0;
+}
+
+.testimonials-heading {
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  color: var(--charcoal, #222222);
+  margin-top: 6px;
+}
+
+.trust-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 36px;
+}
+
+.trust-testimonial-card {
+  padding: 32px 28px;
+  background: var(--white, #ffffff);
+  border: 1.5px solid rgba(78, 107, 67, 0.14);
+  border-radius: 22px;
+  box-shadow: 0 4px 20px rgba(35, 48, 30, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.quote-mark {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: 2.5rem;
+  color: var(--green, #4e6b43);
+  line-height: 1;
+}
+
+.testimonial-focus {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(78, 107, 67, 0.09);
+  color: var(--green-dark, #3b5232);
+}
+
+.testimonial-quote {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #3a4837;
+  font-style: italic;
+  margin: 0 0 20px;
+  flex-grow: 1;
+}
+
+.testimonial-author-block {
+  border-top: 1px solid rgba(78, 107, 67, 0.12);
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.testimonial-author-block strong {
+  font-size: 0.95rem;
+  color: var(--charcoal, #222222);
+}
+
+.testimonial-author-block span {
+  font-size: 0.8rem;
+  color: #637060;
+}
+
+.testimonials-compliance-disclaimer {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #60705d;
+  margin-top: 24px;
+}
+
+.trust-evidence-callout-banner {
+  margin-top: 48px;
+}
+
+.trust-evidence-action {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   RESEARCH & EVIDENCE PAGE STYLING
+   ========================================================================== */
+
+.evidence-tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.evidence-tier-card {
+  padding: 34px 28px;
+  background: var(--white, #ffffff);
+  border: 1.5px solid rgba(78, 107, 67, 0.16);
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(35, 48, 30, 0.04);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.evidence-tier-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--green, #4e6b43);
+}
+
+.tier-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.tier-number {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--green, #4e6b43);
+}
+
+.evidence-tier-card h3 {
+  font-size: 1.35rem;
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  color: var(--charcoal, #222222);
+  margin: 0 0 6px;
+}
+
+.tier-tagline {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--green-dark, #3b5232);
+  margin: 0 0 16px;
+  line-height: 1.4;
+}
+
+.tier-description {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #4b5849;
+  margin: 0 0 22px;
+}
+
+.tier-bullet-box {
+  margin-top: auto;
+  border-top: 1px solid rgba(78, 107, 67, 0.12);
+  padding-top: 18px;
+}
+
+.tier-bullet-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--green-dark, #3b5232);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.tier-points-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tier-points-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #3f4e3c;
+}
+
+/* Evidence Hierarchy Grid */
+.evidence-hierarchy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.hierarchy-step-card {
+  padding: 28px 24px;
+  background: var(--white, #ffffff);
+  border: 1.5px solid rgba(78, 107, 67, 0.14);
+  border-radius: 20px;
+  box-shadow: 0 4px 18px rgba(35, 48, 30, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+.step-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.step-num {
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--green, #4e6b43);
+}
+
+.step-status {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(78, 107, 67, 0.09);
+  color: var(--green-dark, #3b5232);
+}
+
+.hierarchy-step-card h3 {
+  font-size: 1.2rem;
+  color: var(--charcoal, #222222);
+  margin: 0 0 8px;
+  line-height: 1.3;
+}
+
+.step-scope {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #526050;
+  margin: 0 0 16px;
+}
+
+.step-clarification-box {
+  margin-top: auto;
+  padding: 12px 14px;
+  background: var(--bg-soft, #f7f9f5);
+  border-radius: 12px;
+  border-left: 3px solid var(--green, #4e6b43);
+}
+
+.clarification-label {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--green-dark, #3b5232);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.step-clarification-box p {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #40503c;
+  margin: 0;
+}
+
+/* Traffic Light Claims Governance */
+.traffic-light-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 48px;
+}
+
+.traffic-card {
+  padding: 32px 28px;
+  border-radius: 22px;
+  background: var(--white, #ffffff);
+  box-shadow: 0 4px 20px rgba(35, 48, 30, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+.traffic-green {
+  border: 2px solid #588157;
+}
+
+.traffic-amber {
+  border: 2px solid #d4a373;
+}
+
+.traffic-red {
+  border: 2px solid #c85a54;
+}
+
+.traffic-indicator {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+}
+
+.indicator-green {
+  background: #588157;
+  box-shadow: 0 0 0 4px rgba(88, 129, 87, 0.2);
+}
+
+.indicator-amber {
+  background: #d4a373;
+  box-shadow: 0 0 0 4px rgba(212, 163, 115, 0.2);
+}
+
+.indicator-red {
+  background: #c85a54;
+  box-shadow: 0 0 0 4px rgba(200, 90, 84, 0.2);
+}
+
+.traffic-card h3 {
+  font-size: 1.25rem;
+  color: var(--charcoal, #222222);
+  margin: 0 0 8px;
+  line-height: 1.3;
+}
+
+.traffic-sub {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #637060;
+  margin: 0 0 20px;
+}
+
+.traffic-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.traffic-list li {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #3d4a3b;
+  position: relative;
+  padding-left: 18px;
+}
+
+.traffic-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--green, #4e6b43);
+  font-weight: 700;
+}
+
+.traffic-red .traffic-list li::before {
+  color: #c85a54;
+}
+
+.traffic-amber .traffic-list li::before {
+  color: #d4a373;
+}
+
+/* Responsive Rules for Trust & Evidence */
+@media (max-width: 1024px) {
+  .trust-metrics-grid,
+  .evidence-tiers-grid,
+  .evidence-hierarchy-grid,
+  .traffic-light-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .trust-workshop-banner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .trust-metrics-grid,
+  .trust-testimonials-grid,
+  .evidence-tiers-grid,
+  .evidence-hierarchy-grid,
+  .traffic-light-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trust-workshop-banner {
+    padding: 24px;
+  }
+}
+
+
 

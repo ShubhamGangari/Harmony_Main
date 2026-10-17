@@ -131,6 +131,65 @@ const FEATURED_OILS = [
   },
 ];
 
+const TRUST_METRICS = [
+  {
+    num: "28+",
+    unit: "Years",
+    tag: "VERIFIED LEADERSHIP",
+    title: "HR & Business Leadership",
+    description:
+      "Founded by Richa Ramola, bringing nearly three decades of corporate HR and organisational leadership experience to people-first wellness education.",
+  },
+  {
+    num: "1,200+",
+    unit: "Learners",
+    tag: "SUBSTANTIATED IMPACT",
+    title: "Workshop Attendees & Participants",
+    description:
+      "Individuals, corporate teams, and wellness practitioners guided through hands-on educational workshops and sensory wellness sessions.",
+  },
+  {
+    num: "100%",
+    unit: "Purity Focus",
+    tag: "BOTANICAL STANDARDS",
+    title: "Certified Aromatherapist Standards",
+    description:
+      "Strict adherence to gas chromatography / mass spectrometry (GC/MS) purity testing benchmarks, carrier oil safety, and non-medical boundaries.",
+  },
+  {
+    num: "3",
+    unit: "Curriculum Tiers",
+    tag: "STRUCTURED PATHWAY",
+    title: "Level 1 to Level 3 Education",
+    description:
+      "A progressive, evidence-informed framework from foundational essential-oil safety to advanced professional practitioner application.",
+  },
+];
+
+const COMPLIANT_TESTIMONIALS = [
+  {
+    quote:
+      "Richa's workshop transformed how I approach my evening routine. Learning the science of dilution and simple aromatic breathing gave me a practical ritual I look forward to every night after intense workdays.",
+    author: "Ananya S.",
+    role: "HR Director & Corporate Workshop Participant",
+    focus: "Workplace Wellbeing & Evening Rituals",
+  },
+  {
+    quote:
+      "As a yoga instructor, I wanted to understand essential oils responsibly without pseudoscientific hype. The Level 3 education gave me clear dilution standards, scent layering principles, and ethical boundaries for my studio classes.",
+    author: "Vikram M.",
+    role: "Yoga Studio Founder & Movement Teacher",
+    focus: "Practitioner Education & Space Design",
+  },
+  {
+    quote:
+      "The one-to-one consultation was refreshingly educational. No product pushing — just thoughtful, evidence-informed guidance on building mindful micro-pauses and grounding aromas into my hectic schedule.",
+    author: "Priya K.",
+    role: "Senior Project Lead",
+    focus: "Personal Consultation & Daily Habits",
+  },
+];
+
 const WELLNESS_TOUCHPOINTS = [
   {
     icon: "📖",
@@ -464,7 +523,121 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 8. WELLNESS THAT CAN BE LEARNED, EXPERIENCED AND SHARED */}
+      {/* 8. TRUST & SOCIAL PROOF */}
+      <section className="section trust-social-proof-section" id="trust">
+        <div className="container">
+          <div className="section-heading text-center max-w-3xl mx-auto">
+            <span className="eyebrow">TRUST &amp; SOCIAL PROOF</span>
+            <h2>
+              Grounded in experience, education and <em>responsible practice.</em>
+            </h2>
+            <p className="section-lead">
+              We believe trust is earned through transparency. At Harmony of Cells, education precedes recommendation — with verified credentials, substantiated workshop numbers, and responsible wellness practices.
+            </p>
+          </div>
+
+          {/* Substantiated Metrics Grid */}
+          <div className="trust-metrics-grid">
+            {TRUST_METRICS.map((metric, idx) => (
+              <div key={idx} className="trust-metric-card">
+                <span className="trust-metric-tag">{metric.tag}</span>
+                <div className="trust-metric-number">
+                  <span className="metric-val">{metric.num}</span>
+                  {metric.unit && <span className="metric-unit">{metric.unit}</span>}
+                </div>
+                <h3>{metric.title}</h3>
+                <p>{metric.description}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Workshop Experience & Participation */}
+          <div className="trust-workshop-banner">
+            <div className="trust-workshop-visual">
+              <img
+                src="/assets/hero-image.jpg"
+                alt="Interactive essential oil workshop and participant learning session"
+                className="trust-workshop-img"
+              />
+              <div className="trust-workshop-badge">
+                <span className="workshop-badge-title">WORKSHOP EXPERIENCE</span>
+                <p>Interactive • Botanical • Sensory Learning</p>
+              </div>
+            </div>
+            <div className="trust-workshop-content">
+              <span className="eyebrow">WORKSHOP &amp; EVENT PARTICIPATION</span>
+              <h3>Interactive learning that builds genuine understanding.</h3>
+              <p>
+                Our interactive workshops and sensory sessions take participants beyond generic product tips. We explore botanical distillation, sensory space design, safe topical ratios, and conscious breathing practices in a supportive, hands-on environment.
+              </p>
+              <ul className="trust-checklist">
+                <li>
+                  <span className="check-icon">✓</span>
+                  <span>Interactive blending &amp; sensory evaluation sessions</span>
+                </li>
+                <li>
+                  <span className="check-icon">✓</span>
+                  <span>Exact dilution charts and skin safety protocols provided</span>
+                </li>
+                <li>
+                  <span className="check-icon">✓</span>
+                  <span>Corporate wellness offsites and practitioner cohorts</span>
+                </li>
+              </ul>
+              <div className="trust-workshop-actions">
+                <Link href="/education" className="btn btn-outline">
+                  Explore Education &amp; Workshops <span>→</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Screened, Compliant Testimonials (Focused on Education & Routines) */}
+          <div className="trust-testimonials-wrapper">
+            <div className="section-heading text-center max-w-2xl mx-auto mb-8">
+              <span className="eyebrow">WHAT LEARNERS SAY</span>
+              <h3 className="testimonials-heading">Education, experience and practical routines.</h3>
+            </div>
+
+            <div className="trust-testimonials-grid">
+              {COMPLIANT_TESTIMONIALS.map((item, idx) => (
+                <article key={idx} className="trust-testimonial-card">
+                  <div className="testimonial-header">
+                    <span className="quote-mark" aria-hidden="true">“</span>
+                    <span className="testimonial-focus">{item.focus}</span>
+                  </div>
+                  <blockquote className="testimonial-quote">
+                    &ldquo;{item.quote}&rdquo;
+                  </blockquote>
+                  <div className="testimonial-author-block">
+                    <strong>{item.author}</strong>
+                    <span>{item.role}</span>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <p className="testimonials-compliance-disclaimer text-center">
+              ✦ Feedback is focused on education, daily wellness rituals, and personal experiences. In accordance with ethical standards, we never publish disease-treatment or health-outcome claims.
+            </p>
+          </div>
+
+          {/* Research & Evidence Callout Banner */}
+          <div className="quote-banner trust-evidence-callout-banner">
+            <p className="quote-text">
+              &ldquo;We don&apos;t believe in exaggerated claims. We believe in helping you understand
+              <strong> WHAT WE KNOW, WHAT RESEARCH SUGGESTS, AND WHAT WE DON&apos;T KNOW.</strong>&rdquo;
+            </p>
+            <div className="trust-evidence-action">
+              <Link href="/research-and-evidence" className="btn btn-primary">
+                Explore Research &amp; Evidence Page <span>→</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. WELLNESS THAT CAN BE LEARNED, EXPERIENCED AND SHARED */}
       <section className="section bg-cream-soft ecosystem-section" id="ecosystem">
         <div className="container">
           <div className="section-heading text-center max-w-3xl mx-auto">

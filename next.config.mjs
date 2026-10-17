@@ -34,7 +34,12 @@ const nextConfig = {
       },
       {
         source: "/research-evidence",
-        destination: "/resources",
+        destination: "/research-and-evidence",
+        permanent: true,
+      },
+      {
+        source: "/evidence",
+        destination: "/research-and-evidence",
         permanent: true,
       },
       {
