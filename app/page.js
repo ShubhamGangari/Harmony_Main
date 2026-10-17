@@ -2,60 +2,9 @@ import Link from "next/link";
 import GoogleFormLink from "../components/FormLink";
 import { FeaturedProducts } from "../components/Catalogue";
 import FounderVisual from "../components/FounderVisual";
+import FiveRFramework from "../components/FiveRFramework";
 import { SITE_CONFIG } from "../lib/config";
 
-const APPROACH_CONCEPTS = [
-  {
-    step: "01",
-    name: "REST",
-    tagline: "Recovery & Calm",
-    glyph: "✦",
-    focus: "Nighttime recovery & deep decompression",
-    description:
-      "Creating supportive conditions for genuine rest, nighttime recovery, and gentle decompression after demanding days.",
-    ritual: "Circadian evening wind-down & light transitions",
-  },
-  {
-    step: "02",
-    name: "REGULATE",
-    tagline: "Pause & Awareness",
-    glyph: "◌",
-    focus: "Conscious pauses & somatic calm",
-    description:
-      "Building intentional moments of pause, somatic awareness, and calming transitions throughout the workday.",
-    ritual: "2-minute breath breaks & workday resets",
-  },
-  {
-    step: "03",
-    name: "RESTORE",
-    tagline: "Daily Rhythms",
-    glyph: "◈",
-    focus: "Circadian alignment & restorative cadence",
-    description:
-      "Supporting healthy circadian rhythms and restorative routines through evidence-informed lifestyle practices.",
-    ritual: "Morning daylight exposure & hydration rhythms",
-  },
-  {
-    step: "04",
-    name: "RESILIENCE",
-    tagline: "Sustainable Capacity",
-    glyph: "◇",
-    focus: "Everyday adaptability & emotional calm",
-    description:
-      "Developing practical habits and adaptive routines for navigating the continuous demands of modern life.",
-    ritual: "Stress boundary protection & renewal intervals",
-  },
-  {
-    step: "05",
-    name: "RITUAL",
-    tagline: "Repeatable Habits",
-    glyph: "✺",
-    focus: "Small, enjoyable self-care micro-habits",
-    description:
-      "Turning wellness knowledge into small, enjoyable, repeatable self-care practices that fit your everyday schedule.",
-    ritual: "Sensory aromatic cues & conscious pauses",
-  },
-];
 
 const AUDIENCE_PATHWAYS = [
   {
@@ -259,26 +208,8 @@ export default function HomePage() {
             <div className="approach-flow-line" />
           </div>
 
-          <div className="approach-grid" role="list" aria-label="Our 5-stage wellness methodology">
-            {APPROACH_CONCEPTS.map((concept) => (
-              <article key={concept.step} className="approach-card" role="listitem">
-                <div className="approach-card-header">
-                  <div className="approach-step-pill">
-                    <span className="approach-step-num">{concept.step}</span>
-                    <span className="approach-step-glyph" aria-hidden="true">{concept.glyph}</span>
-                  </div>
-                  <span className="approach-tagline">{concept.tagline}</span>
-                </div>
-                <h3>{concept.name}</h3>
-                <p className="approach-card-focus">{concept.focus}</p>
-                <p className="approach-card-desc">{concept.description}</p>
-                <div className="approach-card-ritual">
-                  <span className="ritual-label">PRACTICE CUE</span>
-                  <small>{concept.ritual}</small>
-                </div>
-              </article>
-            ))}
-          </div>
+          {/* Interactive 5R Framework Stage Explorer */}
+          <FiveRFramework />
 
           <div className="approach-footer-row">
             <p className="approach-disclaimer-note">
