@@ -9789,30 +9789,6 @@ html {
   white-space: nowrap;
 }
 
-/* 3. Header Polish & Active States */
-.site-header {
-  background: rgba(248, 247, 242, 0.94);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(78, 107, 67, 0.12);
-  transition: background 0.25s ease, box-shadow 0.25s ease;
-}
-
-.nav-link.active {
-  color: var(--green-dark, #3b5232);
-  font-weight: 700;
-  border-bottom: 2px solid var(--green, #4e6b43);
-}
-
-.nav-cta {
-  box-shadow: 0 4px 14px rgba(78, 107, 67, 0.25);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.nav-cta:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(78, 107, 67, 0.35);
-}
-
 /* 4. Reduced Motion Accessibility */
 @media (prefers-reduced-motion: reduce) {
   *,
