@@ -1,7 +1,6 @@
 import Link from "next/link";
 import GoogleFormLink from "../components/FormLink";
 import FounderVisual from "../components/FounderVisual";
-import FiveRFramework from "../components/FiveRFramework";
 
 
 const UNDERSTANDING_PILLARS = [
@@ -167,48 +166,6 @@ export default function HomePage() {
                 <p>{pillar.description}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. SHORT INTRODUCTION TO THE FIVE 5R CONCEPTS WITH LINK TO OUR APPROACH */}
-      <section className="section approach-section" id="approach">
-        <div className="container">
-          <div className="approach-intro text-center">
-            <span className="eyebrow">THE 5R METHODOLOGY</span>
-            <h2>
-              Wellness is shaped by the <em>rhythms of everyday life.</em>
-            </h2>
-            <p className="section-lead">
-              Wellness is not one product, one practice or one prescription. Harmony of Cells focuses on
-              the relationship between nervous-system wellbeing, lifestyle and environment — bringing together
-              five interconnected principles for everyday vitality: <strong>Rest, Regulate, Restore, Resilience, and Ritual.</strong>
-            </p>
-          </div>
-
-          {/* Sequential Step Sequence Rail */}
-          <div className="approach-flow-header" aria-hidden="true">
-            <span className="approach-flow-label">A 5-STAGE EDITORIAL SEQUENCE</span>
-            <div className="approach-flow-line" />
-          </div>
-
-          {/* Interactive 5R Framework Explorer */}
-          <FiveRFramework />
-
-          <div className="approach-footer-row">
-            <p className="approach-disclaimer-note">
-              * These are educational lifestyle concepts designed to support healthy daily
-              rhythms, not medical claims to diagnose, treat, or clinically regulate
-              nervous-system disorders.
-            </p>
-            <div className="approach-cta-wrap">
-              <Link href="/approach" className="btn btn-primary">
-                Explore Our Full Approach <span>→</span>
-              </Link>
-              <Link href="/approach#wellness-pillars" className="btn btn-outline">
-                View Everyday Wellness Pillars <span>→</span>
-              </Link>
-            </div>
           </div>
         </div>
       </section>
