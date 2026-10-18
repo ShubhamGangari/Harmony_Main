@@ -107,12 +107,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Disclaimer Paragraph */}
-        <div className="footer-blueprint-disclaimer">
-          <p>
-            Harmony of Cells provides wellness education and guidance and does not provide medical diagnosis or treatment. Product use should always follow applicable product instructions and safety guidance.
-          </p>
-        </div>
 
         {/* Copyright */}
         <div className="footer-blueprint-bottom">
